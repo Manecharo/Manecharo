@@ -232,7 +232,7 @@ export default function NotFound() {
         <div className="border-t-4 border-gold pt-12">
           <blockquote className="text-center">
             <p className="text-lg md:text-xl text-charcoal/90 leading-relaxed mb-6 font-serif italic">
-              "{currentQuote.quote}"
+              &ldquo;{currentQuote.quote}&rdquo;
             </p>
             <footer className="font-display text-charcoal">
               <cite className="not-italic font-bold text-navy">

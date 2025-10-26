@@ -9,7 +9,6 @@ export default function Hero() {
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [showTagline, setShowTagline] = useState(false);
   const [showStats, setShowStats] = useState(false);
-  const [showScroll, setShowScroll] = useState(false);
   const { t, language } = useLanguage();
 
   // Reset animation states when language changes
@@ -17,7 +16,6 @@ export default function Hero() {
     setShowSubtitle(false);
     setShowTagline(false);
     setShowStats(false);
-    setShowScroll(false);
   }, [language]);
 
   return (
@@ -90,7 +88,6 @@ export default function Hero() {
                 text={t.hero.stats}
                 delay={0}
                 speed={20}
-                onComplete={() => setTimeout(() => setShowScroll(true), 500)}
               />
             </p>
           )}
@@ -129,20 +126,10 @@ export default function Hero() {
               text={t.hero.stats}
               delay={0}
               speed={20}
-              onComplete={() => setTimeout(() => setShowScroll(true), 500)}
             />
           </p>
         )}
       </div>
-
-      {/* Scroll Indicator */}
-      {showScroll && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-fade-in-up">
-          <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2 animate-bounce">
-            <div className="w-1 h-3 bg-white rounded-full" />
-          </div>
-        </div>
-      )}
     </section>
   );
 }
