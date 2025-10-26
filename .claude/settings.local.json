@@ -1,20 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx create-next-app@latest portfolio --typescript --tailwind --app --src-dir --import-alias \"@/*\" --no-git)",
-      "Bash(node -e:*)",
-      "Bash(tree:*)",
-      "Bash(npm run dev:*)",
-      "Bash(timeout 5 bash -c 'cd \"\"D:\\Trabajos\\MER - Consultant\\Website\"\" && npm run dev 2>&1')",
-      "Bash(timeout 10 npm run dev:*)",
-      "Bash(curl:*)",
-      "Bash(timeout 15 npm run dev:*)",
-      "Bash(git add:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nFix translations and hero section language switching\n\n- Fixed apostrophes in English translations (changed &apos; to '')\n- Added language-based re-rendering for Hero section typewriter animations\n- Converted About, Work, Capabilities, and Contact pages to use translation system\n- All pages now properly switch between EN/ES/IT languages\n- Hero section now resets animations when language changes\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git push)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nFix Next.js App Router type error for Vercel build\n\n- Moved authOptions from route file to separate lib/auth.ts file\n- Updated all imports to use new @/lib/auth location\n- Route files now only export GET/POST handlers as required by Next.js\n\nThis fixes the Vercel build error: \"authOptions is not a valid Route export field\"\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(npm run build:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nAdd null checks for Sanity client in all fetch functions\n\n- Added null checks before client.fetch() calls in thoughts/[slug], work/[slug], and thoughts pages\n- Prevents TypeScript errors when Sanity client is not configured\n- All functions now gracefully handle missing Sanity configuration\n\nThis fixes the Vercel build error: \"'client' is possibly 'null'\"\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
