@@ -20,6 +20,11 @@ interface Post {
 }
 
 async function getPost(slug: string): Promise<Post | null> {
+  if (!client) {
+    console.warn("Sanity client not configured");
+    return null;
+  }
+
   try {
     const post = await client.fetch(
       `*[_type == "post" && slug.current == $slug && published == true][0] {

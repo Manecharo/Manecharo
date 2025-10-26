@@ -20,6 +20,11 @@ interface Project {
 }
 
 async function getProject(slug: string): Promise<Project | null> {
+  if (!client) {
+    console.warn("Sanity client not configured");
+    return null;
+  }
+
   try {
     const project = await client.fetch(
       `*[_type == "project" && slug.current == $slug][0] {
@@ -44,6 +49,11 @@ async function getProject(slug: string): Promise<Project | null> {
 }
 
 async function getAdjacentProjects(currentId: string) {
+  if (!client) {
+    console.warn("Sanity client not configured");
+    return { prev: null, next: null };
+  }
+
   try {
     const projects = await client.fetch(
       `*[_type == "project"] | order(order asc, year desc) {

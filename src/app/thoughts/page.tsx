@@ -13,6 +13,11 @@ interface Post {
 }
 
 async function getPosts(): Promise<Post[]> {
+  if (!client) {
+    console.warn("Sanity client not configured");
+    return [];
+  }
+
   try {
     const posts = await client.fetch(
       `*[_type == "post" && published == true] | order(publishedAt desc) {
