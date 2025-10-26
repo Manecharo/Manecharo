@@ -6,7 +6,9 @@
       "Bash(cat:*)",
       "Bash(vercel env pull:*)",
       "Bash(timeout 10 bash:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

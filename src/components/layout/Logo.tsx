@@ -31,7 +31,6 @@ export default function Logo() {
         </div>
         {/* Subtitle - Hidden on small mobile */}
         <div className="hidden sm:block font-body text-[10px] md:text-xs uppercase tracking-widest text-charcoal/60 group-hover:text-red/80 transition-colors duration-200">
-          Consultant
         </div>
       </div>
     </Link>

@@ -8,8 +8,8 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
   const { language, setLanguage } = useLanguage();
 
-  // Don't show language switcher on blog/thoughts pages
-  if (pathname?.startsWith('/blog') || pathname?.startsWith('/thoughts')) {
+  // Don't show language switcher on blog/thoughts/studio pages
+  if (pathname?.startsWith('/blog') || pathname?.startsWith('/thoughts') || pathname?.startsWith('/studio')) {
     return null;
   }
 
