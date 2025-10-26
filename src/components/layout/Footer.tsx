@@ -56,7 +56,6 @@ export default function Footer() {
                 ${isDragging ? 'scale-110 opacity-50' : 'hover:scale-105'}
                 ${dragDistance > 100 ? 'animate-pulse' : ''}
               `}
-              title="Drag me to discover something..."
             >
               <Image
                 src="/images/logo/logo_Asvg.svg"
@@ -65,9 +64,6 @@ export default function Footer() {
                 className="object-contain invert brightness-0 transition-all duration-200 pointer-events-none"
               />
             </div>
-            <p className="mt-2 text-xs text-cream/40 italic">
-              Drag the logo...
-            </p>
           </div>
 
           {/* Contact Info */}
