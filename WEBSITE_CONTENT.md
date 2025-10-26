@@ -130,8 +130,8 @@ I'm currently available for:
 
 ### Social Links
 
-**Instagram:** [@ManecharoDesign](https://instagram.com/ManecharoDesign)  
-**LinkedIn:** [Manuel Echavarria Romero](https://linkedin.com/in/ManecharoDesign)
+**Instagram:** [@ManecharoDesign](https://instagram.com/Manecharo)  
+**LinkedIn:** [Manuel Echavarria Romero](https://linkedin.com/in/mer101)
 
 ---
 

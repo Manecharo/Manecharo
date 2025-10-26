@@ -77,7 +77,7 @@ export default function ContactPage() {
                 <h3 className="font-display text-xl mb-4">Follow</h3>
                 <div className="flex gap-4">
                   <a
-                    href="https://instagram.com/ManecharoDesign"
+                    href="https://instagram.com/Manecharo"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-pure-white hover:bg-gold transition-colors group"
@@ -86,7 +86,7 @@ export default function ContactPage() {
                     <Instagram className="w-6 h-6 text-charcoal" />
                   </a>
                   <a
-                    href="https://linkedin.com/in/ManecharoDesign"
+                    href="https://linkedin.com/in/mer101"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-pure-white hover:bg-gold transition-colors group"

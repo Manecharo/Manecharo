@@ -81,7 +81,7 @@ export default function Footer() {
           {/* Social Links */}
           <div className="flex gap-6 justify-center md:justify-end">
             <a
-              href="https://instagram.com/ManecharoDesign"
+              href="https://instagram.com/Manecharo"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gold transition-colors"
@@ -90,7 +90,7 @@ export default function Footer() {
               <Instagram size={24} />
             </a>
             <a
-              href="https://linkedin.com/in/ManecharoDesign"
+              href="https://linkedin.com/in/mer101"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gold transition-colors"

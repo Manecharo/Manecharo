@@ -86,7 +86,7 @@ export default function AboutPage() {
                 { lang: "Spanish", level: "Native" },
                 { lang: "English", level: "C1" },
                 { lang: "Italian", level: "B2" },
-                { lang: "French", level: "A1" },
+                { lang: "French", level: "A2" },
               ].map((item, index) => (
                 <div key={index} className="text-center">
                   <div className="text-2xl font-display mb-2">{item.lang}</div>

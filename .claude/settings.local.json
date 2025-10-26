@@ -3,7 +3,10 @@
     "allow": [
       "Bash(git commit:*)",
       "Bash(npm install:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(vercel env pull:*)",
+      "Bash(timeout 10 bash:*)",
+      "Bash(python:*)"
     ],
     "deny": [],
     "ask": []

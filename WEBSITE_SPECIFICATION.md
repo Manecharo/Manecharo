@@ -662,8 +662,8 @@ Each needs:
   "url": "https://yourdomain.com",
   "jobTitle": "Industrial Designer & Design Strategist",
   "sameAs": [
-    "https://instagram.com/ManecharoDesign",
-    "https://linkedin.com/in/ManecharoDesign"
+    "https://instagram.com/Manecharo",
+    "https://linkedin.com/in/mer101"
   ],
   "address": {
     "@type": "PostalAddress",
