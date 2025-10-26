@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest portfolio --typescript --tailwind --app --src-dir --import-alias \"@/*\" --no-git)",
+      "Bash(node -e:*)",
+      "Bash(tree:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout 5 bash -c 'cd \"\"D:\\Trabajos\\MER - Consultant\\Website\"\" && npm run dev 2>&1')",
+      "Bash(timeout 10 npm run dev:*)",
+      "Bash(curl:*)",
+      "Bash(timeout 15 npm run dev:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
