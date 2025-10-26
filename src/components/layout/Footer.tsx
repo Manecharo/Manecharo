@@ -20,12 +20,14 @@ export default function Footer() {
       setClicks(0);
     }
 
-    // Reset clicks after 1.5 seconds
-    const timer = setTimeout(() => {
-      setClicks(0);
-    }, 1500);
+    // Reset clicks after 3 seconds (longer time window)
+    if (clicks > 0 && clicks < 3) {
+      const timer = setTimeout(() => {
+        setClicks(0);
+      }, 3000);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, [clicks]);
 
   // Hide footer on /thoughts pages (blog has its own footer if needed)

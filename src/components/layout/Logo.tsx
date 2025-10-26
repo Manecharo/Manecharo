@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 export default function Logo() {
   const pathname = usePathname();
 
-  // Don't show logo on blog pages - they have their own identity
-  if (pathname?.startsWith('/blog')) {
+  // Don't show logo on blog/thoughts pages - they have their own identity
+  if (pathname?.startsWith('/blog') || pathname?.startsWith('/thoughts')) {
     return null;
   }
 

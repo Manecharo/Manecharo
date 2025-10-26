@@ -117,6 +117,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check if Resend is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY not configured");
+      return NextResponse.json(
+        { error: "Email service not configured. Please contact directly at manuelerfreelance@gmail.com" },
+        { status: 500 }
+      );
+    }
+
     const resend = getResendClient();
 
     // Language labels for the notification email
@@ -170,8 +179,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error("Contact form error:", error);
+
+    // More detailed error message
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    console.error("Detailed error:", errorMessage);
+
     return NextResponse.json(
-      { error: "Failed to send message" },
+      {
+        error: "Failed to send message. Please contact directly at manuelerfreelance@gmail.com",
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     );
   }

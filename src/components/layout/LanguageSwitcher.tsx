@@ -1,10 +1,17 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { Language } from "@/lib/i18n/translations";
 
 export default function LanguageSwitcher() {
+  const pathname = usePathname();
   const { language, setLanguage } = useLanguage();
+
+  // Don't show language switcher on blog/thoughts pages
+  if (pathname?.startsWith('/blog') || pathname?.startsWith('/thoughts')) {
+    return null;
+  }
 
   const languages: { code: Language; label: string }[] = [
     { code: "en", label: "EN" },
