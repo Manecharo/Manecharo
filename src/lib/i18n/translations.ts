@@ -61,6 +61,30 @@ export const translations = {
       formSending: "Sending...",
       formSuccess: "✓ Message sent successfully! I'll get back to you within 48 hours.",
       formError: "Failed to send message. Please try emailing directly.",
+      formPlaceholder: "Tell me about your project...",
+      selectType: "Select a type",
+      selectRange: "Select range",
+      selectTimeline: "Select timeline",
+      projectTypes: {
+        productDesign: "Product Design",
+        uxUi: "UX/UI Design",
+        branding: "Branding & Identity",
+        strategy: "Strategy & Consulting",
+        other: "Other",
+      },
+      budgetRanges: {
+        under5k: "<$5K",
+        range5to15: "$5K-$15K",
+        range15to50: "$15K-$50K",
+        over50k: "$50K+",
+        discuss: "Let's discuss",
+      },
+      timelines: {
+        urgent: "Urgent",
+        oneToThree: "1-3 months",
+        threeToSix: "3-6 months",
+        exploring: "Just exploring",
+      },
     },
     // Blog
     blog: {
@@ -139,6 +163,30 @@ export const translations = {
       formSending: "Enviando...",
       formSuccess: "✓ ¡Mensaje enviado con éxito! Te responderé en 48 horas.",
       formError: "Error al enviar mensaje. Por favor envía un correo directamente.",
+      formPlaceholder: "Cuéntame sobre tu proyecto...",
+      selectType: "Selecciona un tipo",
+      selectRange: "Selecciona rango",
+      selectTimeline: "Selecciona cronograma",
+      projectTypes: {
+        productDesign: "Diseño de Productos",
+        uxUi: "Diseño UX/UI",
+        branding: "Marca e Identidad",
+        strategy: "Estrategia y Consultoría",
+        other: "Otro",
+      },
+      budgetRanges: {
+        under5k: "<$5K",
+        range5to15: "$5K-$15K",
+        range15to50: "$15K-$50K",
+        over50k: "$50K+",
+        discuss: "Hablemos",
+      },
+      timelines: {
+        urgent: "Urgente",
+        oneToThree: "1-3 meses",
+        threeToSix: "3-6 meses",
+        exploring: "Solo explorando",
+      },
     },
     // Blog
     blog: {
@@ -217,6 +265,30 @@ export const translations = {
       formSending: "Invio...",
       formSuccess: "✓ Messaggio inviato con successo! Ti risponderò entro 48 ore.",
       formError: "Errore nell'invio del messaggio. Per favore invia un'email direttamente.",
+      formPlaceholder: "Parlami del tuo progetto...",
+      selectType: "Seleziona un tipo",
+      selectRange: "Seleziona fascia",
+      selectTimeline: "Seleziona cronologia",
+      projectTypes: {
+        productDesign: "Design di Prodotto",
+        uxUi: "Design UX/UI",
+        branding: "Branding e Identità",
+        strategy: "Strategia e Consulenza",
+        other: "Altro",
+      },
+      budgetRanges: {
+        under5k: "<$5K",
+        range5to15: "$5K-$15K",
+        range15to50: "$15K-$50K",
+        over50k: "$50K+",
+        discuss: "Parliamone",
+      },
+      timelines: {
+        urgent: "Urgente",
+        oneToThree: "1-3 mesi",
+        threeToSix: "3-6 mesi",
+        exploring: "Solo esplorando",
+      },
     },
     // Blog
     blog: {

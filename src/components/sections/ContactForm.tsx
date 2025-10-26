@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { Send } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function ContactForm() {
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,7 +28,7 @@ export default function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, language }),
       });
 
       if (!response.ok) {
@@ -47,7 +49,7 @@ export default function ContactForm() {
       setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
       setStatus("error");
-      setErrorMessage("Failed to send message. Please try emailing directly.");
+      setErrorMessage(t.contact.formError);
       setTimeout(() => setStatus("idle"), 5000);
     }
   };
@@ -69,7 +71,7 @@ export default function ContactForm() {
           htmlFor="name"
           className="block text-sm font-display uppercase tracking-wider mb-2"
         >
-          Name *
+          {t.contact.formName} *
         </label>
         <input
           type="text"
@@ -88,7 +90,7 @@ export default function ContactForm() {
           htmlFor="email"
           className="block text-sm font-display uppercase tracking-wider mb-2"
         >
-          Email *
+          {t.contact.formEmail} *
         </label>
         <input
           type="email"
@@ -107,7 +109,7 @@ export default function ContactForm() {
           htmlFor="projectType"
           className="block text-sm font-display uppercase tracking-wider mb-2"
         >
-          Project Type
+          {t.contact.formProjectType}
         </label>
         <select
           id="projectType"
@@ -116,12 +118,12 @@ export default function ContactForm() {
           onChange={handleChange}
           className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors bg-pure-white"
         >
-          <option value="">Select a type</option>
-          <option value="product-design">Product Design</option>
-          <option value="ux-ui">UX/UI Design</option>
-          <option value="branding">Branding & Identity</option>
-          <option value="strategy">Strategy & Consulting</option>
-          <option value="other">Other</option>
+          <option value="">{t.contact.selectType}</option>
+          <option value="product-design">{t.contact.projectTypes.productDesign}</option>
+          <option value="ux-ui">{t.contact.projectTypes.uxUi}</option>
+          <option value="branding">{t.contact.projectTypes.branding}</option>
+          <option value="strategy">{t.contact.projectTypes.strategy}</option>
+          <option value="other">{t.contact.projectTypes.other}</option>
         </select>
       </div>
 
@@ -132,7 +134,7 @@ export default function ContactForm() {
             htmlFor="budget"
             className="block text-sm font-display uppercase tracking-wider mb-2"
           >
-            Budget
+            {t.contact.formBudget}
           </label>
           <select
             id="budget"
@@ -141,12 +143,12 @@ export default function ContactForm() {
             onChange={handleChange}
             className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors bg-pure-white"
           >
-            <option value="">Select range</option>
-            <option value="<5k">&lt;$5K</option>
-            <option value="5k-15k">$5K-$15K</option>
-            <option value="15k-50k">$15K-$50K</option>
-            <option value="50k+">$50K+</option>
-            <option value="discuss">Let&apos;s discuss</option>
+            <option value="">{t.contact.selectRange}</option>
+            <option value="<5k">{t.contact.budgetRanges.under5k}</option>
+            <option value="5k-15k">{t.contact.budgetRanges.range5to15}</option>
+            <option value="15k-50k">{t.contact.budgetRanges.range15to50}</option>
+            <option value="50k+">{t.contact.budgetRanges.over50k}</option>
+            <option value="discuss">{t.contact.budgetRanges.discuss}</option>
           </select>
         </div>
 
@@ -155,7 +157,7 @@ export default function ContactForm() {
             htmlFor="timeline"
             className="block text-sm font-display uppercase tracking-wider mb-2"
           >
-            Timeline
+            {t.contact.formTimeline}
           </label>
           <select
             id="timeline"
@@ -164,11 +166,11 @@ export default function ContactForm() {
             onChange={handleChange}
             className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors bg-pure-white"
           >
-            <option value="">Select timeline</option>
-            <option value="urgent">Urgent</option>
-            <option value="1-3months">1-3 months</option>
-            <option value="3-6months">3-6 months</option>
-            <option value="exploring">Just exploring</option>
+            <option value="">{t.contact.selectTimeline}</option>
+            <option value="urgent">{t.contact.timelines.urgent}</option>
+            <option value="1-3months">{t.contact.timelines.oneToThree}</option>
+            <option value="3-6months">{t.contact.timelines.threeToSix}</option>
+            <option value="exploring">{t.contact.timelines.exploring}</option>
           </select>
         </div>
       </div>
@@ -179,7 +181,7 @@ export default function ContactForm() {
           htmlFor="message"
           className="block text-sm font-display uppercase tracking-wider mb-2"
         >
-          Message *
+          {t.contact.formMessage} *
         </label>
         <textarea
           id="message"
@@ -189,7 +191,7 @@ export default function ContactForm() {
           value={formData.message}
           onChange={handleChange}
           className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors resize-none"
-          placeholder="Tell me about your project..."
+          placeholder={t.contact.formPlaceholder}
         />
       </div>
 
@@ -202,12 +204,12 @@ export default function ContactForm() {
         {status === "sending" ? (
           <>
             <div className="w-5 h-5 border-2 border-charcoal border-t-transparent rounded-full animate-spin" />
-            Sending...
+            {t.contact.formSending}
           </>
         ) : (
           <>
             <Send size={20} />
-            Send Message
+            {t.contact.formSubmit}
           </>
         )}
       </button>
@@ -216,7 +218,7 @@ export default function ContactForm() {
       {status === "success" && (
         <div className="p-4 bg-sage/20 border-2 border-sage text-charcoal">
           <p className="font-display">
-            ✓ Message sent successfully! I&apos;ll get back to you within 48 hours.
+            {t.contact.formSuccess}
           </p>
         </div>
       )}
