@@ -11,8 +11,8 @@ export const translations = {
     // Landing Page
     hero: {
       subtitle: "Designer & Problem Solver",
-      tagline: "Design isn't decoration. It's the **tool** I use to create **real impact**—turning ideas into systems that **work for people**.",
-      stats: "**14 years** turning complex problems into elegant solutions.\n**8 countries**. **3 startups**. **50+ brands**. **600+ products** shipped.",
+      tagline: "Design isn't decoration. It's the tool I use to create real impact—turning ideas into systems that work for people.",
+      stats: "14 years turning complex problems into elegant solutions.\n8 countries. 3 startups. 50+ brands. 600+ products shipped.",
       ctaWork: "View Selected Work",
       ctaContact: "Let's Talk",
     },
@@ -113,8 +113,8 @@ export const translations = {
     // Landing Page
     hero: {
       subtitle: "Diseñador y Solucionador de Problemas",
-      tagline: "El diseño no es decoración. Es la **herramienta** que uso para crear **impacto real**—convirtiendo ideas en sistemas que **funcionan para las personas**.",
-      stats: "**14 años** convirtiendo problemas complejos en soluciones elegantes.\n**8 países**. **3 startups**. **Más de 50 marcas**. **Más de 600 productos** lanzados.",
+      tagline: "El diseño no es decoración. Es la herramienta que uso para crear impacto real—convirtiendo ideas en sistemas que funcionan para las personas.",
+      stats: "14 años convirtiendo problemas complejos en soluciones elegantes.\n8 países. 3 startups. Más de 50 marcas. Más de 600 productos lanzados.",
       ctaWork: "Ver Proyectos Seleccionados",
       ctaContact: "Hablemos",
     },
@@ -215,8 +215,8 @@ export const translations = {
     // Landing Page
     hero: {
       subtitle: "Designer e Risolutore di Problemi",
-      tagline: "Il design non è decorazione. È lo **strumento** che uso per creare un **impatto reale**—trasformando idee in sistemi che **funzionano per le persone**.",
-      stats: "**14 anni** trasformando problemi complessi in soluzioni eleganti.\n**8 paesi**. **3 startup**. **Oltre 50 brand**. **Oltre 600 prodotti** lanciati.",
+      tagline: "Il design non è decorazione. È lo strumento che uso per creare un impatto reale—trasformando idee in sistemi che funzionano per le persone.",
+      stats: "14 anni trasformando problemi complessi in soluzioni eleganti.\n8 paesi. 3 startup. Oltre 50 brand. Oltre 600 prodotti lanciati.",
       ctaWork: "Vedi Progetti Selezionati",
       ctaContact: "Parliamone",
     },

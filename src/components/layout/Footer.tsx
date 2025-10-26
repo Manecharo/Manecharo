@@ -1,82 +1,73 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Instagram, Linkedin, Mail } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function Footer() {
   const pathname = usePathname();
-  const [clicks, setClicks] = useState(0);
-  const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const router = useRouter();
   const { t } = useLanguage();
-
-  useEffect(() => {
-    if (clicks === 3) {
-      // Flash animation and reveal blog link
-      setShowEasterEgg(true);
-      setClicks(0);
-    }
-
-    // Reset clicks after 3 seconds (longer time window)
-    if (clicks > 0 && clicks < 3) {
-      const timer = setTimeout(() => {
-        setClicks(0);
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [clicks]);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragDistance, setDragDistance] = useState(0);
+  const dragStartX = useRef(0);
+  const dragStartY = useRef(0);
 
   // Hide footer on /thoughts pages (blog has its own footer if needed)
   if (pathname?.startsWith('/thoughts')) {
     return null;
   }
 
-  const handleLogoClick = () => {
-    setClicks((prev) => prev + 1);
+  const handleDragStart = (e: React.DragEvent) => {
+    setIsDragging(true);
+    dragStartX.current = e.clientX;
+    dragStartY.current = e.clientY;
+  };
+
+  const handleDragEnd = (e: React.DragEvent) => {
+    const distanceX = Math.abs(e.clientX - dragStartX.current);
+    const distanceY = Math.abs(e.clientY - dragStartY.current);
+    const totalDistance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+
+    setDragDistance(totalDistance);
+    setIsDragging(false);
+
+    // If dragged more than 100px, trigger Easter egg
+    if (totalDistance > 100) {
+      router.push('/thoughts');
+    }
   };
 
   return (
     <footer className="relative w-full py-12 px-6 bg-charcoal text-cream">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-          {/* Logo - Matches Top Right */}
+          {/* Draggable Logo Easter Egg */}
           <div>
-            <Link href="/" className="group inline-block" aria-label="Go to homepage">
-              <div className="flex flex-col items-start gap-2">
-                {/* Logo Image */}
-                <div className="relative w-20 h-20 transition-all duration-200 group-hover:scale-105">
-                  <Image
-                    src="/images/logo/logo_Asvg.svg"
-                    alt="MER"
-                    fill
-                    className="object-contain invert brightness-0 group-hover:brightness-100 group-hover:invert-0 transition-all duration-200"
-                  />
-                </div>
-                {/* Subtitle */}
-                <div className="font-body text-xs uppercase tracking-widest text-cream/60 group-hover:text-gold transition-colors duration-200">
-                  Consultant
-                </div>
-              </div>
-            </Link>
-            <button
-              onClick={handleLogoClick}
-              className="mt-2 text-xs text-cream/40 hover:text-gold transition-colors"
-              aria-label="Easter egg"
+            <div
+              draggable
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
+              className={`
+                relative w-20 h-20 cursor-move transition-all duration-200
+                ${isDragging ? 'scale-110 opacity-50' : 'hover:scale-105'}
+                ${dragDistance > 100 ? 'animate-pulse' : ''}
+              `}
+              title="Drag me to discover something..."
             >
-              {showEasterEgg ? "→ Notes from the field" : "···"}
-            </button>
-            {showEasterEgg && (
-              <Link
-                href="/thoughts"
-                className="block mt-1 text-sm text-gold hover:underline animate-fade-up"
-              >
-                → Go to thoughts
-              </Link>
-            )}
+              <Image
+                src="/images/logo/logo_Asvg.svg"
+                alt="MER"
+                fill
+                className="object-contain invert brightness-0 transition-all duration-200 pointer-events-none"
+              />
+            </div>
+            <p className="mt-2 text-xs text-cream/40 italic">
+              Drag the logo...
+            </p>
           </div>
 
           {/* Contact Info */}
