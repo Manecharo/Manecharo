@@ -216,7 +216,7 @@ export default function ContactForm() {
       {status === "success" && (
         <div className="p-4 bg-sage/20 border-2 border-sage text-charcoal">
           <p className="font-display">
-            ✓ Message sent successfully! I'll get back to you within 48 hours.
+            ✓ Message sent successfully! I&apos;ll get back to you within 48 hours.
           </p>
         </div>
       )}

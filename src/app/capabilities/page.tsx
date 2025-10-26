@@ -1,11 +1,8 @@
-import PageTransition from "@/components/layout/PageTransition";
-import { Search, Sparkles, Hammer, TrendingUp } from "lucide-react";
+"use client";
 
-export const metadata = {
-  title: "Capabilities",
-  description:
-    "How I work: From understanding complex problems to scaling elegant solutions.",
-};
+import PageTransition from "@/components/layout/PageTransition";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { Search, Sparkles, Hammer, TrendingUp } from "lucide-react";
 
 const processSteps = [
   {
@@ -13,7 +10,7 @@ const processSteps = [
     number: "01",
     title: "Understand",
     description:
-      "Deep research. User immersion. Stakeholder interviews. I don't start designing until I truly understand the problem. Not the symptom—the root cause.",
+      "Deep research. User immersion. Stakeholder interviews. I don&apos;t start designing until I truly understand the problem. Not the symptom—the root cause.",
   },
   {
     icon: Sparkles,
@@ -27,7 +24,7 @@ const processSteps = [
     number: "03",
     title: "Build",
     description:
-      "3D modeling. High-fidelity prototypes. User testing. Pixel-perfect execution. I don't just design it—I make it real enough to test with real people.",
+      "3D modeling. High-fidelity prototypes. User testing. Pixel-perfect execution. I don&apos;t just design it—I make it real enough to test with real people.",
   },
   {
     icon: TrendingUp,
@@ -85,23 +82,24 @@ const toolCategories = [
 ];
 
 export default function CapabilitiesPage() {
+  const { t } = useLanguage();
+
   return (
     <PageTransition>
       <div className="min-h-screen py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <header className="text-center mb-24 max-w-3xl mx-auto">
-            <h1 className="text-h1 font-display mb-6">What I Do</h1>
+            <h1 className="text-h1 font-display mb-6">{t.capabilities.title}</h1>
             <p className="text-body text-charcoal/80">
-              I solve complex problems through design. That means research,
-              strategy, execution, and systems thinking. Here's how it works.
+              {t.capabilities.intro}
             </p>
           </header>
 
           {/* Process */}
           <section className="mb-32">
             <h2 className="text-h2 font-display mb-12 text-center">
-              My Process
+              {t.capabilities.process}
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               {processSteps.map((step, index) => {
@@ -128,7 +126,7 @@ export default function CapabilitiesPage() {
           {/* Who I Work With */}
           <section className="mb-32">
             <h2 className="text-h2 font-display mb-12 text-center">
-              Who I Work With
+              {t.capabilities.whoIWorkWith}
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               {clientTypes.map((client, index) => (
@@ -148,7 +146,7 @@ export default function CapabilitiesPage() {
           {/* Tools - Categorized */}
           <section className="mb-32">
             <h2 className="text-h2 font-display mb-12 text-center">
-              Tools & Technologies
+              {t.capabilities.tools}
             </h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {toolCategories.map((category, catIndex) => (
@@ -174,16 +172,9 @@ export default function CapabilitiesPage() {
           {/* Not Interested In */}
           <section className="bg-charcoal text-cream p-12 -mx-6">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-h2 font-display mb-6">Not Interested In</h2>
-              <ul className="space-y-3 text-body">
-                <li>→ Projects where design is just "make it pretty"</li>
-                <li>→ Work that doesn't consider real users</li>
-                <li>→ Rushed timelines that sacrifice quality</li>
-                <li>→ Clients who want a designer, not a partner</li>
-                <li>→ Problems that don't actually need solving</li>
-              </ul>
-              <p className="mt-8 text-gold font-display">
-                Life's too short for bad projects.
+              <h2 className="text-h2 font-display mb-6">{t.capabilities.notInterested}</h2>
+              <p className="text-body">
+                {t.capabilities.notInterestedText}
               </p>
             </div>
           </section>

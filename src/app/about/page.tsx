@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import PageTransition from "@/components/layout/PageTransition";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import {
   Lightbulb,
   Code,
@@ -8,12 +11,6 @@ import {
   Globe,
   Rocket,
 } from "lucide-react";
-
-export const metadata = {
-  title: "About",
-  description:
-    "14 years solving complex problems through design. From Milan to Kuala Lumpur, from hydroponic gardens to digital democracies.",
-};
 
 const skills = [
   { icon: Lightbulb, title: "Strategic Thinking", description: "Systems-level problem solving" },
@@ -25,6 +22,7 @@ const skills = [
 ];
 
 export default function AboutPage() {
+  const { t } = useLanguage();
   return (
     <PageTransition>
       <div className="min-h-screen py-24 px-6 bg-white">
@@ -49,33 +47,10 @@ export default function AboutPage() {
                 About
               </div>
               <h1 className="text-h1 font-display mb-6 leading-tight">
-                The Short <span className="text-navy">Version</span>
+                {t.about.title}
               </h1>
-              <div className="space-y-4 text-body text-charcoal/80">
-                <p>
-                  I'm an industrial designer who stopped designing chairs and
-                  started designing systems.
-                </p>
-                <p>
-                  14 years ago, I left Colombia for Milan. Studied at IED and
-                  Politecnico. Worked on furniture, yachts, appliances—the
-                  classic industrial design path.
-                </p>
-                <p>
-                  Then I realized the most interesting problems weren't
-                  product-shaped. They were system-shaped. Service-shaped.
-                  Software-shaped.
-                </p>
-                <p>
-                  So I pivoted. Hard. Learned UX, UI, code, strategy. Built
-                  hydroponic gardens for urban farmers. Designed voting systems
-                  for local governments. Helped political campaigns connect with
-                  young voters. Created 3D spaces for the metaverse.
-                </p>
-                <p>
-                  Now I'm based in Kuala Lumpur, solving problems that don't fit
-                  in neat categories. That's where I do my best work.
-                </p>
+              <div className="space-y-4 text-body text-charcoal/80 whitespace-pre-line">
+                <p>{t.about.bio}</p>
               </div>
             </div>
           </div>
@@ -83,7 +58,7 @@ export default function AboutPage() {
           {/* What I Do */}
           <section className="mb-24">
             <h2 className="text-h2 font-display mb-12 text-center">
-              What I Actually Do
+              {t.about.whatIDo}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {skills.map((skill, index) => {
@@ -104,7 +79,7 @@ export default function AboutPage() {
 
           {/* Languages */}
           <section className="mb-24">
-            <h2 className="text-h2 font-display mb-8 text-center">Languages</h2>
+            <h2 className="text-h2 font-display mb-8 text-center">{t.about.languages}</h2>
             <div className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
                 { lang: "Spanish", level: "Native" },
@@ -126,7 +101,7 @@ export default function AboutPage() {
           {/* Education */}
           <section>
             <h2 className="text-h2 font-display mb-12 text-center">
-              Education & Learning
+              {t.about.education}
             </h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {[

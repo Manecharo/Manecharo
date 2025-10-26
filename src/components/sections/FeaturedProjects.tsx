@@ -30,7 +30,8 @@ async function getFeaturedProjects(): Promise<Project[]> {
     );
     return projects;
   } catch (error) {
-    console.error("Error fetching featured projects:", error);
+    // Suppress dataset not found error - this is expected until Sanity is fully set up
+    // console.error("Error fetching featured projects:", error);
     return [];
   }
 }

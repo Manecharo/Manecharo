@@ -8,7 +8,9 @@
       "Bash(timeout 5 bash -c 'cd \"\"D:\\Trabajos\\MER - Consultant\\Website\"\" && npm run dev 2>&1')",
       "Bash(timeout 10 npm run dev:*)",
       "Bash(curl:*)",
-      "Bash(timeout 15 npm run dev:*)"
+      "Bash(timeout 15 npm run dev:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nFix translations and hero section language switching\n\n- Fixed apostrophes in English translations (changed &apos; to '')\n- Added language-based re-rendering for Hero section typewriter animations\n- Converted About, Work, Capabilities, and Contact pages to use translation system\n- All pages now properly switch between EN/ES/IT languages\n- Hero section now resets animations when language changes\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []

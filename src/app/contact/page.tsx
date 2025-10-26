@@ -1,14 +1,12 @@
+"use client";
+
 import PageTransition from "@/components/layout/PageTransition";
 import ContactForm from "@/components/sections/ContactForm";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 
-export const metadata = {
-  title: "Contact",
-  description:
-    "Let's talk about your project. Based in Kuala Lumpur, working globally.",
-};
-
 export default function ContactPage() {
+  const { t } = useLanguage();
   return (
     <PageTransition>
       <div className="min-h-screen py-24 px-6 bg-white">
@@ -19,15 +17,10 @@ export default function ContactPage() {
               Get in Touch
             </div>
             <h1 className="text-h1 font-display mb-6 leading-tight">
-              Let's Work <span className="text-red">Together</span>
+              {t.contact.title}
             </h1>
-            <p className="text-xl text-charcoal/80 max-w-2xl mx-auto leading-relaxed">
-              Have a project in mind? Need help solving a complex problem?
-              <br />
-              <span className="text-navy font-display">Let's talk.</span>
-            </p>
-            <p className="text-sm text-charcoal/60 mt-4">
-              I typically respond within 48 hours.
+            <p className="text-xl text-charcoal/80 max-w-2xl mx-auto leading-relaxed whitespace-pre-line">
+              {t.contact.intro}
             </p>
           </header>
 
@@ -44,7 +37,7 @@ export default function ContactPage() {
                   >
                     <Mail className="w-5 h-5 mt-1 flex-shrink-0" />
                     <div>
-                      <div className="text-sm text-charcoal/60 mb-1">Email</div>
+                      <div className="text-sm text-charcoal/60 mb-1">{t.contact.email}</div>
                       <div className="group-hover:underline">
                         manuelerfreelance@gmail.com
                       </div>
@@ -57,7 +50,7 @@ export default function ContactPage() {
                   >
                     <Phone className="w-5 h-5 mt-1 flex-shrink-0" />
                     <div>
-                      <div className="text-sm text-charcoal/60 mb-1">Phone</div>
+                      <div className="text-sm text-charcoal/60 mb-1">{t.contact.phone}</div>
                       <div className="group-hover:underline">
                         +60 12 658 1025
                       </div>
@@ -68,11 +61,11 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
                     <div>
                       <div className="text-sm text-charcoal/60 mb-1">
-                        Location
+                        {t.contact.location}
                       </div>
-                      <div>Kuala Lumpur, Malaysia</div>
+                      <div>{t.contact.locationValue}</div>
                       <div className="text-sm text-charcoal/60 mt-1">
-                        (Working globally)
+                        {t.contact.workingGlobally}
                       </div>
                     </div>
                   </div>
@@ -104,11 +97,9 @@ export default function ContactPage() {
               </div>
 
               <div className="pt-8 border-t border-charcoal/20">
-                <h3 className="font-display text-xl mb-3">Response Time</h3>
+                <h3 className="font-display text-xl mb-3">{t.contact.responseTime}</h3>
                 <p className="text-charcoal/70">
-                  Typically within <strong>48 hours</strong>
-                  <br />
-                  (Weekends may take longer)
+                  {t.contact.responseTimeValue}
                 </p>
               </div>
             </div>

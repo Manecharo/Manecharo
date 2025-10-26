@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import Typewriter from "@/components/ui/Typewriter";
 
@@ -10,7 +10,15 @@ export default function Hero() {
   const [showTagline, setShowTagline] = useState(false);
   const [showStats, setShowStats] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  // Reset animation states when language changes
+  useEffect(() => {
+    setShowSubtitle(false);
+    setShowTagline(false);
+    setShowStats(false);
+    setShowScroll(false);
+  }, [language]);
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-white">
@@ -54,7 +62,7 @@ export default function Hero() {
 
           {showSubtitle && (
             <p className="text-xl mb-6 text-white/90">
-              <Typewriter text="Designer of Systems" delay={0} speed={60} />
+              <Typewriter key={`subtitle-${language}`} text={t.hero.subtitle} delay={0} speed={60} />
             </p>
           )}
         </div>
@@ -65,6 +73,7 @@ export default function Hero() {
             <>
               <p className="text-2xl font-display mb-6 text-white leading-snug">
                 <Typewriter
+                  key={`tagline-${language}`}
                   text={t.hero.tagline}
                   delay={0}
                   speed={30}
@@ -77,6 +86,7 @@ export default function Hero() {
           {showStats && (
             <p className="text-lg mb-8 text-white/90 whitespace-pre-line">
               <Typewriter
+                key={`stats-${language}`}
                 text={t.hero.stats}
                 delay={0}
                 speed={20}
@@ -102,6 +112,7 @@ export default function Hero() {
           <>
             <p className="text-base mb-6 text-white/90">
               <Typewriter
+                key={`tagline-mobile-${language}`}
                 text={t.hero.tagline}
                 delay={0}
                 speed={30}
@@ -114,6 +125,7 @@ export default function Hero() {
         {showStats && (
           <p className="text-sm text-white/80 whitespace-pre-line">
             <Typewriter
+              key={`stats-mobile-${language}`}
               text={t.hero.stats}
               delay={0}
               speed={20}

@@ -5,11 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Instagram, Linkedin, Mail } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function Footer() {
   const pathname = usePathname();
   const [clicks, setClicks] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (clicks === 3) {
@@ -77,7 +79,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="text-center text-sm">
-            <p className="mb-1">Based in Kuala Lumpur, Malaysia</p>
+            <p className="mb-1">{t.footer.based}</p>
             <a
               href="mailto:manuelerfreelance@gmail.com"
               className="hover:text-gold transition-colors"
@@ -119,8 +121,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t border-cream/20 text-center text-sm">
           <p>
-            © {new Date().getFullYear()} Manuel Echavarria Romero. All rights
-            reserved.
+            © {new Date().getFullYear()} Manuel Echavarria Romero. {t.footer.rights}.
           </p>
         </div>
       </div>

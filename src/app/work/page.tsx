@@ -1,13 +1,11 @@
+"use client";
+
 import ProjectsGrid from "@/components/sections/ProjectsGrid";
 import PageTransition from "@/components/layout/PageTransition";
-
-export const metadata = {
-  title: "Selected Work",
-  description:
-    "Product design. Brand identities. Civic tech. Urban agriculture. Political campaigns. Metaverse spaces.",
-};
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function WorkPage() {
+  const { t } = useLanguage();
   return (
     <PageTransition>
       <div className="min-h-screen py-24 px-6 bg-white">
@@ -18,15 +16,10 @@ export default function WorkPage() {
               Portfolio
             </div>
             <h1 className="text-h1 font-display mb-8 leading-tight">
-              Selected <span className="text-navy">Projects</span>
+              {t.work.title}
             </h1>
-            <p className="text-xl text-charcoal/80 leading-relaxed mb-6">
-              Product design • Brand identities • Civic tech • Urban agriculture
-              <br />
-              Political campaigns • Metaverse spaces • System design
-            </p>
-            <p className="text-lg text-red font-display">
-              I don&apos;t do one thing—I solve problems that matter.
+            <p className="text-xl text-charcoal/80 leading-relaxed whitespace-pre-line">
+              {t.work.subtitle}
             </p>
           </header>
 
