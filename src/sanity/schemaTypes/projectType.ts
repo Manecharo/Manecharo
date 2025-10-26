@@ -9,9 +9,19 @@ export const projectType = defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Project Title',
+      title: 'Project Title (English)',
       type: 'string',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'title_es',
+      title: 'Project Title (Spanish)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'title_it',
+      title: 'Project Title (Italian)',
+      type: 'string',
     }),
     defineField({
       name: 'slug',
@@ -25,10 +35,22 @@ export const projectType = defineType({
     }),
     defineField({
       name: 'excerpt',
-      title: 'Excerpt',
+      title: 'Excerpt (English)',
       type: 'text',
       rows: 4,
       description: 'Short description of the project',
+    }),
+    defineField({
+      name: 'excerpt_es',
+      title: 'Excerpt (Spanish)',
+      type: 'text',
+      rows: 4,
+    }),
+    defineField({
+      name: 'excerpt_it',
+      title: 'Excerpt (Italian)',
+      type: 'text',
+      rows: 4,
     }),
     defineField({
       name: 'mainImage',

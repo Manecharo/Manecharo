@@ -19,8 +19,8 @@ export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t, language, setLanguage } = useLanguage();
 
-  // Hide navigation on /thoughts and /studio pages
-  if (pathname?.startsWith('/thoughts') || pathname?.startsWith('/studio')) {
+  // Hide navigation on /thoughts, /studio, and /work pages
+  if (pathname?.startsWith('/thoughts') || pathname?.startsWith('/studio') || pathname?.startsWith('/work')) {
     return null;
   }
 

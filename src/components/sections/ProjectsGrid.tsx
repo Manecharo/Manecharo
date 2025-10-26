@@ -4,13 +4,18 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { client, urlFor } from "@/lib/sanity/client";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface Project {
   _id: string;
   title: string;
+  title_es?: string;
+  title_it?: string;
   slug: { current: string };
   year: number;
   excerpt?: string;
+  excerpt_es?: string;
+  excerpt_it?: string;
   services?: string[];
   mainImage?: any;
   gallery?: any[];
@@ -33,6 +38,7 @@ const tagsList = [
 ];
 
 export default function ProjectsGrid() {
+  const { language } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [activeFilter, setActiveFilter] = useState("All");
@@ -53,9 +59,13 @@ export default function ProjectsGrid() {
           `*[_type == "project" && defined(publishedAt)] | order(order asc, year desc) {
             _id,
             title,
+            title_es,
+            title_it,
             slug,
             year,
             excerpt,
+            excerpt_es,
+            excerpt_it,
             services,
             mainImage,
             gallery
@@ -139,48 +149,56 @@ export default function ProjectsGrid() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <Link
-              key={project._id}
-              href={`/work/${project.slug.current}`}
-              className="group"
-            >
-              <article className="bg-pure-white shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                {/* Project Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  {project.mainImage ? (
-                    <Image
-                      src={urlFor(project.mainImage).width(600).url()}
-                      alt={project.mainImage.alt || project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-charcoal/10 flex items-center justify-center">
-                      <span className="text-charcoal/40 font-display">
-                        No Image
-                      </span>
-                    </div>
-                  )}
-                </div>
+          {filteredProjects.map((project) => {
+            const localizedTitle = language === 'es' ? (project.title_es || project.title)
+              : language === 'it' ? (project.title_it || project.title)
+              : project.title;
+            const localizedExcerpt = language === 'es' ? (project.excerpt_es || project.excerpt)
+              : language === 'it' ? (project.excerpt_it || project.excerpt)
+              : project.excerpt;
 
-                {/* Project Info */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-baseline justify-between mb-3">
-                    <h3 className="text-xl font-display">{project.title}</h3>
-                    {project.year && (
-                      <span className="text-sm text-charcoal/60 ml-4">
-                        {project.year}
-                      </span>
+            return (
+              <Link
+                key={project._id}
+                href={`/work/${project.slug.current}`}
+                className="group"
+              >
+                <article className="bg-pure-white shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                  {/* Project Image */}
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    {project.mainImage ? (
+                      <Image
+                        src={urlFor(project.mainImage).width(600).url()}
+                        alt={project.mainImage.alt || localizedTitle}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-charcoal/10 flex items-center justify-center">
+                        <span className="text-charcoal/40 font-display">
+                          No Image
+                        </span>
+                      </div>
                     )}
                   </div>
 
-                  {project.excerpt && (
-                    <p className="text-sm text-charcoal/70 mb-4 line-clamp-2">
-                      {project.excerpt}
-                    </p>
-                  )}
+                  {/* Project Info */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="flex items-baseline justify-between mb-3">
+                      <h3 className="text-xl font-display">{localizedTitle}</h3>
+                      {project.year && (
+                        <span className="text-sm text-charcoal/60 ml-4">
+                          {project.year}
+                        </span>
+                      )}
+                    </div>
+
+                    {localizedExcerpt && (
+                      <p className="text-sm text-charcoal/70 mb-4 line-clamp-2">
+                        {localizedExcerpt}
+                      </p>
+                    )}
 
                   {project.services && project.services.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-auto">
@@ -202,7 +220,8 @@ export default function ProjectsGrid() {
                 </div>
               </article>
             </Link>
-          ))}
+            );
+          })}
         </div>
       )}
     </>
