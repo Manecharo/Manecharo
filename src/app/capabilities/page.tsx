@@ -2,6 +2,7 @@
 
 import PageTransition from "@/components/layout/PageTransition";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import FormattedText from "@/components/ui/FormattedText";
 import { Search, Sparkles, Hammer, TrendingUp } from "lucide-react";
 
 const processSteps = [
@@ -92,7 +93,7 @@ export default function CapabilitiesPage() {
           <header className="text-center mb-24 max-w-3xl mx-auto">
             <h1 className="text-h1 font-display mb-6">{t.capabilities.title}</h1>
             <p className="text-body text-charcoal/80">
-              {t.capabilities.intro}
+              <FormattedText text={t.capabilities.intro} />
             </p>
           </header>
 
@@ -174,7 +175,7 @@ export default function CapabilitiesPage() {
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-h2 font-display mb-6">{t.capabilities.notInterested}</h2>
               <p className="text-body">
-                {t.capabilities.notInterestedText}
+                <FormattedText text={t.capabilities.notInterestedText} />
               </p>
             </div>
           </section>

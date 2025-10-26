@@ -20,7 +20,7 @@ export default function LanguageSwitcher() {
   ];
 
   return (
-    <div className="hidden md:flex fixed top-6 left-6 z-50 gap-1 bg-white/90 backdrop-blur-sm p-1 rounded-sm shadow-sm border border-charcoal/10">
+    <div className="hidden md:flex fixed top-6 left-6 z-50 gap-1 backdrop-blur-md bg-charcoal/10 p-1 rounded-sm shadow-lg">
       {languages.map((lang) => (
         <button
           key={lang.code}
@@ -31,7 +31,7 @@ export default function LanguageSwitcher() {
             ${
               language === lang.code
                 ? "bg-navy text-white font-bold shadow-sm"
-                : "text-charcoal/60 hover:text-navy hover:bg-navy/5"
+                : "text-charcoal hover:text-navy hover:bg-white/20"
             }
           `}
           aria-label={`Switch to ${lang.label}`}

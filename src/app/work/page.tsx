@@ -3,6 +3,7 @@
 import ProjectsGrid from "@/components/sections/ProjectsGrid";
 import PageTransition from "@/components/layout/PageTransition";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import FormattedText from "@/components/ui/FormattedText";
 
 export default function WorkPage() {
   const { t } = useLanguage();
@@ -19,7 +20,7 @@ export default function WorkPage() {
               {t.work.title}
             </h1>
             <p className="text-xl text-charcoal/80 leading-relaxed whitespace-pre-line">
-              {t.work.subtitle}
+              <FormattedText text={t.work.subtitle} />
             </p>
           </header>
 

@@ -3,6 +3,7 @@
 import PageTransition from "@/components/layout/PageTransition";
 import ContactForm from "@/components/sections/ContactForm";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import FormattedText from "@/components/ui/FormattedText";
 import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
 
 export default function ContactPage() {
@@ -20,7 +21,7 @@ export default function ContactPage() {
               {t.contact.title}
             </h1>
             <p className="text-xl text-charcoal/80 max-w-2xl mx-auto leading-relaxed whitespace-pre-line">
-              {t.contact.intro}
+              <FormattedText text={t.contact.intro} />
             </p>
           </header>
 
@@ -99,7 +100,7 @@ export default function ContactPage() {
               <div className="pt-8 border-t border-charcoal/20">
                 <h3 className="font-display text-xl mb-3">{t.contact.responseTime}</h3>
                 <p className="text-charcoal/70">
-                  {t.contact.responseTimeValue}
+                  <FormattedText text={t.contact.responseTimeValue} />
                 </p>
               </div>
             </div>
