@@ -6,9 +6,10 @@ interface Project {
   _id: string;
   title: string;
   slug: { current: string };
-  year: number;
-  tags: string[];
-  images: any[];
+  year?: number;
+  excerpt?: string;
+  services?: string[];
+  mainImage?: any;
 }
 
 async function getFeaturedProjects(): Promise<Project[]> {
@@ -19,13 +20,14 @@ async function getFeaturedProjects(): Promise<Project[]> {
 
   try {
     const projects = await client.fetch(
-      `*[_type == "project" && featured == true] | order(order asc) [0...4] {
+      `*[_type == "project" && featured == true && defined(publishedAt)] | order(order asc) [0...4] {
         _id,
         title,
         slug,
         year,
-        tags,
-        images
+        excerpt,
+        services,
+        mainImage
       }`
     );
     return projects;
@@ -78,10 +80,10 @@ export default async function FeaturedProjects() {
               <article className="bg-pure-white shadow-sm hover:shadow-xl transition-all duration-300">
                 {/* Project Image */}
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  {project.images && project.images[0] ? (
+                  {project.mainImage ? (
                     <Image
-                      src={urlFor(project.images[0]).width(800).url()}
-                      alt={project.images[0].alt || project.title}
+                      src={urlFor(project.mainImage).width(800).url()}
+                      alt={project.mainImage.alt || project.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -99,19 +101,27 @@ export default async function FeaturedProjects() {
                 <div className="p-6">
                   <div className="flex items-baseline justify-between mb-3">
                     <h3 className="text-h2 font-display">{project.title}</h3>
-                    <span className="text-sm text-charcoal/60 ml-4">
-                      {project.year}
-                    </span>
+                    {project.year && (
+                      <span className="text-sm text-charcoal/60 ml-4">
+                        {project.year}
+                      </span>
+                    )}
                   </div>
 
-                  {project.tags && project.tags.length > 0 && (
+                  {project.excerpt && (
+                    <p className="text-sm text-charcoal/70 mb-4 line-clamp-2">
+                      {project.excerpt}
+                    </p>
+                  )}
+
+                  {project.services && project.services.length > 0 && (
                     <div className="flex flex-wrap gap-2">
-                      {project.tags.slice(0, 3).map((tag: string) => (
+                      {project.services.slice(0, 3).map((service: string) => (
                         <span
-                          key={tag}
+                          key={service}
                           className="text-xs uppercase tracking-wider text-charcoal/60 px-3 py-1 border border-charcoal/20"
                         >
-                          {tag.replace(/-/g, " ")}
+                          {service.replace(/-/g, " ")}
                         </span>
                       ))}
                     </div>
