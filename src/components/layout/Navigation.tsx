@@ -48,9 +48,9 @@ export default function Navigation() {
               key={item.href}
               href={item.href}
               className={`
-                fixed z-50 font-display text-sm uppercase tracking-wider
+                fixed z-50 font-display text-sm uppercase tracking-wider font-bold
                 transition-all duration-200 ease-out
-                hover:text-gold hover:scale-105
+                hover:text-gold hover:scale-110
                 ${positionClasses[item.position as keyof typeof positionClasses]}
                 ${isActive ? "text-gold" : "text-charcoal"}
               `}
@@ -78,7 +78,7 @@ export default function Navigation() {
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`font-display text-2xl uppercase tracking-wider transition-colors ${
+                className={`font-display text-2xl uppercase tracking-wider font-bold transition-colors ${
                   pathname === "/" ? "text-gold" : "text-charcoal"
                 }`}
               >
@@ -89,7 +89,7 @@ export default function Navigation() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`font-display text-2xl uppercase tracking-wider transition-colors ${
+                  className={`font-display text-2xl uppercase tracking-wider font-bold transition-colors ${
                     pathname === item.href ? "text-gold" : "text-charcoal"
                   }`}
                 >
