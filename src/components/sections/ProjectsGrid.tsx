@@ -10,10 +10,10 @@ interface Project {
   title: string;
   slug: { current: string };
   year: number;
-  role?: string;
-  challenge?: string;
-  tags: string[];
-  images: any[];
+  excerpt?: string;
+  services?: string[];
+  mainImage?: any;
+  gallery?: any[];
 }
 
 const tagsList = [
@@ -50,15 +50,15 @@ export default function ProjectsGrid() {
 
       try {
         const data = await client.fetch(
-          `*[_type == "project"] | order(order asc, year desc) {
+          `*[_type == "project" && defined(publishedAt)] | order(order asc, year desc) {
             _id,
             title,
             slug,
             year,
-            role,
-            challenge,
-            tags,
-            images
+            excerpt,
+            services,
+            mainImage,
+            gallery
           }`
         );
         setProjects(data);
@@ -79,8 +79,8 @@ export default function ProjectsGrid() {
     } else {
       const filtered = projects.filter((project) => {
         const filterValue = activeFilter.toLowerCase().replace(/[&\s]/g, "-");
-        return project.tags?.some((tag) =>
-          tag.toLowerCase().includes(filterValue)
+        return project.services?.some((service) =>
+          service.toLowerCase().includes(filterValue)
         );
       });
       setFilteredProjects(filtered);
@@ -148,10 +148,10 @@ export default function ProjectsGrid() {
               <article className="bg-pure-white shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                 {/* Project Image */}
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  {project.images && project.images[0] ? (
+                  {project.mainImage ? (
                     <Image
-                      src={urlFor(project.images[0]).width(600).url()}
-                      alt={project.images[0].alt || project.title}
+                      src={urlFor(project.mainImage).width(600).url()}
+                      alt={project.mainImage.alt || project.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -169,30 +169,32 @@ export default function ProjectsGrid() {
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex items-baseline justify-between mb-3">
                     <h3 className="text-xl font-display">{project.title}</h3>
-                    <span className="text-sm text-charcoal/60 ml-4">
-                      {project.year}
-                    </span>
+                    {project.year && (
+                      <span className="text-sm text-charcoal/60 ml-4">
+                        {project.year}
+                      </span>
+                    )}
                   </div>
 
-                  {project.challenge && (
+                  {project.excerpt && (
                     <p className="text-sm text-charcoal/70 mb-4 line-clamp-2">
-                      {project.challenge}
+                      {project.excerpt}
                     </p>
                   )}
 
-                  {project.tags && project.tags.length > 0 && (
+                  {project.services && project.services.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.tags.slice(0, 3).map((tag: string) => (
+                      {project.services.slice(0, 3).map((service: string) => (
                         <span
-                          key={tag}
+                          key={service}
                           className="text-xs uppercase tracking-wider text-charcoal/60 px-2 py-1 border border-charcoal/20"
                         >
-                          {tag.replace(/-/g, " ")}
+                          {service.replace(/-/g, " ")}
                         </span>
                       ))}
-                      {project.tags.length > 3 && (
+                      {project.services.length > 3 && (
                         <span className="text-xs text-charcoal/40">
-                          +{project.tags.length - 3}
+                          +{project.services.length - 3}
                         </span>
                       )}
                     </div>

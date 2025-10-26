@@ -83,78 +83,82 @@ export default async function ThoughtsPage() {
         </p>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 pb-16">
+      <div className="max-w-full mx-auto px-4 md:px-8 pb-16">
         {posts.length === 0 ? (
-          <div className="text-center border-4 border-charcoal p-12 bg-white">
+          <div className="text-center border-4 border-charcoal p-12 bg-white max-w-2xl mx-auto">
             <p className="font-mono text-charcoal mb-6 text-xl">
               NO POSTS YET. CHECK BACK SOON.
             </p>
           </div>
         ) : (
-          <div className="grid gap-12">
-            {posts.map((post, index) => (
-              <Link
-                key={post._id}
-                href={`/thoughts/${post.slug.current}`}
-                className="block group"
-              >
-                <article
-                  className="border-4 border-charcoal p-8 bg-white hover:shadow-[8px_8px_0px_0px_rgba(10,10,10,1)] transition-all duration-200"
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6">
+            {posts.map((post, index) => {
+              // Random rotations and sizes for brutalist effect
+              const rotations = ['-2deg', '-1deg', '0deg', '1deg', '2deg', '-1.5deg', '1.5deg'];
+              const rotation = rotations[index % rotations.length];
+              const sizes = ['aspect-square', 'aspect-[4/5]', 'aspect-[3/4]', 'aspect-[5/6]'];
+              const sizeClass = sizes[index % sizes.length];
+
+              return (
+                <Link
+                  key={post._id}
+                  href={`/thoughts/${post.slug.current}`}
+                  className="block group break-inside-avoid"
                   style={{
-                    transform: `rotate(${index % 2 === 0 ? "-0.5deg" : "0.5deg"})`,
+                    transform: `rotate(${rotation})`,
                   }}
                 >
-                  {/* Badge */}
-                  <div className="mb-6">
-                    <span className="inline-block border-2 border-charcoal px-4 py-2 font-mono text-xs font-bold uppercase bg-white">
-                      [WRITING]
-                    </span>
-                  </div>
+                  <article className="border-4 border-charcoal bg-white hover:shadow-[6px_6px_0px_0px_rgba(10,10,10,1)] hover:scale-[1.02] transition-all duration-200 overflow-hidden">
+                    {/* Image */}
+                    <div className={`relative ${sizeClass} overflow-hidden border-b-4 border-charcoal`}>
+                      {post.mainImage ? (
+                        <Image
+                          src={urlFor(post.mainImage).width(600).url()}
+                          alt={post.title}
+                          fill
+                          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-light flex items-center justify-center">
+                          <span className="font-mono text-charcoal/20 text-3xl md:text-5xl font-bold rotate-12">
+                            [?]
+                          </span>
+                        </div>
+                      )}
+                    </div>
 
-                  {/* Thumbnail */}
-                  <div className="relative aspect-[2/1] mb-6 border-4 border-charcoal overflow-hidden">
-                    {post.mainImage ? (
-                      <Image
-                        src={urlFor(post.mainImage).width(800).url()}
-                        alt={post.title}
-                        fill
-                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
-                        sizes="(max-width: 1280px) 100vw, 1280px"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-light flex items-center justify-center">
-                        <span className="font-mono text-charcoal/30 text-4xl font-bold">
+                    {/* Content */}
+                    <div className="p-4 md:p-6">
+                      {/* Badge */}
+                      <div className="mb-3">
+                        <span className="inline-block border-2 border-charcoal px-3 py-1 font-mono text-[10px] font-bold uppercase bg-white">
                           [WRITING]
                         </span>
                       </div>
-                    )}
-                  </div>
 
-                  {/* Content */}
-                  <h2 className="font-mono text-3xl font-bold mb-4 group-hover:underline decoration-4 underline-offset-4">
-                    {post.title}
-                  </h2>
+                      <h2 className="font-mono text-lg md:text-xl font-bold mb-2 leading-tight group-hover:underline decoration-2 underline-offset-2">
+                        {post.title}
+                      </h2>
 
-                  <time className="block font-mono text-sm uppercase mb-4 text-charcoal/60 tracking-wider">
-                    {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
+                      <time className="block font-mono text-[10px] uppercase mb-3 text-charcoal/60 tracking-wider">
+                        {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </time>
 
-                  {post.body && (
-                    <p className="font-mono text-base mb-6 text-charcoal/80 leading-relaxed">
-                      {getExcerpt(post.body)}
-                    </p>
-                  )}
-
-                  <div className="font-mono text-sm font-bold uppercase group-hover:translate-x-2 transition-transform inline-block">
-                    READ →
-                  </div>
-                </article>
-              </Link>
-            ))}
+                      {post.body && (
+                        <p className="font-mono text-xs leading-relaxed text-charcoal/80 line-clamp-3">
+                          {getExcerpt(post.body)}
+                        </p>
+                      )}
+                    </div>
+                  </article>
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>

@@ -10,12 +10,8 @@ interface Post {
   _id: string;
   title: string;
   slug: { current: string };
-  postType: "writing" | "video" | "audio";
-  featuredImage?: any;
-  content?: any[];
-  videoUrl?: string;
-  audioFile?: any;
-  tags?: string[];
+  mainImage?: any;
+  body?: any[];
   publishedAt: string;
 }
 
@@ -27,16 +23,12 @@ async function getPost(slug: string): Promise<Post | null> {
 
   try {
     const post = await client.fetch(
-      `*[_type == "post" && slug.current == $slug && published == true][0] {
+      `*[_type == "post" && slug.current == $slug && defined(publishedAt)][0] {
         _id,
         title,
         slug,
-        postType,
-        featuredImage,
-        content,
-        videoUrl,
-        audioFile,
-        tags,
+        mainImage,
+        body,
         publishedAt
       }`,
       { slug }
@@ -63,7 +55,7 @@ export async function generateMetadata({
 
   return {
     title: post.title,
-    description: `${post.postType.toUpperCase()} post by Manuel Echavarria Romero`,
+    description: `Post by Manuel Echavarria Romero`,
   };
 }
 
@@ -143,7 +135,7 @@ export default async function PostPage({
         {/* Badge */}
         <div className="mb-6">
           <span className="inline-block border-2 border-charcoal px-4 py-2 font-mono text-xs font-bold uppercase bg-white">
-            [{post.postType}]
+            [WRITING]
           </span>
         </div>
 
@@ -162,10 +154,10 @@ export default async function PostPage({
         </time>
 
         {/* Featured Image */}
-        {post.featuredImage && (
+        {post.mainImage && (
           <div className="relative aspect-[2/1] mb-12 border-4 border-charcoal">
             <Image
-              src={urlFor(post.featuredImage).width(1200).url()}
+              src={urlFor(post.mainImage).width(1200).url()}
               alt={post.title}
               fill
               className="object-cover"
@@ -175,49 +167,13 @@ export default async function PostPage({
           </div>
         )}
 
-        {/* Content based on type */}
-        {post.postType === "writing" && post.content && (
+        {/* Content */}
+        {post.body && (
           <div className="prose-brutal">
             <PortableText
-              value={post.content}
+              value={post.body}
               components={portableTextComponents}
             />
-          </div>
-        )}
-
-        {post.postType === "video" && post.videoUrl && (
-          <div className="mb-12">
-            <div className="relative aspect-video border-4 border-charcoal">
-              <iframe
-                src={post.videoUrl}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        )}
-
-        {post.postType === "audio" && post.audioFile && (
-          <div className="mb-12 border-4 border-charcoal p-6">
-            <audio controls className="w-full">
-              <source src={post.audioFile.asset.url} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-        )}
-
-        {/* Tags */}
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-3 my-12 pt-12 border-t-4 border-charcoal">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="border-2 border-charcoal px-4 py-2 font-mono text-xs uppercase"
-              >
-                {tag}
-              </span>
-            ))}
           </div>
         )}
 
