@@ -6,10 +6,10 @@ interface Post {
   _id: string;
   title: string;
   slug: { current: string };
-  postType: "writing" | "video" | "audio";
-  featuredImage?: any;
+  postType?: "writing" | "video" | "audio";
+  mainImage?: any;
   publishedAt: string;
-  content?: any[];
+  body?: any[];
 }
 
 async function getPosts(): Promise<Post[]> {
@@ -20,14 +20,13 @@ async function getPosts(): Promise<Post[]> {
 
   try {
     const posts = await client.fetch(
-      `*[_type == "post" && published == true] | order(publishedAt desc) {
+      `*[_type == "post" && defined(publishedAt)] | order(publishedAt desc) {
         _id,
         title,
         slug,
-        postType,
-        featuredImage,
+        mainImage,
         publishedAt,
-        content
+        body
       }`
     );
     return posts;
@@ -108,15 +107,15 @@ export default async function ThoughtsPage() {
                   {/* Badge */}
                   <div className="mb-6">
                     <span className="inline-block border-2 border-charcoal px-4 py-2 font-mono text-xs font-bold uppercase bg-white">
-                      [{post.postType}]
+                      [WRITING]
                     </span>
                   </div>
 
                   {/* Thumbnail */}
                   <div className="relative aspect-[2/1] mb-6 border-4 border-charcoal overflow-hidden">
-                    {post.featuredImage ? (
+                    {post.mainImage ? (
                       <Image
-                        src={urlFor(post.featuredImage).width(800).url()}
+                        src={urlFor(post.mainImage).width(800).url()}
                         alt={post.title}
                         fill
                         className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
@@ -125,7 +124,7 @@ export default async function ThoughtsPage() {
                     ) : (
                       <div className="w-full h-full bg-gray-light flex items-center justify-center">
                         <span className="font-mono text-charcoal/30 text-4xl font-bold">
-                          [{post.postType.toUpperCase()}]
+                          [WRITING]
                         </span>
                       </div>
                     )}
@@ -144,9 +143,9 @@ export default async function ThoughtsPage() {
                     })}
                   </time>
 
-                  {post.content && (
+                  {post.body && (
                     <p className="font-mono text-base mb-6 text-charcoal/80 leading-relaxed">
-                      {getExcerpt(post.content)}
+                      {getExcerpt(post.body)}
                     </p>
                   )}
 
