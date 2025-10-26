@@ -3,6 +3,7 @@
 import Image from "next/image";
 import PageTransition from "@/components/layout/PageTransition";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import FormattedText from "@/components/ui/FormattedText";
 import {
   Lightbulb,
   Code,
@@ -50,7 +51,7 @@ export default function AboutPage() {
                 {t.about.title}
               </h1>
               <div className="space-y-4 text-body text-charcoal/80 whitespace-pre-line">
-                <p>{t.about.bio}</p>
+                <p><FormattedText text={t.about.bio} /></p>
               </div>
             </div>
           </div>

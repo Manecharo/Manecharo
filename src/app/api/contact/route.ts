@@ -135,8 +135,10 @@ export async function POST(request: NextRequest) {
       it: 'Italian'
     };
 
+    console.log("Attempting to send notification email to Manuel...");
+
     // Send email to Manuel
-    await resend.emails.send({
+    const notificationResult = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || "noreply@manecharo.com",
       to: "manuelerfreelance@gmail.com",
       subject: `New Contact Form: ${name}`,
@@ -165,16 +167,22 @@ export async function POST(request: NextRequest) {
       `,
     });
 
+    console.log("Notification email result:", JSON.stringify(notificationResult));
+
     // Get the appropriate auto-reply template based on language
     const template = autoReplyTemplates[language as keyof typeof autoReplyTemplates] || autoReplyTemplates.en;
 
+    console.log("Attempting to send auto-reply to client...");
+
     // Send auto-reply to user in their selected language
-    await resend.emails.send({
+    const autoReplyResult = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || "noreply@manecharo.com",
       to: email,
       subject: template.subject,
       html: template.html(name),
     });
+
+    console.log("Auto-reply email result:", JSON.stringify(autoReplyResult));
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
