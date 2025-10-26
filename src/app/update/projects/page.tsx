@@ -30,18 +30,16 @@ export default async function ProjectsManagePage() {
             best content management experience. You can add, edit, and manage
             all your projects there.
           </p>
-          <a
-            href={`https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.sanity.studio`}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/studio"
             className="inline-block px-8 py-4 bg-gold text-charcoal font-display uppercase tracking-wider hover:scale-105 transition-transform"
           >
             Open Sanity Studio
-          </a>
+          </Link>
           <p className="mt-6 text-sm text-charcoal/50">
             Alternatively, visit:{" "}
             <code className="bg-charcoal/10 px-2 py-1">
-              https://{process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.sanity.studio
+              /studio
             </code>
           </p>
         </div>
