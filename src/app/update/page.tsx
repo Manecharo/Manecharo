@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { FileText, Image, Edit, Settings } from "lucide-react";
 
@@ -7,7 +8,7 @@ export default async function UpdateDashboard() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return null;
+    redirect("/update/login");
   }
 
   const cards = [

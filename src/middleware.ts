@@ -9,17 +9,13 @@ export function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
-    // Check for auth token (will be handled by NextAuth when configured)
-    // For now, allow access if NextAuth is not configured (development)
-    try {
-      const token = request.cookies.get("next-auth.session-token");
-      if (!token) {
-        // Redirect to login
-        return NextResponse.redirect(new URL("/update/login", request.url));
-      }
-    } catch (error) {
-      // If NextAuth not configured, allow access (development mode)
-      console.warn("NextAuth not configured - skipping authentication");
+    // Check for auth token in both development and production cookie names
+    const devToken = request.cookies.get("next-auth.session-token");
+    const prodToken = request.cookies.get("__Secure-next-auth.session-token");
+
+    if (!devToken && !prodToken) {
+      // No valid session - redirect to login
+      return NextResponse.redirect(new URL("/update/login", request.url));
     }
   }
 
