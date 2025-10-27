@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Send } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+
+const COOLDOWN_KEY = "contact_form_cooldown";
+const COOLDOWN_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
 
 export default function ContactForm() {
   const { t, language } = useLanguage();
@@ -14,11 +17,44 @@ export default function ContactForm() {
     budget: "",
     timeline: "",
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error" | "cooldown">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isOnCooldown, setIsOnCooldown] = useState(false);
+
+  // Check cooldown on mount
+  useEffect(() => {
+    const checkCooldown = () => {
+      const cooldownTimestamp = localStorage.getItem(COOLDOWN_KEY);
+      if (cooldownTimestamp) {
+        const timeSinceSubmission = Date.now() - parseInt(cooldownTimestamp, 10);
+        if (timeSinceSubmission < COOLDOWN_DURATION) {
+          setIsOnCooldown(true);
+          setStatus("cooldown");
+          // Set timeout to remove cooldown after remaining time
+          const remainingTime = COOLDOWN_DURATION - timeSinceSubmission;
+          setTimeout(() => {
+            setIsOnCooldown(false);
+            setStatus("idle");
+            localStorage.removeItem(COOLDOWN_KEY);
+          }, remainingTime);
+        } else {
+          // Cooldown expired
+          localStorage.removeItem(COOLDOWN_KEY);
+        }
+      }
+    };
+    checkCooldown();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check cooldown before submitting
+    if (isOnCooldown) {
+      setStatus("cooldown");
+      return;
+    }
+
     setStatus("sending");
     setErrorMessage("");
 
@@ -35,6 +71,10 @@ export default function ContactForm() {
         throw new Error("Failed to send message");
       }
 
+      // Set cooldown timestamp
+      localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
+      setIsOnCooldown(true);
+
       setStatus("success");
       setFormData({
         name: "",
@@ -45,8 +85,18 @@ export default function ContactForm() {
         timeline: "",
       });
 
-      // Reset success message after 5 seconds
-      setTimeout(() => setStatus("idle"), 5000);
+      // Set timeout to remove cooldown after 1 hour
+      setTimeout(() => {
+        setIsOnCooldown(false);
+        localStorage.removeItem(COOLDOWN_KEY);
+      }, COOLDOWN_DURATION);
+
+      // Keep success message visible for 10 seconds
+      setTimeout(() => {
+        if (!isOnCooldown) {
+          setStatus("idle");
+        }
+      }, 10000);
     } catch (error) {
       setStatus("error");
       setErrorMessage(t.contact.formError);
@@ -198,7 +248,7 @@ export default function ContactForm() {
       {/* Submit Button */}
       <button
         type="submit"
-        disabled={status === "sending"}
+        disabled={status === "sending" || isOnCooldown}
         className="w-full px-8 py-4 bg-gold text-charcoal font-display uppercase tracking-wider transition-all duration-200 hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
       >
         {status === "sending" ? (
@@ -216,8 +266,8 @@ export default function ContactForm() {
 
       {/* Status Messages */}
       {status === "success" && (
-        <div className="p-4 bg-sage/20 border-2 border-sage text-charcoal">
-          <p className="font-display">
+        <div className="p-6 bg-sage/20 border-2 border-sage text-charcoal animate-fade-in-up">
+          <p className="text-base leading-relaxed">
             {t.contact.formSuccess}
           </p>
         </div>
@@ -226,6 +276,14 @@ export default function ContactForm() {
       {status === "error" && (
         <div className="p-4 bg-terracotta/20 border-2 border-terracotta text-charcoal">
           <p className="font-display">{errorMessage}</p>
+        </div>
+      )}
+
+      {status === "cooldown" && (
+        <div className="p-6 bg-gold/20 border-2 border-gold text-charcoal animate-fade-in-up">
+          <p className="text-base leading-relaxed">
+            {t.contact.formCooldown}
+          </p>
         </div>
       )}
     </form>

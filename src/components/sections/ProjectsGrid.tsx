@@ -21,27 +21,9 @@ interface Project {
   gallery?: any[];
 }
 
-const tagsList = [
-  "All",
-  "Product Design",
-  "UX/UI Design",
-  "Branding & Identity",
-  "Social Impact",
-  "Graphic Design",
-  "3D Modeling & Rendering",
-  "Strategy & Consulting",
-  "Web Design",
-  "Photography & Video",
-  "Communication Strategy",
-  "Technical Design",
-  "Project Management",
-];
-
 export default function ProjectsGrid() {
   const { language } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
-  const [activeFilter, setActiveFilter] = useState("All");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,7 +31,6 @@ export default function ProjectsGrid() {
       // Return empty if Sanity not configured
       if (!client) {
         setProjects([]);
-        setFilteredProjects([]);
         setLoading(false);
         return;
       }
@@ -72,7 +53,6 @@ export default function ProjectsGrid() {
           }`
         );
         setProjects(data);
-        setFilteredProjects(data);
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
@@ -82,20 +62,6 @@ export default function ProjectsGrid() {
 
     fetchProjects();
   }, []);
-
-  useEffect(() => {
-    if (activeFilter === "All") {
-      setFilteredProjects(projects);
-    } else {
-      const filtered = projects.filter((project) => {
-        const filterValue = activeFilter.toLowerCase().replace(/[&\s]/g, "-");
-        return project.services?.some((service) =>
-          service.toLowerCase().includes(filterValue)
-        );
-      });
-      setFilteredProjects(filtered);
-    }
-  }, [activeFilter, projects]);
 
   if (loading) {
     return (
@@ -122,34 +88,8 @@ export default function ProjectsGrid() {
   }
 
   return (
-    <>
-      {/* Filters */}
-      <div className="mb-12 flex flex-wrap gap-3 justify-center">
-        {tagsList.map((tag) => (
-          <button
-            key={tag}
-            onClick={() => setActiveFilter(tag)}
-            className={`px-4 py-2 text-sm font-display uppercase tracking-wider transition-all duration-200 ${
-              activeFilter === tag
-                ? "bg-gold text-charcoal"
-                : "bg-pure-white text-charcoal hover:bg-charcoal hover:text-cream"
-            }`}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
-
-      {/* Projects Grid */}
-      {filteredProjects.length === 0 ? (
-        <div className="text-center py-20">
-          <p className="text-body text-charcoal/60">
-            No projects found for this filter.
-          </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => {
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project) => {
             const localizedTitle = language === 'es' ? (project.title_es || project.title)
               : language === 'it' ? (project.title_it || project.title)
               : project.title;
@@ -220,10 +160,8 @@ export default function ProjectsGrid() {
                 </div>
               </article>
             </Link>
-            );
-          })}
-        </div>
-      )}
-    </>
+        );
+      })}
+    </div>
   );
 }
