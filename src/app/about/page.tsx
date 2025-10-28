@@ -107,15 +107,15 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {[
                 {
-                  degree: "Master's Degree — Specialization Interior Design",
+                  degree: "Master's Degree — Dual specialization interior industrial-design",
                   school: "Scuola Politecnica di Design (SPD)",
                   year: "2009-2010",
                   link: "https://www.scuoladesign.com/courses/product-design/",
                 },
                 {
-                  degree: "Diploma in Industrial Design",
+                  degree: "Bachelor in Industrial Design",
                   school: "Istituto Europeo di Design (IED)",
-                  year: "2008-2009",
+                  year: "2006-2009",
                   link: "https://www.ied.edu/courses/milan/three-years-diploma/product-design",
                 },
                 {
