@@ -63,9 +63,20 @@ export default function Navigation() {
 
       {/* Mobile Navigation - Hamburger */}
       <nav className="md:hidden" aria-label="Mobile navigation">
+        {/* Blur background bar at top */}
+        <div className="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-md shadow-sm z-[55]" />
+
+        {/* Logo/Home Link */}
+        <Link
+          href="/"
+          className="fixed top-6 left-6 z-[60] font-display text-xl font-bold text-charcoal hover:text-gold transition-colors"
+        >
+          MER
+        </Link>
+
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="fixed top-6 right-6 z-[60] p-2 text-charcoal hover:text-gold transition-colors bg-white/90 backdrop-blur-sm rounded-lg shadow-md"
+          className="fixed top-6 right-6 z-[60] p-2 text-charcoal hover:text-gold transition-colors"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}

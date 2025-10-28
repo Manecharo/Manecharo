@@ -23,6 +23,8 @@ interface Project {
   year?: number;
   services?: string[];
   description?: any[];
+  description_es?: any[];
+  description_it?: any[];
   link?: string;
 }
 
@@ -98,6 +100,9 @@ export default function ProjectDetailClient({ project, prev, next }: ProjectDeta
   const localizedExcerpt = language === 'es' ? (project.excerpt_es || project.excerpt)
     : language === 'it' ? (project.excerpt_it || project.excerpt)
     : project.excerpt;
+  const localizedDescription = language === 'es' ? (project.description_es || project.description)
+    : language === 'it' ? (project.description_it || project.description)
+    : project.description;
 
   const localizedPrevTitle = prev ? (
     language === 'es' ? (prev.title_es || prev.title)
@@ -214,11 +219,11 @@ export default function ProjectDetailClient({ project, prev, next }: ProjectDeta
         </header>
 
         {/* Description Content */}
-        {project.description && project.description.length > 0 && (
+        {localizedDescription && localizedDescription.length > 0 && (
           <section className="mb-16 max-w-4xl mx-auto">
             <div className="prose prose-lg max-w-none">
               <PortableText
-                value={project.description}
+                value={localizedDescription}
                 components={portableTextComponents}
               />
             </div>

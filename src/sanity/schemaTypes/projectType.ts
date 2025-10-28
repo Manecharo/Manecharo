@@ -114,7 +114,17 @@ export const projectType = defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Full Description',
+      title: 'Full Description (English)',
+      type: 'blockContent',
+    }),
+    defineField({
+      name: 'description_es',
+      title: 'Full Description (Spanish)',
+      type: 'blockContent',
+    }),
+    defineField({
+      name: 'description_it',
+      title: 'Full Description (Italian)',
       type: 'blockContent',
     }),
     defineField({

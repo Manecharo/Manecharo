@@ -18,6 +18,8 @@ interface Project {
   year?: number;
   services?: string[];
   description?: any[];
+  description_es?: any[];
+  description_it?: any[];
   link?: string;
 }
 
@@ -44,6 +46,8 @@ async function getProject(slug: string): Promise<Project | null> {
         year,
         services,
         description,
+        description_es,
+        description_it,
         link
       }`,
       { slug }

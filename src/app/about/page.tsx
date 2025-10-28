@@ -107,34 +107,41 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {[
                 {
-                  degree: "Master in Strategic Product Design",
-                  school: "Politecnico di Milano",
-                  year: "2009-2011",
+                  degree: "Master's Degree — Specialization Interior Design",
+                  school: "Scuola Politecnica di Design (SPD)",
+                  year: "2009-2010",
+                  link: "https://www.scuoladesign.com/courses/product-design/",
                 },
                 {
-                  degree: "Bachelor in Industrial Design",
-                  school: "IED Milano",
-                  year: "2006-2009",
+                  degree: "Diploma in Industrial Design",
+                  school: "Istituto Europeo di Design (IED)",
+                  year: "2008-2009",
+                  link: "https://www.ied.edu/courses/milan/three-years-diploma/product-design",
                 },
                 {
-                  degree: "AI & Machine Learning",
-                  school: "MIT Online",
+                  degree: "No Code AI and Machine Learning: Building Data Science Solutions",
+                  school: "MIT Professional Education",
                   year: "2024",
+                  link: "https://mit-online.getsmarter.com/presentations/lp/mit-sloan-making-ai-work-online-course/",
                 },
                 {
-                  degree: "Teaching & Learning",
-                  school: "Harvard Online",
+                  degree: "Higher Education Teaching Certificate",
+                  school: "Harvard Derek Bok Center",
                   year: "2020",
+                  link: "https://harvardonline.harvard.edu/course/higher-education-teaching",
                 },
               ].map((edu, index) => (
-                <div
+                <a
                   key={index}
-                  className="bg-pure-white p-6 shadow-sm border-l-4 border-gold"
+                  href={edu.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-pure-white p-6 shadow-sm border-l-4 border-gold hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
                 >
                   <h3 className="font-display text-lg mb-2">{edu.degree}</h3>
                   <p className="text-charcoal/70 mb-1">{edu.school}</p>
                   <p className="text-sm text-charcoal/50">{edu.year}</p>
-                </div>
+                </a>
               ))}
             </div>
           </section>

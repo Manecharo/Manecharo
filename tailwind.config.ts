@@ -9,18 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // New clean, high-contrast color scheme
-        gold: "#FFD700", // Brighter gold for better contrast
+        // Updated color scheme
+        gold: "#eec84e", // Yellow
         charcoal: "#0A0A0A", // Deeper black for maximum contrast
-        navy: "#1A237E", // Deep navy blue accent
-        red: "#D32F2F", // Bold red accent
-        accent: "#FF6B35", // Bold orange accent
+        navy: "#334D5C", // Blue
+        red: "#dc5b49", // Red
+        accent: "#dc5b49", // Red accent
         "gray-light": "#F5F5F5", // Very light gray for subtle backgrounds
         "gray-mid": "#A0A0A0", // Medium gray for borders
         "pure-white": "#FFFFFF",
         // Legacy colors (kept for compatibility)
         cream: "#FFFFFF", // Changed to white
-        terracotta: "#FF6B35",
+        terracotta: "#dc5b49", // Red
         sage: "#2D5016",
       },
       fontFamily: {
