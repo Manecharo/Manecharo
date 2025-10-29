@@ -4,7 +4,7 @@ import PageTransition from "@/components/layout/PageTransition";
 import ContactForm from "@/components/sections/ContactForm";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import FormattedText from "@/components/ui/FormattedText";
-import { Mail, Phone, MapPin, Instagram, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 export default function ContactPage() {
   const { t } = useLanguage();
@@ -55,6 +55,19 @@ export default function ContactPage() {
                       <div className="group-hover:underline">
                         +60 12 658 1025
                       </div>
+                    </div>
+                  </a>
+
+                  {/* WhatsApp Button */}
+                  <a
+                    href="https://wa.me/60126581025?text=Hi%20Manuel%2C%20I%27d%20like%20to%20discuss%20a%20project%20with%20you."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-6 py-4 bg-[#25D366] text-white hover:bg-[#128C7E] transition-all duration-200 hover:shadow-lg group"
+                  >
+                    <MessageCircle className="w-5 h-5 flex-shrink-0" />
+                    <div className="font-display uppercase tracking-wider text-sm">
+                      Message on WhatsApp
                     </div>
                   </a>
 
