@@ -25,8 +25,4 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({defaultApiVersion: apiVersion}),
   ],
-  auth: {
-    // Redirect to login after 15 minutes of inactivity
-    redirectOnSingleInstance: true,
-  },
 })
