@@ -63,11 +63,14 @@ export default function ContactPage() {
                     href="https://wa.me/60126581025?text=Hi%20Manuel%2C%20I%27d%20like%20to%20discuss%20a%20project%20with%20you."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 px-6 py-4 bg-[#25D366] text-white hover:bg-[#128C7E] transition-all duration-200 hover:shadow-lg group"
+                    className="flex items-start gap-3 text-charcoal hover:text-gold transition-colors group"
                   >
-                    <MessageCircle className="w-5 h-5 flex-shrink-0" />
-                    <div className="font-display uppercase tracking-wider text-sm">
-                      Message on WhatsApp
+                    <MessageCircle className="w-5 h-5 mt-1 flex-shrink-0" />
+                    <div>
+                      <div className="text-sm text-charcoal/60 mb-1">WhatsApp</div>
+                      <div className="group-hover:underline">
+                        Message directly
+                      </div>
                     </div>
                   </a>
 
