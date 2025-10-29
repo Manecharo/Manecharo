@@ -19,8 +19,8 @@ export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t, language, setLanguage } = useLanguage();
 
-  // Hide navigation on /thoughts, /studio, and /work pages
-  if (pathname?.startsWith('/thoughts') || pathname?.startsWith('/studio') || pathname?.startsWith('/work')) {
+  // Hide navigation only on /thoughts and /studio pages
+  if (pathname?.startsWith('/thoughts') || pathname?.startsWith('/studio')) {
     return null;
   }
 
@@ -64,16 +64,9 @@ export default function Navigation() {
       {/* Mobile Navigation - Hamburger */}
       <nav className="md:hidden" aria-label="Mobile navigation">
         {/* Blur background bar at top */}
-        <div className="fixed top-0 left-0 right-0 h-20 bg-white/80 backdrop-blur-md shadow-sm z-[55]" />
+        <div className="fixed top-0 left-0 right-0 h-20 bg-white/70 backdrop-blur-md shadow-sm z-[55]" />
 
-        {/* Logo/Home Link */}
-        <Link
-          href="/"
-          className="fixed top-6 left-6 z-[60] font-display text-xl font-bold text-charcoal hover:text-gold transition-colors"
-        >
-          MER
-        </Link>
-
+        {/* Hamburger Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="fixed top-6 right-6 z-[60] p-2 text-charcoal hover:text-gold transition-colors"

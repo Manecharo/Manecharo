@@ -25,7 +25,7 @@ export default function LoginPage() {
       if (result?.error) {
         setError("Invalid password");
       } else {
-        router.push("/update");
+        router.push("/studio");
       }
     } catch (error) {
       setError("An error occurred");
