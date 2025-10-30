@@ -18,7 +18,7 @@ const skills = [
   { icon: Palette, title: "Design Excellence", description: "Pixel-perfect execution" },
   { icon: Code, title: "Technical Fluency", description: "Code-aware design" },
   { icon: Users, title: "User Research", description: "Deep empathy" },
-  { icon: Globe, title: "Cross-Cultural", description: "8 countries, 4 languages" },
+  { icon: Globe, title: "Cross-Cultural", description: "6 countries, 4 languages" },
   { icon: Rocket, title: "Startup Mindset", description: "Scrappy & resourceful" },
 ];
 

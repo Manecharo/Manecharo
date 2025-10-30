@@ -250,7 +250,7 @@ Mobile: Optimized version, not static image
     </p>
     <p class="stats">
       14 years turning complex problems into elegant solutions.<br/>
-      8 countries. 3 startups. 50+ brands. 600+ products shipped.
+      6 countries. 3 startups. 50+ brands. 600+ products shipped.
     </p>
     <div class="cta">
       <button>View Selected Work</button>

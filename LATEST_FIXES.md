@@ -230,7 +230,7 @@ Use these exact elements to match site design:
   MANUEL ECHAVARRIA ROMERO
   Designer of Systems
 
-  14 years • 8 countries • 50+ brands
+  14 years • 6 countries • 50+ brands
   600+ products shipped
 
   manecharo.com

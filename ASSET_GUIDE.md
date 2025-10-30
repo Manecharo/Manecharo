@@ -118,7 +118,7 @@ The component is ready to use the image. Once you add `public/images/about/portr
 - **Content suggestions:**
   - Your name: "Manuel Echavarria Romero"
   - Tagline: "Designer of Systems"
-  - Key stats: "14 years • 8 countries • 50+ brands"
+  - Key stats: "14 years • 6 countries • 50+ brands"
   - Navy and red color scheme (#1A237E, #D32F2F)
   - Professional, clean design
 

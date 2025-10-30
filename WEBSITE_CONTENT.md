@@ -10,7 +10,7 @@ I design systems that actually work—from hydroponic gardens to digital democra
 
 **Stats Line:**
 14 years turning complex problems into elegant solutions.  
-8 countries. 3 startups. 50+ brands. 600+ products shipped.
+6 countries. 3 startups. 50+ brands. 600+ products shipped.
 
 **CTA Buttons:**
 - View Selected Work
@@ -24,7 +24,7 @@ I design systems that actually work—from hydroponic gardens to digital democra
 
 I'm a designer who doesn't stay in one lane.
 
-Born in Colombia. Trained in Milan. Worked across 8 countries on 4 continents. I've designed doors in Poland, furniture in Italy, hydroponic systems in Colombia, metaverse spaces in Switzerland, and democracy programs in Malaysia.
+Born in Colombia. Trained in Milan. Worked across 6 countries on 4 continents. I've designed doors in Poland, furniture in Italy, hydroponic systems in Colombia, metaverse spaces in Switzerland, and democracy programs in Malaysia.
 
 I co-founded 3 startups. Led design teams. Trained 400+ artisans. Grew channels from zero. Built products people actually use.
 

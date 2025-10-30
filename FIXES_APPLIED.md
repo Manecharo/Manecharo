@@ -100,7 +100,7 @@ MANUEL              [VIDEO               I design systems
 ECHAVARRIA          PLACEHOLDER]         that actually work
 ROMERO
                                          14 years
-Designer of                              8 countries
+Designer of                              6 countries
 Systems                                  50+ brands
 ```
 
@@ -112,7 +112,7 @@ MANUEL ECHAVARRIA ROMERO
 
 I design systems...
 
-14 years • 8 countries
+14 years • 6 countries
 ```
 
 ### Blog Design

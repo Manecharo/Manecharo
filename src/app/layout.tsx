@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     url: "https://manecharo.com",
     title: "Manuel Echavarria Romero | Designer",
     description:
-      "Designer and problem solver. 14 years turning complex problems into elegant solutions across 8 countries.",
+      "Designer and problem solver. 14 years turning complex problems into elegant solutions across 6 countries.",
     siteName: "Manuel Echavarria Romero",
     images: [
       {

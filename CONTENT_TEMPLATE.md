@@ -13,7 +13,7 @@ I design systems that actually work—from hydroponic gardens to digital democra
 **Stats:**
 ```
 14 years turning complex problems into elegant solutions.
-8 countries. 3 startups. 50+ brands. 600+ products shipped.
+6 countries. 3 startups. 50+ brands. 600+ products shipped.
 ```
 
 ---

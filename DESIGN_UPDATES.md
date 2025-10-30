@@ -52,7 +52,7 @@ All requested design improvements have been implemented successfully.
 │  ROMERO              centered        that work  │
 │                                                  │
 │  Designer of         centered        14 years   │
-│  Systems             vertically      8 countries│
+│  Systems             vertically      6 countries│
 │                                                  │
 │  [View Work]                         [Contact]  │
 └─────────────────────────────────────────────────┘

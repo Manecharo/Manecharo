@@ -12,7 +12,7 @@ export const translations = {
     hero: {
       subtitle: "Designer & Problem Solver",
       tagline: "Design isn't decoration. It's the tool I use to create real impact—turning ideas into systems that work for people.",
-      stats: "14 years turning complex problems into elegant solutions.\n8 countries. 3 startups. 50+ brands. 600+ products shipped.",
+      stats: "14 years turning complex problems into elegant solutions.\n6 countries. 3 startups. 50+ brands. 600+ products shipped.",
       ctaWork: "View Selected Work",
       ctaContact: "Let's Talk",
     },
@@ -25,7 +25,7 @@ export const translations = {
     // About Page
     about: {
       title: "The Short Version",
-      bio: "I'm a **designer** who doesn't stay in one lane.\n\n**Born in Colombia**. Trained in **Milan**. Worked across **8 countries** on **4 continents**. I've designed doors in Poland, furniture in Italy, hydroponic systems in Colombia, metaverse spaces in Switzerland, and democracy programs in Malaysia.\n\nI **co-founded 3 startups**. Led design teams. Trained **400+ artisans**. Grew channels from zero. Built **products people actually use**.\n\nI think in **systems**. I work with my **hands**. I believe design should **solve real problems**, not just look pretty.\n\n**Currently based in Kuala Lumpur**. Colombian and Spanish passport. Available for **projects that matter**.",
+      bio: "I'm a **designer** who doesn't stay in one lane.\n\n**Born in Colombia**. Trained in **Milan**. Worked across **6 countries** on **4 continents**. I've designed doors in Poland, furniture in Italy, hydroponic systems in Colombia, metaverse spaces in Switzerland, and democracy programs in Malaysia.\n\nI **co-founded 3 startups**. Led design teams. Trained **400+ artisans**. Grew channels from zero. Built **products people actually use**.\n\nI think in **systems**. I work with my **hands**. I believe design should **solve real problems**, not just look pretty.\n\n**Currently based in Kuala Lumpur**. Colombian and Spanish passport. Available for **projects that matter**.",
       whatIDo: "What I Actually Do",
       languages: "Languages",
       education: "Education & Learning",
