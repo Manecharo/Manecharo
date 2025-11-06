@@ -44,17 +44,67 @@ interface ProjectDetailClientProps {
 
 const portableTextComponents = {
   types: {
-    image: ({ value }: any) => (
-      <div className="relative aspect-video my-8 shadow-lg">
-        <Image
-          src={urlFor(value).width(1200).url()}
-          alt={value.alt || "Project image"}
-          fill
-          className="object-cover"
-          sizes="(max-width: 1024px) 100vw, 1024px"
-        />
-      </div>
-    ),
+    image: ({ value }: any) => {
+      if (!value?.asset?._ref) {
+        return null;
+      }
+      return (
+        <figure className="my-8">
+          <div className="relative w-full shadow-lg">
+            <Image
+              src={urlFor(value).width(1200).url()}
+              alt={value.alt || "Project image"}
+              width={1200}
+              height={800}
+              className="w-full h-auto object-contain"
+              sizes="(max-width: 1024px) 100vw, 1024px"
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="mt-2 text-sm text-charcoal/60 text-center">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
+    video: ({ value }: any) => {
+      if (!value?.url) {
+        return null;
+      }
+
+      const getEmbedUrl = (url: string) => {
+        if (url.includes('youtube.com') || url.includes('youtu.be')) {
+          const videoId = url.includes('youtu.be')
+            ? url.split('youtu.be/')[1]?.split('?')[0]
+            : url.split('v=')[1]?.split('&')[0];
+          return `https://www.youtube.com/embed/${videoId}`;
+        }
+        if (url.includes('vimeo.com')) {
+          const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
+          return `https://player.vimeo.com/video/${videoId}`;
+        }
+        return url;
+      };
+
+      return (
+        <figure className="my-8">
+          <div className="relative w-full aspect-video shadow-lg">
+            <iframe
+              src={getEmbedUrl(value.url)}
+              className="absolute inset-0 w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="mt-2 text-sm text-charcoal/60 text-center">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
   },
   block: {
     h2: ({ children }: any) => (

@@ -3,12 +3,21 @@
 import { useState, useEffect } from "react";
 import { Send } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import Script from "next/script";
 
 const COOLDOWN_KEY = "contact_form_cooldown";
 const COOLDOWN_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
 
 export default function ContactForm() {
   const { t, language } = useLanguage();
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,12 +68,22 @@ export default function ContactForm() {
     setErrorMessage("");
 
     try {
+      // Get reCAPTCHA token
+      let recaptchaToken = "";
+      if (RECAPTCHA_SITE_KEY && window.grecaptcha) {
+        try {
+          recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact_form' });
+        } catch (error) {
+          console.error("reCAPTCHA error:", error);
+        }
+      }
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...formData, language }),
+        body: JSON.stringify({ ...formData, language, recaptchaToken }),
       });
 
       if (!response.ok) {
@@ -114,8 +133,17 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Name */}
+    <>
+      {/* Load reCAPTCHA v3 */}
+      {RECAPTCHA_SITE_KEY && (
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+          onLoad={() => setRecaptchaLoaded(true)}
+        />
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Name */}
       <div>
         <label
           htmlFor="name"
@@ -287,5 +315,6 @@ export default function ContactForm() {
         </div>
       )}
     </form>
+    </>
   );
 }

@@ -104,10 +104,32 @@ const autoReplyTemplates = {
   },
 };
 
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  if (!secretKey) {
+    console.warn("reCAPTCHA not configured");
+    return true; // Allow submission if reCAPTCHA is not configured
+  }
+
+  try {
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${secretKey}&response=${token}`,
+    });
+
+    const data = await response.json();
+    return data.success && data.score >= 0.5; // Score threshold for v3
+  } catch (error) {
+    console.error("reCAPTCHA verification error:", error);
+    return false;
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, projectType, message, budget, timeline, language = 'en' } = body;
+    const { name, email, projectType, message, budget, timeline, language = 'en', recaptchaToken } = body;
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -115,6 +137,17 @@ export async function POST(request: NextRequest) {
         { error: "Missing required fields" },
         { status: 400 }
       );
+    }
+
+    // Verify reCAPTCHA
+    if (recaptchaToken) {
+      const isValid = await verifyRecaptcha(recaptchaToken);
+      if (!isValid) {
+        return NextResponse.json(
+          { error: "reCAPTCHA verification failed. Please try again." },
+          { status: 400 }
+        );
+      }
     }
 
     // Check if Resend is configured
@@ -139,7 +172,7 @@ export async function POST(request: NextRequest) {
 
     // Send email to Manuel
     const notificationResult = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "noreply@manecharo.com",
+      from: `Manecharo - Design - NoReply <${process.env.RESEND_FROM_EMAIL || "noreply@manecharo.com"}>`,
       to: "manuelerfreelance@gmail.com",
       subject: `New Contact Form: ${name}`,
       html: `
@@ -176,7 +209,7 @@ export async function POST(request: NextRequest) {
 
     // Send auto-reply to user in their selected language
     const autoReplyResult = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "noreply@manecharo.com",
+      from: `Manecharo - Design - NoReply <${process.env.RESEND_FROM_EMAIL || "noreply@manecharo.com"}>`,
       to: email,
       subject: template.subject,
       html: template.html(name),
