@@ -48,6 +48,12 @@ Before deployment, you need to set up these free services:
 - Already set up ✓
 - Blob storage token will be auto-generated on deployment
 
+### 4. **Google reCAPTCHA v3** (Bot Protection)
+- Go to [google.com/recaptcha](https://www.google.com/recaptcha/admin)
+- Create a new site (reCAPTCHA v3)
+- Add your domain: manecharo.com
+- Note your **Site Key** and **Secret Key**
+
 ---
 
 ## 🔐 Environment Variables
@@ -74,6 +80,10 @@ BLOB_READ_WRITE_TOKEN=
 
 # Analytics (auto-populated on Vercel)
 NEXT_PUBLIC_VERCEL_ANALYTICS_ID=auto
+
+# Google reCAPTCHA v3
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_site_key_here
+RECAPTCHA_SECRET_KEY=your_secret_key_here
 ```
 
 ### Generate NEXTAUTH_SECRET:
