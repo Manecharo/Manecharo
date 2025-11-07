@@ -30,8 +30,11 @@ export default function ContactForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isOnCooldown, setIsOnCooldown] = useState(false);
 
-  // Check cooldown on mount
+  // Check cooldown on mount and debug reCAPTCHA
   useEffect(() => {
+    console.log("ContactForm mounted");
+    console.log("RECAPTCHA_SITE_KEY:", RECAPTCHA_SITE_KEY ? "present" : "missing");
+
     const checkCooldown = () => {
       const cooldownTimestamp = localStorage.getItem(COOLDOWN_KEY);
       if (cooldownTimestamp) {
@@ -70,12 +73,19 @@ export default function ContactForm() {
     try {
       // Get reCAPTCHA token
       let recaptchaToken = "";
+      console.log("reCAPTCHA Site Key present:", !!RECAPTCHA_SITE_KEY);
+      console.log("grecaptcha available:", !!window.grecaptcha);
+
       if (RECAPTCHA_SITE_KEY && window.grecaptcha) {
         try {
+          console.log("Executing reCAPTCHA...");
           recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact_form' });
+          console.log("reCAPTCHA token obtained:", !!recaptchaToken);
         } catch (error) {
-          console.error("reCAPTCHA error:", error);
+          console.error("reCAPTCHA execution error:", error);
         }
+      } else {
+        console.warn("reCAPTCHA not configured or not loaded");
       }
 
       const response = await fetch("/api/contact", {
@@ -138,7 +148,13 @@ export default function ContactForm() {
       {RECAPTCHA_SITE_KEY && (
         <Script
           src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
-          onLoad={() => setRecaptchaLoaded(true)}
+          onLoad={() => {
+            console.log("reCAPTCHA script loaded successfully");
+            setRecaptchaLoaded(true);
+          }}
+          onError={(e) => {
+            console.error("Failed to load reCAPTCHA script:", e);
+          }}
         />
       )}
 
@@ -272,6 +288,21 @@ export default function ContactForm() {
           placeholder={t.contact.formPlaceholder}
         />
       </div>
+
+      {/* reCAPTCHA Badge Info */}
+      {RECAPTCHA_SITE_KEY && (
+        <div className="text-xs text-charcoal/50 text-center">
+          This site is protected by reCAPTCHA and the Google{" "}
+          <a href="https://policies.google.com/privacy" className="underline hover:text-gold" target="_blank" rel="noopener noreferrer">
+            Privacy Policy
+          </a>{" "}
+          and{" "}
+          <a href="https://policies.google.com/terms" className="underline hover:text-gold" target="_blank" rel="noopener noreferrer">
+            Terms of Service
+          </a>{" "}
+          apply.
+        </div>
+      )}
 
       {/* Submit Button */}
       <button

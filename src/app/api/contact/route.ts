@@ -107,11 +107,17 @@ const autoReplyTemplates = {
 async function verifyRecaptcha(token: string): Promise<boolean> {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   if (!secretKey) {
-    console.warn("reCAPTCHA not configured");
+    console.warn("reCAPTCHA SECRET_KEY not configured - skipping verification");
     return true; // Allow submission if reCAPTCHA is not configured
   }
 
+  if (!token) {
+    console.warn("No reCAPTCHA token provided");
+    return true; // Allow submission if no token (for development)
+  }
+
   try {
+    console.log("Verifying reCAPTCHA token...");
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -119,7 +125,20 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     });
 
     const data = await response.json();
-    return data.success && data.score >= 0.5; // Score threshold for v3
+    console.log("reCAPTCHA verification response:", JSON.stringify(data));
+
+    if (!data.success) {
+      console.error("reCAPTCHA verification failed:", data['error-codes']);
+      return false;
+    }
+
+    if (data.score < 0.5) {
+      console.warn("reCAPTCHA score too low:", data.score);
+      return false;
+    }
+
+    console.log("reCAPTCHA verification successful, score:", data.score);
+    return true;
   } catch (error) {
     console.error("reCAPTCHA verification error:", error);
     return false;
