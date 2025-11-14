@@ -9,6 +9,12 @@ const COOLDOWN_KEY = "contact_form_cooldown";
 const COOLDOWN_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
+// Debug logging for build time
+if (typeof window === 'undefined') {
+  console.log('[BUILD] RECAPTCHA_SITE_KEY available:', !!process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+  console.log('[BUILD] All NEXT_PUBLIC vars:', Object.keys(process.env).filter(k => k.startsWith('NEXT_PUBLIC')));
+}
+
 declare global {
   interface Window {
     grecaptcha: any;
