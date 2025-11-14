@@ -30,23 +30,30 @@ const autoReplyTemplates = {
             <td align="center">
               <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF;">
 
-                <!-- Logo Header -->
+                <!-- Logo Header with Navy Background -->
                 <tr>
-                  <td style="padding: 48px 48px 32px 48px; text-align: center; background-color: #FFFFFF;">
-                    <img src="https://manecharo.com/images/logo/logo_Asvg.svg" alt="MER Logo" width="80" height="80" style="display: block; margin: 0 auto 16px auto;">
-                    <h1 style="margin: 0; font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #0A0A0A; letter-spacing: -0.02em; text-transform: uppercase;">
+                  <td style="padding: 48px 48px 40px 48px; text-align: center; background-color: #334D5C;">
+                    <a href="https://manecharo.com" style="display: inline-block; text-decoration: none;">
+                      <svg width="100" height="100" viewBox="0 0 212.49 212.49" style="display: block; margin: 0 auto 20px auto;">
+                        <path fill="#FFFFFF" d="M18.44,41.67l20.5,33.16c3.69,5.97,10.08,9.54,17.11,9.54h0c7.02,0,13.42-3.57,17.12-9.54l34.85-56.39h104.47V0h-114.75l-40.26,65.14c-.33.53-.81.8-1.43.8s-1.1-.27-1.43-.79L23.25,14.39c-2.98-4.82-8.67-7.04-14.12-5.47C3.67,10.47,0,15.32,0,21v191.49h18.44V41.67Z"/>
+                        <path fill="#FFFFFF" d="M118.32,56.32h94.16v-18.44h-94.16c-5.09,0-9.22,4.13-9.22,9.22s4.13,9.22,9.22,9.22Z"/>
+                        <path fill="#FFFFFF" d="M118.32,94.21h94.16v-18.44h-94.16c-5.09,0-9.22,4.13-9.22,9.22s4.13,9.22,9.22,9.22Z"/>
+                        <path fill="#FFFFFF" d="M65.27,212.49v-75.33c0-2.8,2.27-5.06,5.06-5.06h120.36c1.84,0,3.35,1.51,3.35,3.35v17.01c0,1.84-1.51,3.35-3.35,3.35h-62.41c-6.08,0-11.08,4.18-12.16,10.16-1.09,6,2.72,11.85,8.43,14.01l61.41,32.52h26.53v-9.66l-51.07-28.59h32.25c10.39,0,18.82-8.43,18.82-18.82v-22.95c0-10.39-8.42-18.82-18.82-18.82h-123.34c-12.98,0-23.5,10.52-23.5,23.5v75.33h18.44Z"/>
+                      </svg>
+                    </a>
+                    <h1 style="margin: 0; font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em; text-transform: uppercase;">
                       Manuel Echavarria Romero
                     </h1>
-                    <p style="margin: 8px 0 0 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #666666; letter-spacing: 0.02em; text-transform: uppercase;">
+                    <p style="margin: 8px 0 0 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #EEC84E; letter-spacing: 0.02em; text-transform: uppercase;">
                       Product Designer & Strategist
                     </p>
                   </td>
                 </tr>
 
-                <!-- Accent Divider -->
+                <!-- Red Accent Divider -->
                 <tr>
-                  <td style="padding: 0 48px;">
-                    <div style="height: 3px; background-color: #EEC84E; width: 60px;"></div>
+                  <td style="padding: 0;">
+                    <div style="height: 4px; background-color: #DC5B49;"></div>
                   </td>
                 </tr>
 
@@ -68,8 +75,8 @@ const autoReplyTemplates = {
                     <!-- CTA Button -->
                     <table cellpadding="0" cellspacing="0" style="margin: 32px 0;">
                       <tr>
-                        <td>
-                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #0A0A0A; text-decoration: none; background-color: #EEC84E; padding: 16px 32px; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <td style="background-color: #DC5B49; padding: 2px;">
+                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #FFFFFF; text-decoration: none; background-color: #DC5B49; padding: 16px 32px; text-transform: uppercase; letter-spacing: 0.5px;">
                             Explore My Work →
                           </a>
                         </td>
@@ -124,19 +131,26 @@ const autoReplyTemplates = {
             <td align="center">
               <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF;">
                 <tr>
-                  <td style="padding: 48px 48px 32px 48px; text-align: center; background-color: #FFFFFF;">
-                    <img src="https://manecharo.com/images/logo/logo_Asvg.svg" alt="MER Logo" width="80" height="80" style="display: block; margin: 0 auto 16px auto;">
-                    <h1 style="margin: 0; font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #0A0A0A; letter-spacing: -0.02em; text-transform: uppercase;">
+                  <td style="padding: 48px 48px 40px 48px; text-align: center; background-color: #334D5C;">
+                    <a href="https://manecharo.com" style="display: inline-block; text-decoration: none;">
+                      <svg width="100" height="100" viewBox="0 0 212.49 212.49" style="display: block; margin: 0 auto 20px auto;">
+                        <path fill="#FFFFFF" d="M18.44,41.67l20.5,33.16c3.69,5.97,10.08,9.54,17.11,9.54h0c7.02,0,13.42-3.57,17.12-9.54l34.85-56.39h104.47V0h-114.75l-40.26,65.14c-.33.53-.81.8-1.43.8s-1.1-.27-1.43-.79L23.25,14.39c-2.98-4.82-8.67-7.04-14.12-5.47C3.67,10.47,0,15.32,0,21v191.49h18.44V41.67Z"/>
+                        <path fill="#FFFFFF" d="M118.32,56.32h94.16v-18.44h-94.16c-5.09,0-9.22,4.13-9.22,9.22s4.13,9.22,9.22,9.22Z"/>
+                        <path fill="#FFFFFF" d="M118.32,94.21h94.16v-18.44h-94.16c-5.09,0-9.22,4.13-9.22,9.22s4.13,9.22,9.22,9.22Z"/>
+                        <path fill="#FFFFFF" d="M65.27,212.49v-75.33c0-2.8,2.27-5.06,5.06-5.06h120.36c1.84,0,3.35,1.51,3.35,3.35v17.01c0,1.84-1.51,3.35-3.35,3.35h-62.41c-6.08,0-11.08,4.18-12.16,10.16-1.09,6,2.72,11.85,8.43,14.01l61.41,32.52h26.53v-9.66l-51.07-28.59h32.25c10.39,0,18.82-8.43,18.82-18.82v-22.95c0-10.39-8.42-18.82-18.82-18.82h-123.34c-12.98,0-23.5,10.52-23.5,23.5v75.33h18.44Z"/>
+                      </svg>
+                    </a>
+                    <h1 style="margin: 0; font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em; text-transform: uppercase;">
                       Manuel Echavarria Romero
                     </h1>
-                    <p style="margin: 8px 0 0 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #666666; letter-spacing: 0.02em; text-transform: uppercase;">
+                    <p style="margin: 8px 0 0 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #EEC84E; letter-spacing: 0.02em; text-transform: uppercase;">
                       Diseñador de Producto y Estratega
                     </p>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 0 48px;">
-                    <div style="height: 3px; background-color: #EEC84E; width: 60px;"></div>
+                  <td style="padding: 0;">
+                    <div style="height: 4px; background-color: #DC5B49;"></div>
                   </td>
                 </tr>
                 <tr>
@@ -152,8 +166,8 @@ const autoReplyTemplates = {
                     </p>
                     <table cellpadding="0" cellspacing="0" style="margin: 32px 0;">
                       <tr>
-                        <td>
-                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #0A0A0A; text-decoration: none; background-color: #EEC84E; padding: 16px 32px; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <td style="background-color: #DC5B49; padding: 2px;">
+                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #FFFFFF; text-decoration: none; background-color: #DC5B49; padding: 16px 32px; text-transform: uppercase; letter-spacing: 0.5px;">
                             Explora Mi Trabajo →
                           </a>
                         </td>
@@ -204,19 +218,26 @@ const autoReplyTemplates = {
             <td align="center">
               <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF;">
                 <tr>
-                  <td style="padding: 48px 48px 32px 48px; text-align: center; background-color: #FFFFFF;">
-                    <img src="https://manecharo.com/images/logo/logo_Asvg.svg" alt="MER Logo" width="80" height="80" style="display: block; margin: 0 auto 16px auto;">
-                    <h1 style="margin: 0; font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #0A0A0A; letter-spacing: -0.02em; text-transform: uppercase;">
+                  <td style="padding: 48px 48px 40px 48px; text-align: center; background-color: #334D5C;">
+                    <a href="https://manecharo.com" style="display: inline-block; text-decoration: none;">
+                      <svg width="100" height="100" viewBox="0 0 212.49 212.49" style="display: block; margin: 0 auto 20px auto;">
+                        <path fill="#FFFFFF" d="M18.44,41.67l20.5,33.16c3.69,5.97,10.08,9.54,17.11,9.54h0c7.02,0,13.42-3.57,17.12-9.54l34.85-56.39h104.47V0h-114.75l-40.26,65.14c-.33.53-.81.8-1.43.8s-1.1-.27-1.43-.79L23.25,14.39c-2.98-4.82-8.67-7.04-14.12-5.47C3.67,10.47,0,15.32,0,21v191.49h18.44V41.67Z"/>
+                        <path fill="#FFFFFF" d="M118.32,56.32h94.16v-18.44h-94.16c-5.09,0-9.22,4.13-9.22,9.22s4.13,9.22,9.22,9.22Z"/>
+                        <path fill="#FFFFFF" d="M118.32,94.21h94.16v-18.44h-94.16c-5.09,0-9.22,4.13-9.22,9.22s4.13,9.22,9.22,9.22Z"/>
+                        <path fill="#FFFFFF" d="M65.27,212.49v-75.33c0-2.8,2.27-5.06,5.06-5.06h120.36c1.84,0,3.35,1.51,3.35,3.35v17.01c0,1.84-1.51,3.35-3.35,3.35h-62.41c-6.08,0-11.08,4.18-12.16,10.16-1.09,6,2.72,11.85,8.43,14.01l61.41,32.52h26.53v-9.66l-51.07-28.59h32.25c10.39,0,18.82-8.43,18.82-18.82v-22.95c0-10.39-8.42-18.82-18.82-18.82h-123.34c-12.98,0-23.5,10.52-23.5,23.5v75.33h18.44Z"/>
+                      </svg>
+                    </a>
+                    <h1 style="margin: 0; font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em; text-transform: uppercase;">
                       Manuel Echavarria Romero
                     </h1>
-                    <p style="margin: 8px 0 0 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #666666; letter-spacing: 0.02em; text-transform: uppercase;">
+                    <p style="margin: 8px 0 0 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #EEC84E; letter-spacing: 0.02em; text-transform: uppercase;">
                       Product Designer e Stratega
                     </p>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 0 48px;">
-                    <div style="height: 3px; background-color: #EEC84E; width: 60px;"></div>
+                  <td style="padding: 0;">
+                    <div style="height: 4px; background-color: #DC5B49;"></div>
                   </td>
                 </tr>
                 <tr>
@@ -232,8 +253,8 @@ const autoReplyTemplates = {
                     </p>
                     <table cellpadding="0" cellspacing="0" style="margin: 32px 0;">
                       <tr>
-                        <td>
-                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #0A0A0A; text-decoration: none; background-color: #EEC84E; padding: 16px 32px; text-transform: uppercase; letter-spacing: 0.5px;">
+                        <td style="background-color: #DC5B49; padding: 2px;">
+                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #FFFFFF; text-decoration: none; background-color: #DC5B49; padding: 16px 32px; text-transform: uppercase; letter-spacing: 0.5px;">
                             Esplora Il Mio Lavoro →
                           </a>
                         </td>
@@ -364,36 +385,41 @@ export async function POST(request: NextRequest) {
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
         </head>
-        <body style="margin: 0; padding: 0; background-color: #F5F5F5;">
-          <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F5F5F5; padding: 40px 20px;">
+        <body style="margin: 0; padding: 0; background-color: #FAFAFA; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
+          <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #FAFAFA; padding: 48px 20px;">
             <tr>
               <td align="center">
-                <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                  <!-- Header -->
+                <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF;">
+                  <!-- Logo Header with Navy Background -->
                   <tr>
-                    <td style="padding: 0;">
-                      <div style="height: 8px; background: linear-gradient(90deg, #eec84e 0%, #dc5b49 50%, #334D5C 100%);"></div>
+                    <td style="padding: 40px 48px 32px 48px; text-align: center; background-color: #334D5C;">
+                      <svg width="80" height="80" viewBox="0 0 212.49 212.49" style="display: block; margin: 0 auto 16px auto;">
+                        <path fill="#FFFFFF" d="M18.44,41.67l20.5,33.16c3.69,5.97,10.08,9.54,17.11,9.54h0c7.02,0,13.42-3.57,17.12-9.54l34.85-56.39h104.47V0h-114.75l-40.26,65.14c-.33.53-.81.8-1.43.8s-1.1-.27-1.43-.79L23.25,14.39c-2.98-4.82-8.67-7.04-14.12-5.47C3.67,10.47,0,15.32,0,21v191.49h18.44V41.67Z"/>
+                        <path fill="#FFFFFF" d="M118.32,56.32h94.16v-18.44h-94.16c-5.09,0-9.22,4.13-9.22,9.22s4.13,9.22,9.22,9.22Z"/>
+                        <path fill="#FFFFFF" d="M118.32,94.21h94.16v-18.44h-94.16c-5.09,0-9.22,4.13-9.22,9.22s4.13,9.22,9.22,9.22Z"/>
+                        <path fill="#FFFFFF" d="M65.27,212.49v-75.33c0-2.8,2.27-5.06,5.06-5.06h120.36c1.84,0,3.35,1.51,3.35,3.35v17.01c0,1.84-1.51,3.35-3.35,3.35h-62.41c-6.08,0-11.08,4.18-12.16,10.16-1.09,6,2.72,11.85,8.43,14.01l61.41,32.52h26.53v-9.66l-51.07-28.59h32.25c10.39,0,18.82-8.43,18.82-18.82v-22.95c0-10.39-8.42-18.82-18.82-18.82h-123.34c-12.98,0-23.5,10.52-23.5,23.5v75.33h18.44Z"/>
+                      </svg>
+                      <div style="background-color: #DC5B49; color: #FFFFFF; display: inline-block; padding: 8px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                        🔔 New Inquiry
+                      </div>
                     </td>
                   </tr>
 
-                  <!-- Alert Badge -->
+                  <!-- Red Accent Divider -->
                   <tr>
-                    <td style="padding: 32px 40px 20px 40px;">
-                      <table cellpadding="0" cellspacing="0">
-                        <tr>
-                          <td style="background-color: #eec84e; color: #0A0A0A; padding: 8px 16px; border-radius: 20px; font-family: 'Courier New', Courier, monospace; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
-                            New Inquiry
-                          </td>
-                        </tr>
-                      </table>
+                    <td style="padding: 0;">
+                      <div style="height: 4px; background-color: #DC5B49;"></div>
                     </td>
                   </tr>
 
                   <!-- Title -->
                   <tr>
-                    <td style="padding: 0 40px 24px 40px;">
-                      <h1 style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 28px; font-weight: 600; color: #0A0A0A; line-height: 1.3;">
+                    <td style="padding: 32px 48px 24px 48px;">
+                      <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: #0A0A0A; line-height: 1.2; text-transform: uppercase;">
                         Contact Form Submission
                       </h1>
                     </td>
@@ -401,29 +427,29 @@ export async function POST(request: NextRequest) {
 
                   <!-- Contact Details Card -->
                   <tr>
-                    <td style="padding: 0 40px 24px 40px;">
-                      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #0A0A0A; border-radius: 8px;">
+                    <td style="padding: 0 48px 24px 48px;">
+                      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #334D5C; border-radius: 4px;">
                         <tr>
-                          <td style="padding: 24px;">
+                          <td style="padding: 28px;">
                             <table width="100%" cellpadding="0" cellspacing="0">
                               <tr>
                                 <td style="padding: 8px 0;">
-                                  <span style="font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #999999; text-transform: uppercase; letter-spacing: 0.5px;">Name</span>
-                                  <p style="margin: 4px 0 0 0; font-family: 'Courier New', Courier, monospace; font-size: 18px; font-weight: 600; color: #FFFFFF;">${name}</p>
+                                  <span style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: #EEC84E; text-transform: uppercase; letter-spacing: 0.5px;">Name</span>
+                                  <p style="margin: 6px 0 0 0; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600; color: #FFFFFF;">${name}</p>
                                 </td>
                               </tr>
                               <tr>
-                                <td style="padding: 16px 0 8px 0;">
-                                  <span style="font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #999999; text-transform: uppercase; letter-spacing: 0.5px;">Email</span>
-                                  <p style="margin: 4px 0 0 0;">
-                                    <a href="mailto:${email}" style="font-family: 'Courier New', Courier, monospace; font-size: 16px; color: #eec84e; text-decoration: none;">${email}</a>
+                                <td style="padding: 18px 0 8px 0;">
+                                  <span style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: #EEC84E; text-transform: uppercase; letter-spacing: 0.5px;">Email</span>
+                                  <p style="margin: 6px 0 0 0;">
+                                    <a href="mailto:${email}" style="font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 500; color: #FFFFFF; text-decoration: none;">${email}</a>
                                   </p>
                                 </td>
                               </tr>
                               <tr>
-                                <td style="padding: 16px 0 8px 0;">
-                                  <span style="font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #999999; text-transform: uppercase; letter-spacing: 0.5px;">Language</span>
-                                  <p style="margin: 4px 0 0 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; color: #FFFFFF;">${languageLabels[language as keyof typeof languageLabels] || 'English'}</p>
+                                <td style="padding: 18px 0 8px 0;">
+                                  <span style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: #EEC84E; text-transform: uppercase; letter-spacing: 0.5px;">Language</span>
+                                  <p style="margin: 6px 0 0 0; font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 500; color: #FFFFFF;">${languageLabels[language as keyof typeof languageLabels] || 'English'}</p>
                                 </td>
                               </tr>
                             </table>
