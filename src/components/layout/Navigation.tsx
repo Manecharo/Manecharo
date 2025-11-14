@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -17,7 +17,18 @@ const navItems = [
 export default function Navigation() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const { t, language, setLanguage } = useLanguage();
+
+  // Track scroll position for opacity animation
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Hide navigation only on /thoughts and /studio pages
   if (pathname?.startsWith('/thoughts') || pathname?.startsWith('/studio')) {
@@ -49,10 +60,11 @@ export default function Navigation() {
               href={item.href}
               className={`
                 fixed z-50 font-display text-sm uppercase tracking-wider font-bold
-                transition-all duration-200 ease-out
-                hover:text-gold hover:scale-110
+                transition-all duration-300 ease-out
+                hover:!opacity-100 hover:text-gold hover:scale-110
                 ${positionClasses[item.position as keyof typeof positionClasses]}
                 ${isActive ? "text-gold" : "text-charcoal"}
+                ${hasScrolled ? "opacity-20" : "opacity-100"}
               `}
             >
               {t.nav[item.key]}

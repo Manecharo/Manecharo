@@ -10,7 +10,7 @@ function getResendClient() {
   return new Resend(apiKey);
 }
 
-// Auto-reply email templates with modern design matching brand
+// Auto-reply email templates with bold, flat design matching brand
 const autoReplyTemplates = {
   en: {
     subject: "Thank you for reaching out!",
@@ -20,95 +20,81 @@ const autoReplyTemplates = {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
       </head>
-      <body style="margin: 0; padding: 0; background-color: #0A0A0A;">
-        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #0A0A0A; padding: 40px 20px;">
+      <body style="margin: 0; padding: 0; background-color: #FAFAFA; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #FAFAFA; padding: 48px 20px;">
           <tr>
             <td align="center">
               <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF;">
-                <!-- Header with gold accent -->
-                <tr>
-                  <td style="padding: 0;">
-                    <div style="height: 8px; background: linear-gradient(90deg, #eec84e 0%, #dc5b49 50%, #334D5C 100%);"></div>
-                  </td>
-                </tr>
 
-                <!-- Logo/Brand section -->
+                <!-- Logo Header -->
                 <tr>
-                  <td style="padding: 40px 40px 20px 40px; text-align: center;">
-                    <h1 style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 32px; font-weight: 700; color: #0A0A0A; letter-spacing: -0.02em;">
-                      MER
+                  <td style="padding: 48px 48px 32px 48px; text-align: center; background-color: #FFFFFF;">
+                    <img src="https://manecharo.com/images/logo/logo_Asvg.svg" alt="MER Logo" width="80" height="80" style="display: block; margin: 0 auto 16px auto;">
+                    <h1 style="margin: 0; font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #0A0A0A; letter-spacing: -0.02em; text-transform: uppercase;">
+                      Manuel Echavarria Romero
                     </h1>
-                    <div style="width: 60px; height: 2px; background-color: #eec84e; margin: 16px auto;"></div>
+                    <p style="margin: 8px 0 0 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #666666; letter-spacing: 0.02em; text-transform: uppercase;">
+                      Product Designer & Strategist
+                    </p>
                   </td>
                 </tr>
 
-                <!-- Main content -->
+                <!-- Accent Divider -->
                 <tr>
-                  <td style="padding: 20px 40px;">
-                    <h2 style="margin: 0 0 24px 0; font-family: 'Courier New', Courier, monospace; font-size: 24px; font-weight: 600; color: #0A0A0A; line-height: 1.3;">
+                  <td style="padding: 0 48px;">
+                    <div style="height: 3px; background-color: #EEC84E; width: 60px;"></div>
+                  </td>
+                </tr>
+
+                <!-- Main Content -->
+                <tr>
+                  <td style="padding: 32px 48px;">
+                    <h2 style="margin: 0 0 24px 0; font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 600; color: #0A0A0A; line-height: 1.2;">
                       Hi ${name},
                     </h2>
 
-                    <p style="margin: 0 0 20px 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.7; color: #0A0A0A;">
+                    <p style="margin: 0 0 20px 0; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #333333;">
                       Thank you for reaching out. I've received your message and truly appreciate you taking the time to connect.
                     </p>
 
-                    <p style="margin: 0 0 20px 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.7; color: #0A0A0A;">
-                      I carefully review every inquiry that comes through. You can expect a thoughtful response from me within <strong style="color: #eec84e; background-color: #0A0A0A; padding: 2px 8px; border-radius: 3px;">48 hours</strong>.
+                    <p style="margin: 0 0 20px 0; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #333333;">
+                      I carefully review every inquiry. You can expect a thoughtful response within <strong style="color: #0A0A0A; font-weight: 600;">48 hours</strong>.
                     </p>
 
-                    <!-- CTA Box -->
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin: 32px 0;">
+                    <!-- CTA Button -->
+                    <table cellpadding="0" cellspacing="0" style="margin: 32px 0;">
                       <tr>
-                        <td style="background-color: #F5F5F5; padding: 24px; border-left: 4px solid #eec84e;">
-                          <p style="margin: 0 0 12px 0; font-family: 'Courier New', Courier, monospace; font-size: 14px; line-height: 1.6; color: #666666;">
-                            In the meantime, explore my work and approach
-                          </p>
-                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Courier New', Courier, monospace; font-size: 15px; font-weight: 600; color: #0A0A0A; text-decoration: none; background-color: #eec84e; padding: 12px 24px; border-radius: 4px; margin-top: 8px;">
-                            Visit manecharo.com →
+                        <td>
+                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #0A0A0A; text-decoration: none; background-color: #EEC84E; padding: 16px 32px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Explore My Work →
                           </a>
                         </td>
                       </tr>
                     </table>
 
-                    <p style="margin: 32px 0 0 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.7; color: #0A0A0A;">
+                    <p style="margin: 32px 0 0 0; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #333333;">
                       Looking forward to our conversation.
                     </p>
-                  </td>
-                </tr>
 
-                <!-- Signature -->
-                <tr>
-                  <td style="padding: 20px 40px 40px 40px;">
-                    <table cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="padding-right: 20px; vertical-align: top;">
-                          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #eec84e 0%, #dc5b49 100%); border-radius: 50%;"></div>
-                        </td>
-                        <td style="vertical-align: middle;">
-                          <p style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 18px; font-weight: 600; color: #0A0A0A; line-height: 1.4;">
-                            Manuel Echavarria Romero
-                          </p>
-                          <p style="margin: 4px 0 0 0; font-family: 'Courier New', Courier, monospace; font-size: 14px; color: #666666; line-height: 1.4;">
-                            Problem Solver & Builder
-                          </p>
-                        </td>
-                      </tr>
-                    </table>
+                    <p style="margin: 24px 0 0 0; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: #0A0A0A;">
+                      Manuel
+                    </p>
                   </td>
                 </tr>
 
                 <!-- Footer -->
                 <tr>
-                  <td style="background-color: #0A0A0A; padding: 32px 40px; text-align: center;">
-                    <p style="margin: 0 0 12px 0; font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #999999; line-height: 1.6;">
-                      Kuala Lumpur, Malaysia | Working Globally
+                  <td style="padding: 32px 48px; background-color: #0A0A0A; text-align: center;">
+                    <p style="margin: 0 0 12px 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #999999;">
+                      Kuala Lumpur, Malaysia • Working Globally
                     </p>
-                    <div style="margin: 16px 0;">
-                      <a href="https://instagram.com/Manecharo" style="display: inline-block; margin: 0 8px; color: #eec84e; text-decoration: none; font-size: 13px;">Instagram</a>
-                      <span style="color: #666666;">•</span>
-                      <a href="https://linkedin.com/in/mer101" style="display: inline-block; margin: 0 8px; color: #eec84e; text-decoration: none; font-size: 13px;">LinkedIn</a>
+                    <div style="margin: 16px 0 0 0;">
+                      <a href="https://instagram.com/Manecharo" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">Instagram</a>
+                      <a href="https://linkedin.com/in/mer101" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">LinkedIn</a>
                     </div>
                   </td>
                 </tr>
@@ -128,95 +114,67 @@ const autoReplyTemplates = {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
       </head>
-      <body style="margin: 0; padding: 0; background-color: #0A0A0A;">
-        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #0A0A0A; padding: 40px 20px;">
+      <body style="margin: 0; padding: 0; background-color: #FAFAFA; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #FAFAFA; padding: 48px 20px;">
           <tr>
             <td align="center">
               <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF;">
-                <!-- Header with gold accent -->
                 <tr>
-                  <td style="padding: 0;">
-                    <div style="height: 8px; background: linear-gradient(90deg, #eec84e 0%, #dc5b49 50%, #334D5C 100%);"></div>
-                  </td>
-                </tr>
-
-                <!-- Logo/Brand section -->
-                <tr>
-                  <td style="padding: 40px 40px 20px 40px; text-align: center;">
-                    <h1 style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 32px; font-weight: 700; color: #0A0A0A; letter-spacing: -0.02em;">
-                      MER
+                  <td style="padding: 48px 48px 32px 48px; text-align: center; background-color: #FFFFFF;">
+                    <img src="https://manecharo.com/images/logo/logo_Asvg.svg" alt="MER Logo" width="80" height="80" style="display: block; margin: 0 auto 16px auto;">
+                    <h1 style="margin: 0; font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #0A0A0A; letter-spacing: -0.02em; text-transform: uppercase;">
+                      Manuel Echavarria Romero
                     </h1>
-                    <div style="width: 60px; height: 2px; background-color: #eec84e; margin: 16px auto;"></div>
+                    <p style="margin: 8px 0 0 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #666666; letter-spacing: 0.02em; text-transform: uppercase;">
+                      Diseñador de Producto y Estratega
+                    </p>
                   </td>
                 </tr>
-
-                <!-- Main content -->
                 <tr>
-                  <td style="padding: 20px 40px;">
-                    <h2 style="margin: 0 0 24px 0; font-family: 'Courier New', Courier, monospace; font-size: 24px; font-weight: 600; color: #0A0A0A; line-height: 1.3;">
+                  <td style="padding: 0 48px;">
+                    <div style="height: 3px; background-color: #EEC84E; width: 60px;"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 32px 48px;">
+                    <h2 style="margin: 0 0 24px 0; font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 600; color: #0A0A0A; line-height: 1.2;">
                       Hola ${name},
                     </h2>
-
-                    <p style="margin: 0 0 20px 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.7; color: #0A0A0A;">
+                    <p style="margin: 0 0 20px 0; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #333333;">
                       Gracias por contactarme. He recibido tu mensaje y agradezco sinceramente que te hayas tomado el tiempo de escribir.
                     </p>
-
-                    <p style="margin: 0 0 20px 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.7; color: #0A0A0A;">
-                      Reviso cuidadosamente cada consulta que recibo. Puedes esperar una respuesta detallada de mi parte en las próximas <strong style="color: #eec84e; background-color: #0A0A0A; padding: 2px 8px; border-radius: 3px;">48 horas</strong>.
+                    <p style="margin: 0 0 20px 0; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #333333;">
+                      Reviso cuidadosamente cada consulta. Puedes esperar una respuesta detallada en las próximas <strong style="color: #0A0A0A; font-weight: 600;">48 horas</strong>.
                     </p>
-
-                    <!-- CTA Box -->
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin: 32px 0;">
+                    <table cellpadding="0" cellspacing="0" style="margin: 32px 0;">
                       <tr>
-                        <td style="background-color: #F5F5F5; padding: 24px; border-left: 4px solid #eec84e;">
-                          <p style="margin: 0 0 12px 0; font-family: 'Courier New', Courier, monospace; font-size: 14px; line-height: 1.6; color: #666666;">
-                            Mientras tanto, explora mi trabajo y enfoque
-                          </p>
-                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Courier New', Courier, monospace; font-size: 15px; font-weight: 600; color: #0A0A0A; text-decoration: none; background-color: #eec84e; padding: 12px 24px; border-radius: 4px; margin-top: 8px;">
-                            Visita manecharo.com →
+                        <td>
+                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #0A0A0A; text-decoration: none; background-color: #EEC84E; padding: 16px 32px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Explora Mi Trabajo →
                           </a>
                         </td>
                       </tr>
                     </table>
-
-                    <p style="margin: 32px 0 0 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.7; color: #0A0A0A;">
+                    <p style="margin: 32px 0 0 0; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #333333;">
                       Espero con interés nuestra conversación.
                     </p>
-                  </td>
-                </tr>
-
-                <!-- Signature -->
-                <tr>
-                  <td style="padding: 20px 40px 40px 40px;">
-                    <table cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="padding-right: 20px; vertical-align: top;">
-                          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #eec84e 0%, #dc5b49 100%); border-radius: 50%;"></div>
-                        </td>
-                        <td style="vertical-align: middle;">
-                          <p style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 18px; font-weight: 600; color: #0A0A0A; line-height: 1.4;">
-                            Manuel Echavarria Romero
-                          </p>
-                          <p style="margin: 4px 0 0 0; font-family: 'Courier New', Courier, monospace; font-size: 14px; color: #666666; line-height: 1.4;">
-                            Solucionador de Problemas y Constructor
-                          </p>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
-                <!-- Footer -->
-                <tr>
-                  <td style="background-color: #0A0A0A; padding: 32px 40px; text-align: center;">
-                    <p style="margin: 0 0 12px 0; font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #999999; line-height: 1.6;">
-                      Kuala Lumpur, Malasia | Trabajo Global
+                    <p style="margin: 24px 0 0 0; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: #0A0A0A;">
+                      Manuel
                     </p>
-                    <div style="margin: 16px 0;">
-                      <a href="https://instagram.com/Manecharo" style="display: inline-block; margin: 0 8px; color: #eec84e; text-decoration: none; font-size: 13px;">Instagram</a>
-                      <span style="color: #666666;">•</span>
-                      <a href="https://linkedin.com/in/mer101" style="display: inline-block; margin: 0 8px; color: #eec84e; text-decoration: none; font-size: 13px;">LinkedIn</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 32px 48px; background-color: #0A0A0A; text-align: center;">
+                    <p style="margin: 0 0 12px 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #999999;">
+                      Kuala Lumpur, Malasia • Trabajo Global
+                    </p>
+                    <div style="margin: 16px 0 0 0;">
+                      <a href="https://instagram.com/Manecharo" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">Instagram</a>
+                      <a href="https://linkedin.com/in/mer101" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">LinkedIn</a>
                     </div>
                   </td>
                 </tr>
@@ -236,95 +194,67 @@ const autoReplyTemplates = {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
       </head>
-      <body style="margin: 0; padding: 0; background-color: #0A0A0A;">
-        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #0A0A0A; padding: 40px 20px;">
+      <body style="margin: 0; padding: 0; background-color: #FAFAFA; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #FAFAFA; padding: 48px 20px;">
           <tr>
             <td align="center">
               <table width="600" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #FFFFFF;">
-                <!-- Header with gold accent -->
                 <tr>
-                  <td style="padding: 0;">
-                    <div style="height: 8px; background: linear-gradient(90deg, #eec84e 0%, #dc5b49 50%, #334D5C 100%);"></div>
-                  </td>
-                </tr>
-
-                <!-- Logo/Brand section -->
-                <tr>
-                  <td style="padding: 40px 40px 20px 40px; text-align: center;">
-                    <h1 style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 32px; font-weight: 700; color: #0A0A0A; letter-spacing: -0.02em;">
-                      MER
+                  <td style="padding: 48px 48px 32px 48px; text-align: center; background-color: #FFFFFF;">
+                    <img src="https://manecharo.com/images/logo/logo_Asvg.svg" alt="MER Logo" width="80" height="80" style="display: block; margin: 0 auto 16px auto;">
+                    <h1 style="margin: 0; font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #0A0A0A; letter-spacing: -0.02em; text-transform: uppercase;">
+                      Manuel Echavarria Romero
                     </h1>
-                    <div style="width: 60px; height: 2px; background-color: #eec84e; margin: 16px auto;"></div>
+                    <p style="margin: 8px 0 0 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #666666; letter-spacing: 0.02em; text-transform: uppercase;">
+                      Product Designer e Stratega
+                    </p>
                   </td>
                 </tr>
-
-                <!-- Main content -->
                 <tr>
-                  <td style="padding: 20px 40px;">
-                    <h2 style="margin: 0 0 24px 0; font-family: 'Courier New', Courier, monospace; font-size: 24px; font-weight: 600; color: #0A0A0A; line-height: 1.3;">
+                  <td style="padding: 0 48px;">
+                    <div style="height: 3px; background-color: #EEC84E; width: 60px;"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 32px 48px;">
+                    <h2 style="margin: 0 0 24px 0; font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 600; color: #0A0A0A; line-height: 1.2;">
                       Ciao ${name},
                     </h2>
-
-                    <p style="margin: 0 0 20px 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.7; color: #0A0A0A;">
+                    <p style="margin: 0 0 20px 0; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #333333;">
                       Grazie per avermi contattato. Ho ricevuto il tuo messaggio e apprezzo sinceramente che tu ti sia preso il tempo di scrivere.
                     </p>
-
-                    <p style="margin: 0 0 20px 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.7; color: #0A0A0A;">
-                      Esamino attentamente ogni richiesta che ricevo. Puoi aspettarti una risposta ponderata da parte mia entro <strong style="color: #eec84e; background-color: #0A0A0A; padding: 2px 8px; border-radius: 3px;">48 ore</strong>.
+                    <p style="margin: 0 0 20px 0; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #333333;">
+                      Esamino attentamente ogni richiesta. Puoi aspettarti una risposta ponderata entro <strong style="color: #0A0A0A; font-weight: 600;">48 ore</strong>.
                     </p>
-
-                    <!-- CTA Box -->
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin: 32px 0;">
+                    <table cellpadding="0" cellspacing="0" style="margin: 32px 0;">
                       <tr>
-                        <td style="background-color: #F5F5F5; padding: 24px; border-left: 4px solid #eec84e;">
-                          <p style="margin: 0 0 12px 0; font-family: 'Courier New', Courier, monospace; font-size: 14px; line-height: 1.6; color: #666666;">
-                            Nel frattempo, esplora il mio lavoro e approccio
-                          </p>
-                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Courier New', Courier, monospace; font-size: 15px; font-weight: 600; color: #0A0A0A; text-decoration: none; background-color: #eec84e; padding: 12px 24px; border-radius: 4px; margin-top: 8px;">
-                            Visita manecharo.com →
+                        <td>
+                          <a href="https://manecharo.com" style="display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #0A0A0A; text-decoration: none; background-color: #EEC84E; padding: 16px 32px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Esplora Il Mio Lavoro →
                           </a>
                         </td>
                       </tr>
                     </table>
-
-                    <p style="margin: 32px 0 0 0; font-family: 'Courier New', Courier, monospace; font-size: 16px; line-height: 1.7; color: #0A0A0A;">
+                    <p style="margin: 32px 0 0 0; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #333333;">
                       Non vedo l'ora di parlare con te.
                     </p>
-                  </td>
-                </tr>
-
-                <!-- Signature -->
-                <tr>
-                  <td style="padding: 20px 40px 40px 40px;">
-                    <table cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="padding-right: 20px; vertical-align: top;">
-                          <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #eec84e 0%, #dc5b49 100%); border-radius: 50%;"></div>
-                        </td>
-                        <td style="vertical-align: middle;">
-                          <p style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 18px; font-weight: 600; color: #0A0A0A; line-height: 1.4;">
-                            Manuel Echavarria Romero
-                          </p>
-                          <p style="margin: 4px 0 0 0; font-family: 'Courier New', Courier, monospace; font-size: 14px; color: #666666; line-height: 1.4;">
-                            Risolutore di Problemi e Costruttore
-                          </p>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
-                <!-- Footer -->
-                <tr>
-                  <td style="background-color: #0A0A0A; padding: 32px 40px; text-align: center;">
-                    <p style="margin: 0 0 12px 0; font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #999999; line-height: 1.6;">
-                      Kuala Lumpur, Malesia | Lavoro Globale
+                    <p style="margin: 24px 0 0 0; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: #0A0A0A;">
+                      Manuel
                     </p>
-                    <div style="margin: 16px 0;">
-                      <a href="https://instagram.com/Manecharo" style="display: inline-block; margin: 0 8px; color: #eec84e; text-decoration: none; font-size: 13px;">Instagram</a>
-                      <span style="color: #666666;">•</span>
-                      <a href="https://linkedin.com/in/mer101" style="display: inline-block; margin: 0 8px; color: #eec84e; text-decoration: none; font-size: 13px;">LinkedIn</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 32px 48px; background-color: #0A0A0A; text-align: center;">
+                    <p style="margin: 0 0 12px 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #999999;">
+                      Kuala Lumpur, Malesia • Lavoro Globale
+                    </p>
+                    <div style="margin: 16px 0 0 0;">
+                      <a href="https://instagram.com/Manecharo" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">Instagram</a>
+                      <a href="https://linkedin.com/in/mer101" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">LinkedIn</a>
                     </div>
                   </td>
                 </tr>
