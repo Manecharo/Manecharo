@@ -55,7 +55,7 @@ export default function FeaturedProjectsClient({ projects }: FeaturedProjectsCli
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div key={language} className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {projects.map((project) => {
             const localizedTitle = language === 'es' ? (project.title_es || project.title)
               : language === 'it' ? (project.title_it || project.title)
@@ -75,7 +75,7 @@ export default function FeaturedProjectsClient({ projects }: FeaturedProjectsCli
                   <div className="relative aspect-[4/3] overflow-hidden">
                     {project.mainImage ? (
                       <Image
-                        src={urlFor(project.mainImage).width(800).url()}
+                        src={urlFor(project.mainImage).width(800).height(600).fit('crop').url()}
                         alt={project.mainImage.alt || localizedTitle}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"

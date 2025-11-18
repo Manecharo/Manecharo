@@ -9,7 +9,11 @@
       "Bash(python:*)",
       "Bash(git add:*)",
       "Bash(git push:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout 5 bash:*)",
+      "Bash(dir:*)",
+      "Bash(taskkill:*)"
     ],
     "deny": [],
     "ask": []

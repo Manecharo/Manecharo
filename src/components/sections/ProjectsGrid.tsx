@@ -88,7 +88,7 @@ export default function ProjectsGrid() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div key={language} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projects.map((project) => {
             const localizedTitle = language === 'es' ? (project.title_es || project.title)
               : language === 'it' ? (project.title_it || project.title)
@@ -108,7 +108,7 @@ export default function ProjectsGrid() {
                   <div className="relative aspect-[4/3] overflow-hidden">
                     {project.mainImage ? (
                       <Image
-                        src={urlFor(project.mainImage).width(600).url()}
+                        src={urlFor(project.mainImage).width(600).height(450).fit('crop').url()}
                         alt={project.mainImage.alt || localizedTitle}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -26,7 +26,7 @@ export function getSanityClient() {
   return client;
 }
 
-// Image URL builder with fallback
+// Image URL builder with fallback and hotspot/crop support
 export function urlFor(source: any) {
   if (!isSanityConfigured || !client) {
     // Return a mock builder that returns placeholder URLs
@@ -35,10 +35,22 @@ export function urlFor(source: any) {
       width: (w: number) => ({
         url: () => "/placeholder-image.jpg",
         height: (h: number) => ({
+          url: () => "/placeholder-image.jpg",
+          fit: (f: string) => ({
+            url: () => "/placeholder-image.jpg"
+          })
+        }),
+        fit: (f: string) => ({
           url: () => "/placeholder-image.jpg"
         })
       }),
       height: (h: number) => ({
+        url: () => "/placeholder-image.jpg",
+        width: (w: number) => ({
+          url: () => "/placeholder-image.jpg"
+        })
+      }),
+      fit: (f: string) => ({
         url: () => "/placeholder-image.jpg",
         width: (w: number) => ({
           url: () => "/placeholder-image.jpg"
@@ -48,5 +60,10 @@ export function urlFor(source: any) {
   }
 
   const builder = imageUrlBuilder(client);
-  return builder.image(source);
+  const imageBuilder = builder.image(source);
+
+  // The Sanity image builder automatically uses hotspot/crop data
+  // when building URLs, so we just need to return the builder.
+  // The fit('crop') mode respects the hotspot for focal point cropping.
+  return imageBuilder;
 }

@@ -292,17 +292,16 @@ const autoReplyTemplates = {
 async function verifyRecaptcha(token: string): Promise<boolean> {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   if (!secretKey) {
-    console.warn("reCAPTCHA SECRET_KEY not configured - skipping verification");
-    return true; // Allow submission if reCAPTCHA is not configured
+    console.error("RECAPTCHA_SECRET_KEY not configured");
+    return false; // Fail if secret key not configured
   }
 
   if (!token) {
-    console.warn("No reCAPTCHA token provided");
-    return true; // Allow submission if no token (for development)
+    console.error("No reCAPTCHA token provided");
+    return false; // Fail if no token - this is required
   }
 
   try {
-    console.log("Verifying reCAPTCHA token...");
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -310,19 +309,13 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     });
 
     const data = await response.json();
-    console.log("reCAPTCHA verification response:", JSON.stringify(data));
 
     if (!data.success) {
       console.error("reCAPTCHA verification failed:", data['error-codes']);
       return false;
     }
 
-    if (data.score < 0.5) {
-      console.warn("reCAPTCHA score too low:", data.score);
-      return false;
-    }
-
-    console.log("reCAPTCHA verification successful, score:", data.score);
+    // v2 checkbox doesn't have scores - just success/fail
     return true;
   } catch (error) {
     console.error("reCAPTCHA verification error:", error);
@@ -343,15 +336,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Verify reCAPTCHA
-    if (recaptchaToken) {
-      const isValid = await verifyRecaptcha(recaptchaToken);
-      if (!isValid) {
-        return NextResponse.json(
-          { error: "reCAPTCHA verification failed. Please try again." },
-          { status: 400 }
-        );
-      }
+    // Verify reCAPTCHA - REQUIRED
+    const isValidRecaptcha = await verifyRecaptcha(recaptchaToken);
+    if (!isValidRecaptcha) {
+      return NextResponse.json(
+        { error: "reCAPTCHA verification failed. Please complete the checkbox and try again." },
+        { status: 400 }
+      );
     }
 
     // Check if Resend is configured

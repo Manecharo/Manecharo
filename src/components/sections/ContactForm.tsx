@@ -1,24 +1,28 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Send } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import Script from "next/script";
 
 const COOLDOWN_KEY = "contact_form_cooldown";
 const COOLDOWN_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
-// Fallback to hardcoded value if env var not available during build
-const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LfgIAwsAAAAAIk-l02jLlOszSIJ7Pv2XpWoyK65";
+// reCAPTCHA v2 "I'm not a robot" checkbox key
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeUQxAsAAAAANjBdRmgZ2R187PmujnaVxjpWXXD";
 
 declare global {
   interface Window {
     grecaptcha: any;
+    onRecaptchaLoad: () => void;
   }
 }
 
 export default function ContactForm() {
   const { t, language } = useLanguage();
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [recaptchaWidgetId, setRecaptchaWidgetId] = useState<number | null>(null);
+  const recaptchaRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,11 +35,8 @@ export default function ContactForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isOnCooldown, setIsOnCooldown] = useState(false);
 
-  // Check cooldown on mount and debug reCAPTCHA
+  // Check cooldown on mount
   useEffect(() => {
-    console.log("ContactForm mounted");
-    console.log("RECAPTCHA_SITE_KEY:", RECAPTCHA_SITE_KEY ? "present" : "missing");
-
     const checkCooldown = () => {
       const cooldownTimestamp = localStorage.getItem(COOLDOWN_KEY);
       if (cooldownTimestamp) {
@@ -59,6 +60,30 @@ export default function ContactForm() {
     checkCooldown();
   }, []);
 
+  // Render reCAPTCHA v2 checkbox when script is loaded
+  useEffect(() => {
+    if (recaptchaLoaded && recaptchaRef.current && window.grecaptcha && recaptchaWidgetId === null) {
+      try {
+        const widgetId = window.grecaptcha.render(recaptchaRef.current, {
+          sitekey: RECAPTCHA_SITE_KEY,
+          callback: (token: string) => {
+            setRecaptchaToken(token);
+          },
+          "expired-callback": () => {
+            setRecaptchaToken("");
+          },
+          "error-callback": () => {
+            setRecaptchaToken("");
+            console.error("reCAPTCHA error");
+          },
+        });
+        setRecaptchaWidgetId(widgetId);
+      } catch (error) {
+        console.error("Error rendering reCAPTCHA:", error);
+      }
+    }
+  }, [recaptchaLoaded, recaptchaWidgetId]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -68,27 +93,18 @@ export default function ContactForm() {
       return;
     }
 
+    // Check if reCAPTCHA is completed
+    if (!recaptchaToken) {
+      setStatus("error");
+      setErrorMessage(t.contact.formRecaptchaRequired || "Please complete the reCAPTCHA verification");
+      setTimeout(() => setStatus("idle"), 5000);
+      return;
+    }
+
     setStatus("sending");
     setErrorMessage("");
 
     try {
-      // Get reCAPTCHA token
-      let recaptchaToken = "";
-      console.log("reCAPTCHA Site Key present:", !!RECAPTCHA_SITE_KEY);
-      console.log("grecaptcha available:", !!window.grecaptcha);
-
-      if (RECAPTCHA_SITE_KEY && window.grecaptcha) {
-        try {
-          console.log("Executing reCAPTCHA...");
-          recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact_form' });
-          console.log("reCAPTCHA token obtained:", !!recaptchaToken);
-        } catch (error) {
-          console.error("reCAPTCHA execution error:", error);
-        }
-      } else {
-        console.warn("reCAPTCHA not configured or not loaded");
-      }
-
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -114,6 +130,12 @@ export default function ContactForm() {
         budget: "",
         timeline: "",
       });
+
+      // Reset reCAPTCHA for next submission
+      if (window.grecaptcha && recaptchaWidgetId !== null) {
+        window.grecaptcha.reset(recaptchaWidgetId);
+        setRecaptchaToken("");
+      }
 
       // Set timeout to remove cooldown after 1 hour
       setTimeout(() => {
@@ -145,13 +167,19 @@ export default function ContactForm() {
 
   return (
     <>
-      {/* Load reCAPTCHA v3 */}
+      {/* Load reCAPTCHA v2 checkbox */}
       {RECAPTCHA_SITE_KEY && (
         <Script
-          src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+          src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit"
           onLoad={() => {
-            console.log("reCAPTCHA script loaded successfully");
-            setRecaptchaLoaded(true);
+            // Define the callback for when grecaptcha is ready
+            window.onRecaptchaLoad = () => {
+              setRecaptchaLoaded(true);
+            };
+            // If grecaptcha is already ready, call immediately
+            if (window.grecaptcha && window.grecaptcha.render) {
+              setRecaptchaLoaded(true);
+            }
           }}
           onError={(e) => {
             console.error("Failed to load reCAPTCHA script:", e);
@@ -290,25 +318,22 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* reCAPTCHA Badge Info */}
+      {/* reCAPTCHA v2 Checkbox */}
       {RECAPTCHA_SITE_KEY && (
-        <div className="text-xs text-charcoal/50 text-center">
-          This site is protected by reCAPTCHA and the Google{" "}
-          <a href="https://policies.google.com/privacy" className="underline hover:text-gold" target="_blank" rel="noopener noreferrer">
-            Privacy Policy
-          </a>{" "}
-          and{" "}
-          <a href="https://policies.google.com/terms" className="underline hover:text-gold" target="_blank" rel="noopener noreferrer">
-            Terms of Service
-          </a>{" "}
-          apply.
+        <div className="flex flex-col items-center gap-3">
+          <div ref={recaptchaRef} className="flex justify-center"></div>
+          {!recaptchaToken && status !== "sending" && (
+            <p className="text-xs text-charcoal/60">
+              {t.contact.formRecaptchaHint || "Please verify you're not a robot"}
+            </p>
+          )}
         </div>
       )}
 
       {/* Submit Button */}
       <button
         type="submit"
-        disabled={status === "sending" || isOnCooldown}
+        disabled={status === "sending" || isOnCooldown || !recaptchaToken}
         className="w-full px-8 py-4 bg-gold text-charcoal font-display uppercase tracking-wider transition-all duration-200 hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
       >
         {status === "sending" ? (
