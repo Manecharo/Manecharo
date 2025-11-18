@@ -13,7 +13,8 @@
       "Bash(npm run dev:*)",
       "Bash(timeout 5 bash:*)",
       "Bash(dir:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(npx vercel env:*)"
     ],
     "deny": [],
     "ask": []

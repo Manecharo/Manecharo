@@ -295,17 +295,18 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 }
 
 async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boolean; error?: string }> {
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  // Try multiple possible env var names
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY || process.env.GOOGLE_RECAPTCHA_SECRET;
 
   // Debug: Log available env vars (without values for security)
-  const envKeys = Object.keys(process.env).filter(k => k.includes('RECAPTCHA') || k.includes('RESEND'));
+  const envKeys = Object.keys(process.env).filter(k => k.includes('RECAPTCHA') || k.includes('RESEND') || k.includes('GOOGLE'));
   console.log("Available env keys:", envKeys);
-  console.log("RECAPTCHA_SECRET_KEY exists:", !!secretKey);
-  console.log("RECAPTCHA_SECRET_KEY length:", secretKey?.length || 0);
+  console.log("RECAPTCHA_SECRET_KEY exists:", !!process.env.RECAPTCHA_SECRET_KEY);
+  console.log("GOOGLE_RECAPTCHA_SECRET exists:", !!process.env.GOOGLE_RECAPTCHA_SECRET);
 
   if (!secretKey) {
-    console.error("RECAPTCHA_SECRET_KEY not configured");
-    return { success: false, error: `RECAPTCHA_SECRET_KEY not configured on server. Available keys: ${envKeys.join(', ')}` };
+    console.error("reCAPTCHA secret key not configured");
+    return { success: false, error: `reCAPTCHA secret not configured. Available keys: ${envKeys.join(', ')}` };
   }
 
   if (!token) {
