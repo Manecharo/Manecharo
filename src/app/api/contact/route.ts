@@ -296,9 +296,16 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 
 async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boolean; error?: string }> {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+
+  // Debug: Log available env vars (without values for security)
+  const envKeys = Object.keys(process.env).filter(k => k.includes('RECAPTCHA') || k.includes('RESEND'));
+  console.log("Available env keys:", envKeys);
+  console.log("RECAPTCHA_SECRET_KEY exists:", !!secretKey);
+  console.log("RECAPTCHA_SECRET_KEY length:", secretKey?.length || 0);
+
   if (!secretKey) {
     console.error("RECAPTCHA_SECRET_KEY not configured");
-    return { success: false, error: "RECAPTCHA_SECRET_KEY not configured on server" };
+    return { success: false, error: `RECAPTCHA_SECRET_KEY not configured on server. Available keys: ${envKeys.join(', ')}` };
   }
 
   if (!token) {
