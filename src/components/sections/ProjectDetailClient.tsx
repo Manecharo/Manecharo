@@ -128,16 +128,52 @@ const portableTextComponents = {
   marks: {
     strong: ({ children }: any) => <strong className="font-bold">{children}</strong>,
     em: ({ children }: any) => <em className="italic">{children}</em>,
-    link: ({ value, children }: any) => (
-      <a
-        href={value.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-gold underline hover:text-gold/80 transition-colors"
-      >
-        {children}
-      </a>
-    ),
+    link: ({ value, children }: any) => {
+      const href = value.href || '';
+
+      // Check if the link is a YouTube or Vimeo video
+      const isYouTube = href.includes('youtube.com') || href.includes('youtu.be');
+      const isVimeo = href.includes('vimeo.com');
+
+      if (isYouTube || isVimeo) {
+        // Convert video links to embedded players
+        let embedUrl = href;
+        if (isYouTube) {
+          const videoId = href.includes('youtu.be')
+            ? href.split('youtu.be/')[1]?.split('?')[0]
+            : href.split('v=')[1]?.split('&')[0];
+          embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        } else if (isVimeo) {
+          const videoId = href.split('vimeo.com/')[1]?.split('?')[0];
+          embedUrl = `https://player.vimeo.com/video/${videoId}`;
+        }
+
+        return (
+          <figure className="my-8">
+            <div className="relative w-full aspect-video shadow-lg">
+              <iframe
+                src={embedUrl}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </figure>
+        );
+      }
+
+      // Regular link
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gold underline hover:text-gold/80 transition-colors"
+        >
+          {children}
+        </a>
+      );
+    },
   },
 };
 
