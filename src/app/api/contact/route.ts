@@ -290,15 +290,20 @@ const autoReplyTemplates = {
 };
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
+  const result = await verifyRecaptchaWithDetails(token);
+  return result.success;
+}
+
+async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boolean; error?: string }> {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   if (!secretKey) {
     console.error("RECAPTCHA_SECRET_KEY not configured");
-    return false; // Fail if secret key not configured
+    return { success: false, error: "RECAPTCHA_SECRET_KEY not configured on server" };
   }
 
   if (!token) {
     console.error("No reCAPTCHA token provided");
-    return false; // Fail if no token - this is required
+    return { success: false, error: "No reCAPTCHA token provided" };
   }
 
   try {
@@ -311,15 +316,16 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     const data = await response.json();
 
     if (!data.success) {
-      console.error("reCAPTCHA verification failed:", data['error-codes']);
-      return false;
+      const errorCodes = data['error-codes'] || [];
+      console.error("reCAPTCHA verification failed:", errorCodes);
+      return { success: false, error: `Google reCAPTCHA error: ${errorCodes.join(', ')}` };
     }
 
     // v2 checkbox doesn't have scores - just success/fail
-    return true;
+    return { success: true };
   } catch (error) {
     console.error("reCAPTCHA verification error:", error);
-    return false;
+    return { success: false, error: `Exception: ${error instanceof Error ? error.message : 'Unknown error'}` };
   }
 }
 
@@ -337,10 +343,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify reCAPTCHA - REQUIRED
-    const isValidRecaptcha = await verifyRecaptcha(recaptchaToken);
-    if (!isValidRecaptcha) {
+    const recaptchaResult = await verifyRecaptchaWithDetails(recaptchaToken);
+    if (!recaptchaResult.success) {
       return NextResponse.json(
-        { error: "reCAPTCHA verification failed. Please complete the checkbox and try again." },
+        {
+          error: "reCAPTCHA verification failed. Please complete the checkbox and try again.",
+          details: recaptchaResult.error
+        },
         { status: 400 }
       );
     }
