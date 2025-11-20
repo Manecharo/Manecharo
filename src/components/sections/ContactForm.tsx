@@ -25,7 +25,10 @@ export default function ContactForm() {
     message: "",
     budget: "",
     timeline: "",
+    // Honeypot field - should remain empty
+    website: "",
   });
+  const [formStartTime] = useState(Date.now());
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error" | "cooldown">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [isOnCooldown, setIsOnCooldown] = useState(false);
@@ -75,12 +78,15 @@ export default function ContactForm() {
     }
 
     try {
+      // Calculate time spent on form (bot protection)
+      const timeSpent = Date.now() - formStartTime;
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...formData, language, recaptchaToken }),
+        body: JSON.stringify({ ...formData, language, recaptchaToken, timeSpent }),
       });
 
       if (!response.ok) {
@@ -98,6 +104,7 @@ export default function ContactForm() {
         message: "",
         budget: "",
         timeline: "",
+        website: "",
       });
 
       setTimeout(() => {
@@ -263,6 +270,20 @@ export default function ContactForm() {
           onChange={handleChange}
           className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors resize-none"
           placeholder={t.contact.formPlaceholder}
+        />
+      </div>
+
+      {/* Honeypot field - hidden from users, bots will fill it */}
+      <div className="absolute left-[-9999px]" aria-hidden="true">
+        <label htmlFor="website">Website (leave blank)</label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          value={formData.website}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
         />
       </div>
 

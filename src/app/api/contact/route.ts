@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { checkRateLimit } from "@/lib/rateLimit";
 
 // Lazy initialization to avoid build-time errors
 function getResendClient() {
@@ -294,7 +295,7 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
   return result.success;
 }
 
-async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boolean; error?: string }> {
+async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boolean; score?: number; error?: string }> {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
   if (!token) {
@@ -304,8 +305,8 @@ async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boo
 
   if (!secretKey) {
     console.error("RECAPTCHA_SECRET_KEY not configured");
-    // Allow submission if reCAPTCHA not configured (fallback for env var issues)
-    return { success: true };
+    // SECURITY: DO NOT allow submission if reCAPTCHA not configured
+    return { success: false, error: "reCAPTCHA not configured on server" };
   }
 
   try {
@@ -320,30 +321,64 @@ async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boo
     if (!data.success) {
       const errorCodes = data['error-codes'] || [];
       console.error("reCAPTCHA verification failed:", errorCodes);
-      return { success: false, error: `reCAPTCHA verification failed` };
+      return { success: false, error: `reCAPTCHA verification failed: ${errorCodes.join(', ')}` };
     }
 
     // v3 returns a score (0.0 - 1.0). Lower scores indicate likely bots.
     const score = data.score || 0;
     console.log("reCAPTCHA score:", score);
 
-    if (score < 0.5) {
+    // INCREASED THRESHOLD: More strict bot detection (0.7 instead of 0.5)
+    if (score < 0.7) {
       console.error("reCAPTCHA score too low:", score);
-      return { success: false, error: "reCAPTCHA verification failed - low score" };
+      return { success: false, score, error: "Security verification failed. Please try again." };
     }
 
-    return { success: true };
+    return { success: true, score };
   } catch (error) {
     console.error("reCAPTCHA verification error:", error);
-    // Allow submission on reCAPTCHA error (fallback)
-    return { success: true };
+    // SECURITY: DO NOT allow submission on reCAPTCHA error
+    return { success: false, error: "Security verification service unavailable" };
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, projectType, message, budget, timeline, language = 'en', recaptchaToken } = body;
+    const { name, email, projectType, message, budget, timeline, language = 'en', recaptchaToken, website, timeSpent } = body;
+
+    // Get client IP for rate limiting
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+               request.headers.get('x-real-ip') ||
+               'unknown';
+
+    // Rate limiting check
+    const rateLimitResult = checkRateLimit(ip);
+    if (!rateLimitResult.allowed) {
+      console.warn(`Rate limit exceeded for IP: ${ip}`);
+      return NextResponse.json(
+        {
+          error: "Too many submissions. Please try again later.",
+          retryAfter: rateLimitResult.retryAfter
+        },
+        { status: 429 }
+      );
+    }
+
+    // Honeypot check - if "website" field is filled, it's a bot
+    if (website && website.trim() !== '') {
+      console.warn(`Honeypot triggered by IP: ${ip}`);
+      // Return success to fool the bot, but don't send email
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
+
+    // Timing check - form filled too quickly (less than 3 seconds = likely bot)
+    const MIN_FORM_TIME = 3000; // 3 seconds
+    if (timeSpent && timeSpent < MIN_FORM_TIME) {
+      console.warn(`Form submitted too quickly (${timeSpent}ms) by IP: ${ip}`);
+      // Return success to fool the bot, but don't send email
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -353,17 +388,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email address" },
+        { status: 400 }
+      );
+    }
+
     // Verify reCAPTCHA - REQUIRED
     const recaptchaResult = await verifyRecaptchaWithDetails(recaptchaToken);
     if (!recaptchaResult.success) {
+      console.warn(`reCAPTCHA failed for IP: ${ip}, score: ${recaptchaResult.score}`);
       return NextResponse.json(
         {
-          error: "reCAPTCHA verification failed. Please complete the checkbox and try again.",
+          error: "Security verification failed. Please try again.",
           details: recaptchaResult.error
         },
         { status: 400 }
       );
     }
+
+    console.log(`Form submission passed all checks - IP: ${ip}, reCAPTCHA score: ${recaptchaResult.score}`);
 
     // Check if Resend is configured
     if (!process.env.RESEND_API_KEY) {
