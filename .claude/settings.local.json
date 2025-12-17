@@ -14,7 +14,8 @@
       "Bash(timeout 5 bash:*)",
       "Bash(dir:*)",
       "Bash(taskkill:*)",
-      "Bash(npx vercel env:*)"
+      "Bash(npx vercel env:*)",
+      "Bash(npx vercel:*)"
     ],
     "deny": [],
     "ask": []

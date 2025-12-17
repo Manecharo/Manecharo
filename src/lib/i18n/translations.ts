@@ -39,6 +39,56 @@ export const translations = {
       tools: "Tools I Use",
       notInterested: "Not Interested In",
       notInterestedText: "Projects without **purpose**. Work that doesn't push anything forward. Clients who want designers to \"make it pretty\" instead of **solve problems**.",
+      processSteps: {
+        understand: {
+          title: "Understand",
+          description: "Deep research. User immersion. Stakeholder interviews. I don't start designing until I truly understand the problem. Not the symptom—the root cause.",
+        },
+        explore: {
+          title: "Explore",
+          description: "Rapid iteration. Divergent thinking. No attachment to first ideas. I sketch, prototype, test, and throw away. The best solution rarely shows up first.",
+        },
+        build: {
+          title: "Build",
+          description: "3D modeling. High-fidelity prototypes. User testing. Pixel-perfect execution. I don't just design it—I make it real enough to test with real people.",
+        },
+        scale: {
+          title: "Scale",
+          description: "Systems thinking. Documentation. Team enablement. A good design should work without me. I build systems that teams can run with.",
+        },
+      },
+      clientTypes: {
+        startups: {
+          title: "Startups",
+          description: "0→1 product design, brand identity, go-to-market strategy",
+        },
+        ngos: {
+          title: "NGOs & Gov",
+          description: "Civic tech, social impact design, public communication",
+        },
+        brands: {
+          title: "Established Brands",
+          description: "Product innovation, design system evolution, UX audit",
+        },
+        political: {
+          title: "Political Campaigns",
+          description: "Visual identity, digital strategy, voter engagement tools",
+        },
+        tech: {
+          title: "Tech Companies",
+          description: "Product design, UX/UI, design-dev collaboration",
+        },
+        entrepreneurs: {
+          title: "Entrepreneurs",
+          description: "MVP design, pitch decks, early-stage product validation",
+        },
+      },
+      toolCategories: {
+        design: "Design & 3D",
+        ai: "AI & Automation",
+        dev: "Development & Prototyping",
+        productivity: "Productivity & Collaboration",
+      },
     },
     // Contact Page
     contact: {
@@ -144,6 +194,56 @@ export const translations = {
       tools: "Herramientas Que Uso",
       notInterested: "No Me Interesan",
       notInterestedText: "Proyectos sin **propósito**. Trabajo que no impulsa nada hacia adelante. Clientes que quieren que los diseñadores \"lo hagan bonito\" en lugar de **resolver problemas**.",
+      processSteps: {
+        understand: {
+          title: "Entender",
+          description: "Investigación profunda. Inmersión con usuarios. Entrevistas con stakeholders. No empiezo a diseñar hasta que realmente entiendo el problema. No el síntoma—la causa raíz.",
+        },
+        explore: {
+          title: "Explorar",
+          description: "Iteración rápida. Pensamiento divergente. Sin apego a las primeras ideas. Bosquejo, prototipo, pruebo y descarto. La mejor solución rara vez aparece primero.",
+        },
+        build: {
+          title: "Construir",
+          description: "Modelado 3D. Prototipos de alta fidelidad. Pruebas con usuarios. Ejecución pixel-perfect. No solo lo diseño—lo hago lo suficientemente real para probarlo con personas reales.",
+        },
+        scale: {
+          title: "Escalar",
+          description: "Pensamiento sistémico. Documentación. Capacitación de equipos. Un buen diseño debería funcionar sin mí. Construyo sistemas con los que los equipos pueden seguir.",
+        },
+      },
+      clientTypes: {
+        startups: {
+          title: "Startups",
+          description: "Diseño de producto 0→1, identidad de marca, estrategia go-to-market",
+        },
+        ngos: {
+          title: "ONGs y Gobierno",
+          description: "Tecnología cívica, diseño de impacto social, comunicación pública",
+        },
+        brands: {
+          title: "Marcas Establecidas",
+          description: "Innovación de producto, evolución de sistemas de diseño, auditoría UX",
+        },
+        political: {
+          title: "Campañas Políticas",
+          description: "Identidad visual, estrategia digital, herramientas de participación ciudadana",
+        },
+        tech: {
+          title: "Empresas de Tecnología",
+          description: "Diseño de producto, UX/UI, colaboración diseño-desarrollo",
+        },
+        entrepreneurs: {
+          title: "Emprendedores",
+          description: "Diseño de MVP, pitch decks, validación de producto en etapa temprana",
+        },
+      },
+      toolCategories: {
+        design: "Diseño y 3D",
+        ai: "IA y Automatización",
+        dev: "Desarrollo y Prototipado",
+        productivity: "Productividad y Colaboración",
+      },
     },
     // Contact Page
     contact: {
@@ -249,6 +349,56 @@ export const translations = {
       tools: "Strumenti Che Uso",
       notInterested: "Non Mi Interessano",
       notInterestedText: "Progetti senza **scopo**. Lavoro che non spinge nulla avanti. Clienti che vogliono che i designer \"lo rendano carino\" invece di **risolvere problemi**.",
+      processSteps: {
+        understand: {
+          title: "Capire",
+          description: "Ricerca approfondita. Immersione con gli utenti. Interviste con stakeholder. Non inizio a progettare finché non capisco veramente il problema. Non il sintomo—la causa radice.",
+        },
+        explore: {
+          title: "Esplorare",
+          description: "Iterazione rapida. Pensiero divergente. Nessun attaccamento alle prime idee. Schizzo, prototipo, testo e scarto. La soluzione migliore raramente appare per prima.",
+        },
+        build: {
+          title: "Costruire",
+          description: "Modellazione 3D. Prototipi ad alta fedeltà. Test con utenti. Esecuzione pixel-perfect. Non lo progetto soltanto—lo rendo abbastanza reale da testarlo con persone vere.",
+        },
+        scale: {
+          title: "Scalare",
+          description: "Pensiero sistemico. Documentazione. Abilitazione del team. Un buon design dovrebbe funzionare senza di me. Costruisco sistemi che i team possono portare avanti.",
+        },
+      },
+      clientTypes: {
+        startups: {
+          title: "Startup",
+          description: "Design di prodotto 0→1, identità di brand, strategia go-to-market",
+        },
+        ngos: {
+          title: "ONG e Governo",
+          description: "Tecnologia civica, design per impatto sociale, comunicazione pubblica",
+        },
+        brands: {
+          title: "Brand Affermati",
+          description: "Innovazione di prodotto, evoluzione di design system, audit UX",
+        },
+        political: {
+          title: "Campagne Politiche",
+          description: "Identità visiva, strategia digitale, strumenti di engagement elettorale",
+        },
+        tech: {
+          title: "Aziende Tech",
+          description: "Design di prodotto, UX/UI, collaborazione design-sviluppo",
+        },
+        entrepreneurs: {
+          title: "Imprenditori",
+          description: "Design MVP, pitch deck, validazione prodotto early-stage",
+        },
+      },
+      toolCategories: {
+        design: "Design e 3D",
+        ai: "IA e Automazione",
+        dev: "Sviluppo e Prototipazione",
+        productivity: "Produttività e Collaborazione",
+      },
     },
     // Contact Page
     contact: {
