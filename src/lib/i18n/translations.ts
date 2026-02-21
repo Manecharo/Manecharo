@@ -24,11 +24,67 @@ export const translations = {
     },
     // About Page
     about: {
+      badge: "About",
       title: "The Short Version",
       bio: "I'm a **designer** who doesn't stay in one lane.\n\n**Born in Colombia**. Trained in **Milan**. Worked across **6 countries** on **4 continents**. I've designed doors in Poland, furniture in Italy, hydroponic systems in Colombia, metaverse spaces in Switzerland, and democracy programs in Malaysia.\n\nI **co-founded 3 startups**. Led design teams. Trained **400+ artisans**. Grew channels from zero. Built **products people actually use**.\n\nI think in **systems**. I work with my **hands**. I believe design should **solve real problems**, not just look pretty.\n\n**Currently based in Kuala Lumpur**. Colombian and Spanish passport. Available for **projects that matter**.",
       whatIDo: "What I Actually Do",
       languages: "Languages",
       education: "Education & Learning",
+      turkishNote: "+ Turkish (beginner)",
+      skills: {
+        strategicThinking: {
+          title: "Strategic Thinking",
+          description: "Systems-level problem solving",
+        },
+        designExcellence: {
+          title: "Design Excellence",
+          description: "Pixel-perfect execution",
+        },
+        technicalFluency: {
+          title: "Technical Fluency",
+          description: "Code-aware design",
+        },
+        userResearch: {
+          title: "User Research",
+          description: "Deep empathy",
+        },
+        crossCultural: {
+          title: "Cross-Cultural",
+          description: "6 countries, 4 languages",
+        },
+        startupMindset: {
+          title: "Startup Mindset",
+          description: "Scrappy & resourceful",
+        },
+      },
+      languageList: {
+        spanish: { name: "Spanish", level: "Native" },
+        english: { name: "English", level: "C1" },
+        italian: { name: "Italian", level: "B2" },
+        french: { name: "French", level: "A2" },
+      },
+      educationList: {
+        mit: {
+          degree: "No Code AI and Machine Learning: Building Data Science Solutions",
+          school: "MIT Professional Education",
+          year: "2024",
+        },
+        harvard: {
+          degree: "Higher Education Teaching Certificate",
+          school: "Harvard Derek Bok Center",
+          year: "2020",
+        },
+        masters: {
+          degree: "Master's Degree — Dual specialization interior industrial-design",
+          school: "Scuola Politecnica di Design (SPD)",
+          year: "2009-2010",
+        },
+        bachelor: {
+          degree: "Bachelor in Industrial Design",
+          school: "Istituto Europeo di Design (IED)",
+          year: "2006-2009",
+        },
+      },
     },
     // Capabilities Page
     capabilities: {
@@ -179,11 +235,67 @@ export const translations = {
     },
     // About Page
     about: {
+      badge: "Sobre Mí",
       title: "La Versión Corta",
       bio: "Soy un **diseñador** que no se queda en un solo carril.\n\n**Nacido en Colombia**. Formado en **Milán**. He trabajado en **8 países** de **4 continentes**. He diseñado puertas en Polonia, muebles en Italia, sistemas hidropónicos en Colombia, espacios metaverso en Suiza y programas de democracia en Malasia.\n\n**Cofundé 3 startups**. Lideré equipos de diseño. Capacité a **más de 400 artesanos**. Hice crecer canales desde cero. Construí **productos que la gente realmente usa**.\n\nPienso en **sistemas**. Trabajo con mis **manos**. Creo que el diseño debe **resolver problemas reales**, no solo verse bonito.\n\n**Actualmente basado en Kuala Lumpur**. Pasaporte colombiano y español. Disponible para **proyectos que importan**.",
       whatIDo: "Lo Que Hago Realmente",
       languages: "Idiomas",
       education: "Educación y Aprendizaje",
+      turkishNote: "+ Turco (principiante)",
+      skills: {
+        strategicThinking: {
+          title: "Pensamiento Estratégico",
+          description: "Resolución de problemas sistémica",
+        },
+        designExcellence: {
+          title: "Excelencia en Diseño",
+          description: "Ejecución pixel-perfect",
+        },
+        technicalFluency: {
+          title: "Fluidez Técnica",
+          description: "Diseño con conocimiento de código",
+        },
+        userResearch: {
+          title: "Investigación de Usuarios",
+          description: "Profunda empatía",
+        },
+        crossCultural: {
+          title: "Cross-Cultural",
+          description: "6 países, 4 idiomas",
+        },
+        startupMindset: {
+          title: "Mentalidad Startup",
+          description: "Ágil y ingenioso",
+        },
+      },
+      languageList: {
+        spanish: { name: "Español", level: "Nativo" },
+        english: { name: "Inglés", level: "C1" },
+        italian: { name: "Italiano", level: "B2" },
+        french: { name: "Francés", level: "A2" },
+      },
+      educationList: {
+        mit: {
+          degree: "No Code AI and Machine Learning: Building Data Science Solutions",
+          school: "MIT Professional Education",
+          year: "2024",
+        },
+        harvard: {
+          degree: "Certificado de Enseñanza en Educación Superior",
+          school: "Harvard Derek Bok Center",
+          year: "2020",
+        },
+        masters: {
+          degree: "Maestría — Doble especialización diseño interior e industrial",
+          school: "Scuola Politecnica di Design (SPD)",
+          year: "2009-2010",
+        },
+        bachelor: {
+          degree: "Licenciatura en Diseño Industrial",
+          school: "Istituto Europeo di Design (IED)",
+          year: "2006-2009",
+        },
+      },
     },
     // Capabilities Page
     capabilities: {
@@ -334,11 +446,67 @@ export const translations = {
     },
     // About Page
     about: {
+      badge: "Chi Sono",
       title: "La Versione Breve",
       bio: "Sono un **designer** che non resta in una sola corsia.\n\n**Nato in Colombia**. Formato a **Milano**. Ho lavorato in **8 paesi** su **4 continenti**. Ho progettato porte in Polonia, mobili in Italia, sistemi idroponici in Colombia, spazi metaverso in Svizzera e programmi di democrazia in Malesia.\n\nHo **co-fondato 3 startup**. Ho guidato team di design. Ho formato **oltre 400 artigiani**. Ho fatto crescere canali da zero. Ho costruito **prodotti che la gente usa davvero**.\n\nPenso in **sistemi**. Lavoro con le mie **mani**. Credo che il design debba **risolvere problemi reali**, non solo apparire carino.\n\n**Attualmente basato a Kuala Lumpur**. Passaporto colombiano e spagnolo. Disponibile per **progetti che contano**.",
       whatIDo: "Cosa Faccio Realmente",
       languages: "Lingue",
       education: "Istruzione e Apprendimento",
+      turkishNote: "+ Turco (principiante)",
+      skills: {
+        strategicThinking: {
+          title: "Pensiero Strategico",
+          description: "Risoluzione sistemica dei problemi",
+        },
+        designExcellence: {
+          title: "Eccellenza nel Design",
+          description: "Esecuzione pixel-perfect",
+        },
+        technicalFluency: {
+          title: "Fluenza Tecnica",
+          description: "Design consapevole del codice",
+        },
+        userResearch: {
+          title: "Ricerca Utenti",
+          description: "Profonda empatia",
+        },
+        crossCultural: {
+          title: "Cross-Culturale",
+          description: "6 paesi, 4 lingue",
+        },
+        startupMindset: {
+          title: "Mentalità Startup",
+          description: "Agile e intraprendente",
+        },
+      },
+      languageList: {
+        spanish: { name: "Spagnolo", level: "Madrelingua" },
+        english: { name: "Inglese", level: "C1" },
+        italian: { name: "Italiano", level: "B2" },
+        french: { name: "Francese", level: "A2" },
+      },
+      educationList: {
+        mit: {
+          degree: "No Code AI and Machine Learning: Building Data Science Solutions",
+          school: "MIT Professional Education",
+          year: "2024",
+        },
+        harvard: {
+          degree: "Certificato di Insegnamento nell'Educazione Superiore",
+          school: "Harvard Derek Bok Center",
+          year: "2020",
+        },
+        masters: {
+          degree: "Laurea Magistrale — Doppia specializzazione design interno e industriale",
+          school: "Scuola Politecnica di Design (SPD)",
+          year: "2009-2010",
+        },
+        bachelor: {
+          degree: "Laurea in Design Industriale",
+          school: "Istituto Europeo di Design (IED)",
+          year: "2006-2009",
+        },
+      },
     },
     // Capabilities Page
     capabilities: {

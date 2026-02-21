@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Send } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import Script from "next/script";
@@ -12,7 +12,10 @@ const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LfgIA
 
 declare global {
   interface Window {
-    grecaptcha: any;
+    grecaptcha: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
   }
 }
 
@@ -32,29 +35,42 @@ export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error" | "cooldown">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [isOnCooldown, setIsOnCooldown] = useState(false);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
 
-  // Check cooldown on mount
+  // Check cooldown on mount - only runs on client
   useEffect(() => {
-    const checkCooldown = () => {
-      const cooldownTimestamp = localStorage.getItem(COOLDOWN_KEY);
-      if (cooldownTimestamp) {
-        const timeSinceSubmission = Date.now() - parseInt(cooldownTimestamp, 10);
-        if (timeSinceSubmission < COOLDOWN_DURATION) {
-          setIsOnCooldown(true);
-          setStatus("cooldown");
-          const remainingTime = COOLDOWN_DURATION - timeSinceSubmission;
-          setTimeout(() => {
-            setIsOnCooldown(false);
-            setStatus("idle");
-            localStorage.removeItem(COOLDOWN_KEY);
-          }, remainingTime);
-        } else {
+    const cooldownTimestamp = localStorage.getItem(COOLDOWN_KEY);
+    if (cooldownTimestamp) {
+      const timeSinceSubmission = Date.now() - parseInt(cooldownTimestamp, 10);
+      if (timeSinceSubmission < COOLDOWN_DURATION) {
+        setIsOnCooldown(true);
+        setStatus("cooldown");
+        const remainingTime = COOLDOWN_DURATION - timeSinceSubmission;
+        const timeoutId = setTimeout(() => {
+          setIsOnCooldown(false);
+          setStatus("idle");
           localStorage.removeItem(COOLDOWN_KEY);
-        }
+        }, remainingTime);
+        return () => clearTimeout(timeoutId);
+      } else {
+        localStorage.removeItem(COOLDOWN_KEY);
       }
-    };
-    checkCooldown();
+    }
   }, []);
+
+  const getRecaptchaToken = useCallback(async (): Promise<string> => {
+    if (!recaptchaLoaded || !window.grecaptcha) {
+      console.warn("reCAPTCHA not loaded");
+      return "";
+    }
+    
+    try {
+      return await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "submit" });
+    } catch (error) {
+      console.error("reCAPTCHA execution error:", error);
+      return "";
+    }
+  }, [recaptchaLoaded]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,12 +85,8 @@ export default function ContactForm() {
 
     // Get reCAPTCHA v3 token
     let recaptchaToken = "";
-    if (window.grecaptcha) {
-      try {
-        recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "submit" });
-      } catch (error) {
-        console.error("reCAPTCHA error:", error);
-      }
+    if (recaptchaLoaded) {
+      recaptchaToken = await getRecaptchaToken();
     }
 
     try {
@@ -89,8 +101,10 @@ export default function ContactForm() {
         body: JSON.stringify({ ...formData, language, recaptchaToken, timeSpent }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to send message");
+        throw new Error(data.error || data.details || "Failed to send message");
       }
 
       localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
@@ -107,7 +121,7 @@ export default function ContactForm() {
         website: "",
       });
 
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setIsOnCooldown(false);
         localStorage.removeItem(COOLDOWN_KEY);
       }, COOLDOWN_DURATION);
@@ -117,9 +131,11 @@ export default function ContactForm() {
           setStatus("idle");
         }
       }, 10000);
+      
+      return () => clearTimeout(timeoutId);
     } catch (error) {
       setStatus("error");
-      setErrorMessage(t.contact.formError);
+      setErrorMessage(error instanceof Error ? error.message : t.contact.formError);
       setTimeout(() => setStatus("idle"), 5000);
     }
   };
@@ -135,10 +151,16 @@ export default function ContactForm() {
 
   return (
     <>
-      {/* Load reCAPTCHA v3 invisible */}
+      {/* Load reCAPTCHA v3 invisible with proper onLoad handler */}
       {RECAPTCHA_SITE_KEY && (
         <Script
           src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+          strategy="lazyOnload"
+          onLoad={() => setRecaptchaLoaded(true)}
+          onError={() => {
+            console.error("Failed to load reCAPTCHA");
+            setRecaptchaLoaded(false);
+          }}
         />
       )}
 
@@ -317,7 +339,7 @@ export default function ContactForm() {
 
       {status === "error" && (
         <div className="p-4 bg-terracotta/20 border-2 border-terracotta text-charcoal">
-          <p className="font-display">{errorMessage}</p>
+          <p className="font-display">{errorMessage || t.contact.formError}</p>
         </div>
       )}
 

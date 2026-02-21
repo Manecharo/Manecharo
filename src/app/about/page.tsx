@@ -13,17 +13,30 @@ import {
   Rocket,
 } from "lucide-react";
 
-const skills = [
-  { icon: Lightbulb, title: "Strategic Thinking", description: "Systems-level problem solving" },
-  { icon: Palette, title: "Design Excellence", description: "Pixel-perfect execution" },
-  { icon: Code, title: "Technical Fluency", description: "Code-aware design" },
-  { icon: Users, title: "User Research", description: "Deep empathy" },
-  { icon: Globe, title: "Cross-Cultural", description: "6 countries, 4 languages" },
-  { icon: Rocket, title: "Startup Mindset", description: "Scrappy & resourceful" },
-];
+const skillKeys = [
+  { key: "strategicThinking", icon: Lightbulb },
+  { key: "designExcellence", icon: Palette },
+  { key: "technicalFluency", icon: Code },
+  { key: "userResearch", icon: Users },
+  { key: "crossCultural", icon: Globe },
+  { key: "startupMindset", icon: Rocket },
+] as const;
+
+const languageKeys = ["spanish", "english", "italian", "french"] as const;
+
+// Education ordered chronologically (most recent first)
+const educationLinks = {
+  mit: "https://mit-online.getsmarter.com/presentations/lp/mit-sloan-making-ai-work-online-course/",
+  harvard: "https://harvardonline.harvard.edu/course/higher-education-teaching",
+  masters: "https://www.scuoladesign.com/courses/product-design/",
+  bachelor: "https://www.ied.edu/courses/milan/three-years-diploma/product-design",
+} as const;
+
+const educationOrder = ["mit", "harvard", "masters", "bachelor"] as const;
 
 export default function AboutPage() {
   const { t } = useLanguage();
+  
   return (
     <PageTransition>
       <div className="min-h-screen py-24 px-6 bg-white">
@@ -45,7 +58,7 @@ export default function AboutPage() {
             {/* Intro */}
             <div className="md:order-1">
               <div className="inline-block mb-4 px-4 py-2 bg-red/10 text-red text-sm font-display uppercase tracking-wider">
-                About
+                {t.about.badge}
               </div>
               <h1 className="text-h1 font-display mb-6 leading-tight">
                 {t.about.title}
@@ -62,16 +75,17 @@ export default function AboutPage() {
               {t.about.whatIDo}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {skills.map((skill, index) => {
+              {skillKeys.map((skill) => {
                 const Icon = skill.icon;
+                const skillData = t.about.skills[skill.key];
                 return (
                   <div
-                    key={index}
+                    key={skill.key}
                     className="bg-pure-white p-6 shadow-sm hover:shadow-lg transition-shadow"
                   >
                     <Icon className="w-10 h-10 text-gold mb-4" />
-                    <h3 className="font-display text-xl mb-2">{skill.title}</h3>
-                    <p className="text-charcoal/70">{skill.description}</p>
+                    <h3 className="font-display text-xl mb-2">{skillData.title}</h3>
+                    <p className="text-charcoal/70">{skillData.description}</p>
                   </div>
                 );
               })}
@@ -82,20 +96,18 @@ export default function AboutPage() {
           <section className="mb-24">
             <h2 className="text-h2 font-display mb-8 text-center">{t.about.languages}</h2>
             <div className="max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { lang: "Spanish", level: "Native" },
-                { lang: "English", level: "C1" },
-                { lang: "Italian", level: "B2" },
-                { lang: "French", level: "A2" },
-              ].map((item, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl font-display mb-2">{item.lang}</div>
-                  <div className="text-sm text-charcoal/60">{item.level}</div>
-                </div>
-              ))}
+              {languageKeys.map((langKey) => {
+                const langData = t.about.languageList[langKey];
+                return (
+                  <div key={langKey} className="text-center">
+                    <div className="text-2xl font-display mb-2">{langData.name}</div>
+                    <div className="text-sm text-charcoal/60">{langData.level}</div>
+                  </div>
+                );
+              })}
             </div>
             <p className="text-center text-charcoal/60 mt-6 text-sm">
-              + Turkish (beginner)
+              {t.about.turkishNote}
             </p>
           </section>
 
@@ -105,44 +117,23 @@ export default function AboutPage() {
               {t.about.education}
             </h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {[
-                {
-                  degree: "Master's Degree — Dual specialization interior industrial-design",
-                  school: "Scuola Politecnica di Design (SPD)",
-                  year: "2009-2010",
-                  link: "https://www.scuoladesign.com/courses/product-design/",
-                },
-                {
-                  degree: "Bachelor in Industrial Design",
-                  school: "Istituto Europeo di Design (IED)",
-                  year: "2006-2009",
-                  link: "https://www.ied.edu/courses/milan/three-years-diploma/product-design",
-                },
-                {
-                  degree: "No Code AI and Machine Learning: Building Data Science Solutions",
-                  school: "MIT Professional Education",
-                  year: "2024",
-                  link: "https://mit-online.getsmarter.com/presentations/lp/mit-sloan-making-ai-work-online-course/",
-                },
-                {
-                  degree: "Higher Education Teaching Certificate",
-                  school: "Harvard Derek Bok Center",
-                  year: "2020",
-                  link: "https://harvardonline.harvard.edu/course/higher-education-teaching",
-                },
-              ].map((edu, index) => (
-                <a
-                  key={index}
-                  href={edu.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-pure-white p-6 shadow-sm border-l-4 border-gold hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
-                >
-                  <h3 className="font-display text-lg mb-2">{edu.degree}</h3>
-                  <p className="text-charcoal/70 mb-1">{edu.school}</p>
-                  <p className="text-sm text-charcoal/50">{edu.year}</p>
-                </a>
-              ))}
+              {educationOrder.map((eduKey) => {
+                const edu = t.about.educationList[eduKey];
+                const link = educationLinks[eduKey];
+                return (
+                  <a
+                    key={eduKey}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-pure-white p-6 shadow-sm border-l-4 border-gold hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
+                  >
+                    <h3 className="font-display text-lg mb-2">{edu.degree}</h3>
+                    <p className="text-charcoal/70 mb-1">{edu.school}</p>
+                    <p className="text-sm text-charcoal/50">{edu.year}</p>
+                  </a>
+                );
+              })}
             </div>
           </section>
         </div>
