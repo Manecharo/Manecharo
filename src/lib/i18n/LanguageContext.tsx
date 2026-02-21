@@ -7,6 +7,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: TranslationKey;
+  mounted: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -15,25 +16,30 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>("en");
+  const [mounted, setMounted] = useState(false);
 
-  // Load language from localStorage on mount
+  // Load language from localStorage on mount - only runs on client
   useEffect(() => {
     const saved = localStorage.getItem("language") as Language;
     if (saved && translations[saved]) {
       setLanguageState(saved);
     }
+    setMounted(true);
   }, []);
 
   // Save language to localStorage when it changes
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem("language", lang);
+    if (mounted) {
+      localStorage.setItem("language", lang);
+    }
   };
 
   const value = {
     language,
     setLanguage,
     t: translations[language],
+    mounted,
   };
 
   return (

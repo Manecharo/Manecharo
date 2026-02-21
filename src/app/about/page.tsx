@@ -35,7 +35,31 @@ const educationLinks = {
 const educationOrder = ["mit", "harvard", "masters", "bachelor"] as const;
 
 export default function AboutPage() {
-  const { t } = useLanguage();
+  const { t, mounted } = useLanguage();
+  
+  // Show loading skeleton during hydration to prevent mismatch
+  if (!mounted) {
+    return (
+      <PageTransition>
+        <div className="min-h-screen py-24 px-6 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 mb-24 items-center">
+              <div className="relative aspect-[3/4] md:order-2 overflow-hidden shadow-xl bg-charcoal/10 animate-pulse"></div>
+              <div className="md:order-1 space-y-4">
+                <div className="h-8 w-24 bg-charcoal/10 animate-pulse rounded"></div>
+                <div className="h-12 w-3/4 bg-charcoal/10 animate-pulse rounded"></div>
+                <div className="space-y-3">
+                  <div className="h-4 w-full bg-charcoal/10 animate-pulse rounded"></div>
+                  <div className="h-4 w-full bg-charcoal/10 animate-pulse rounded"></div>
+                  <div className="h-4 w-2/3 bg-charcoal/10 animate-pulse rounded"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </PageTransition>
+    );
+  }
   
   return (
     <PageTransition>
