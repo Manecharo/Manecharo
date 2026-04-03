@@ -328,8 +328,8 @@ async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boo
     const score = data.score || 0;
     console.log("reCAPTCHA score:", score);
 
-    // INCREASED THRESHOLD: More strict bot detection (0.7 instead of 0.5)
-    if (score < 0.7) {
+    // Google-recommended threshold: 0.5 (0.7 was too aggressive, blocking real users)
+    if (score < 0.5) {
       console.error("reCAPTCHA score too low:", score);
       return { success: false, score, error: "Security verification failed. Please try again." };
     }
