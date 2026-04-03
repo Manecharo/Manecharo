@@ -79,9 +79,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: "add-your-code-here", // Add after Google Search Console setup
-  },
+  // verification: {
+  //   google: "your-google-search-console-code", // Add after Google Search Console setup
+  // },
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",

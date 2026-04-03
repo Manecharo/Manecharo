@@ -17,7 +17,7 @@ export const seoConfig = {
     description: 'Designer and problem solver with 14 years of experience turning complex problems into elegant solutions. Specialized in product design, UX/UI, brand strategy, and social impact design.',
 
     url: 'https://manecharo.com',
-    image: 'https://manecharo.com/images/manuel-echavarria-romero.jpg',
+    image: 'https://manecharo.com/images/about/manuel2.jpeg',
 
     // Contact information
     email: 'manuelerfreelance@gmail.com',
@@ -257,7 +257,7 @@ export const seoConfig = {
       alternateName: ['Manecharo Design', 'MER Design'],
       url: 'https://manecharo.com',
       logo: 'https://manecharo.com/images/logo.png',
-      image: 'https://manecharo.com/images/manuel-echavarria-romero.jpg',
+      image: 'https://manecharo.com/images/about/manuel2.jpeg',
       description: 'Professional design services specializing in product design, UX/UI, and brand strategy.',
       founder: {
         '@type': 'Person',

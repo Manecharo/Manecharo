@@ -70,10 +70,10 @@ export default function AboutPage() {
             {/* Portrait */}
             <div className="relative aspect-[3/4] md:order-2 overflow-hidden shadow-xl">
               <Image
-                src="/images/about/portrait.jpg"
-                alt="Manuel Echavarria Romero"
+                src="/images/about/manuel2.jpeg"
+                alt="Manuel Echavarria Romero - Product Designer & Design Strategist"
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />
