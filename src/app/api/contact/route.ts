@@ -328,6 +328,12 @@ async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boo
 
     const data = await response.json();
 
+    // Check if Google returned an API-level error (e.g. invalid API key, permission denied)
+    if (!response.ok || data.error) {
+      console.error("reCAPTCHA Enterprise API error:", response.status, JSON.stringify(data));
+      return { success: false, error: `reCAPTCHA API error: ${data.error?.message || response.status}` };
+    }
+
     if (!data.tokenProperties?.valid) {
       const reason = data.tokenProperties?.invalidReason || 'Unknown';
       console.error("reCAPTCHA Enterprise token invalid:", reason, JSON.stringify(data));
