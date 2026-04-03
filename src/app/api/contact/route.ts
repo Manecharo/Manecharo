@@ -306,8 +306,9 @@ async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boo
   }
 
   if (!apiKey) {
-    console.error("reCAPTCHA API key not configured");
-    return { success: false, error: "reCAPTCHA not configured on server" };
+    // reCAPTCHA not configured — allow submission (honeypot + rate limiting still active)
+    console.warn("reCAPTCHA API key not configured, skipping verification");
+    return { success: true };
   }
 
   try {
