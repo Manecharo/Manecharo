@@ -296,39 +296,47 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 }
 
 async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boolean; score?: number; error?: string }> {
-  const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET || process.env.RECAPTCHA_SECRET_KEY;
+  const apiKey = process.env.GOOGLE_RECAPTCHA_SECRET || process.env.RECAPTCHA_SECRET_KEY;
+  const projectId = 'manecharo-636a3';
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LfgIAwsAAAAAIk-l02jLlOszSIJ7Pv2XpWoyK65';
 
   if (!token) {
     console.error("No reCAPTCHA token provided");
     return { success: false, error: "No reCAPTCHA token provided" };
   }
 
-  if (!secretKey) {
-    console.error("RECAPTCHA_SECRET_KEY not configured");
-    // SECURITY: DO NOT allow submission if reCAPTCHA not configured
+  if (!apiKey) {
+    console.error("reCAPTCHA API key not configured");
     return { success: false, error: "reCAPTCHA not configured on server" };
   }
 
   try {
-    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `secret=${secretKey}&response=${token}`,
-    });
+    const response = await fetch(
+      `https://recaptchaenterprise.googleapis.com/v1/projects/${projectId}/assessments?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: {
+            token,
+            expectedAction: 'submit',
+            siteKey,
+          },
+        }),
+      }
+    );
 
     const data = await response.json();
 
-    if (!data.success) {
-      const errorCodes = data['error-codes'] || [];
-      console.error("reCAPTCHA verification failed:", errorCodes);
-      return { success: false, error: `reCAPTCHA verification failed: ${errorCodes.join(', ')}` };
+    if (!data.tokenProperties?.valid) {
+      const reason = data.tokenProperties?.invalidReason || 'Unknown';
+      console.error("reCAPTCHA Enterprise token invalid:", reason, JSON.stringify(data));
+      return { success: false, error: `reCAPTCHA token invalid: ${reason}` };
     }
 
-    // v3 returns a score (0.0 - 1.0). Lower scores indicate likely bots.
-    const score = data.score || 0;
-    console.log("reCAPTCHA score:", score);
+    const score = data.riskAnalysis?.score ?? 0;
+    console.log("reCAPTCHA Enterprise score:", score);
 
-    // Google-recommended threshold: 0.5 (0.7 was too aggressive, blocking real users)
     if (score < 0.5) {
       console.error("reCAPTCHA score too low:", score);
       return { success: false, score, error: "Security verification failed. Please try again." };
@@ -336,8 +344,7 @@ async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boo
 
     return { success: true, score };
   } catch (error) {
-    console.error("reCAPTCHA verification error:", error);
-    // SECURITY: DO NOT allow submission on reCAPTCHA error
+    console.error("reCAPTCHA Enterprise verification error:", error);
     return { success: false, error: "Security verification service unavailable" };
   }
 }

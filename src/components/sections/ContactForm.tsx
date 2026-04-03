@@ -13,6 +13,10 @@ const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LfgIA
 declare global {
   interface Window {
     grecaptcha: {
+      enterprise: {
+        ready: (callback: () => void) => void;
+        execute: (siteKey: string, options: { action: string }) => Promise<string>;
+      };
       ready: (callback: () => void) => void;
       execute: (siteKey: string, options: { action: string }) => Promise<string>;
     };
@@ -60,15 +64,15 @@ export default function ContactForm() {
   }, [mounted]);
 
   const getRecaptchaToken = useCallback(async (): Promise<string> => {
-    if (!recaptchaLoaded || typeof window === "undefined" || !window.grecaptcha) {
-      console.warn("reCAPTCHA not loaded");
+    if (!recaptchaLoaded || typeof window === "undefined" || !window.grecaptcha?.enterprise) {
+      console.warn("reCAPTCHA Enterprise not loaded");
       return "";
     }
-    
+
     try {
-      return await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "submit" });
+      return await window.grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, { action: "submit" });
     } catch (error) {
-      console.error("reCAPTCHA execution error:", error);
+      console.error("reCAPTCHA Enterprise execution error:", error);
       return "";
     }
   }, [recaptchaLoaded]);
@@ -169,7 +173,7 @@ export default function ContactForm() {
       {/* Load reCAPTCHA v3 invisible with proper onLoad handler */}
       {RECAPTCHA_SITE_KEY && (
         <Script
-          src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+          src={`https://www.google.com/recaptcha/enterprise.js?render=${RECAPTCHA_SITE_KEY}`}
           strategy="lazyOnload"
           onLoad={() => setRecaptchaLoaded(true)}
           onError={() => {
