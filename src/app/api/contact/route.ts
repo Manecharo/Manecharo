@@ -296,7 +296,7 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 }
 
 async function verifyRecaptchaWithDetails(token: string): Promise<{ success: boolean; score?: number; error?: string }> {
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET || process.env.RECAPTCHA_SECRET_KEY;
 
   if (!token) {
     console.error("No reCAPTCHA token provided");
