@@ -67,7 +67,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           {/* Hero Section */}
           <div className="grid md:grid-cols-2 gap-12 mb-24 items-center">
-            {/* Portrait */}
+            {/* Manuel — portrait */}
             <div className="relative aspect-[3/4] md:order-2 overflow-hidden shadow-xl">
               <Image
                 src="/images/about/manuel2.jpeg"

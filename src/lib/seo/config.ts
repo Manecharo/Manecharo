@@ -11,6 +11,7 @@ export const seoConfig = {
   // Person information for Schema.org
   person: {
     '@type': 'Person',
+    '@id': 'https://manecharo.com/#person',
     name: 'Manuel Echavarria Romero',
     alternateName: ['Manuel Echavarria', 'MER', 'Manecharo'],
     jobTitle: 'Product Designer & Design Strategist',
@@ -18,6 +19,26 @@ export const seoConfig = {
 
     url: 'https://manecharo.com',
     image: 'https://manecharo.com/images/about/manuel2.jpeg',
+
+    // Occupation (for AI / answer engines)
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'Product Designer & Design Strategist',
+      occupationLocation: {
+        '@type': 'City',
+        name: 'Kuala Lumpur',
+      },
+      skills:
+        'Product Design, UX/UI Design, Brand Strategy, Design Systems, Service Design, Social Impact Design, Design Thinking',
+      responsibilities:
+        'Designs digital products, brand identities, and services for startups, enterprises, and civic organizations. Leads user research, strategy, and design-system work.',
+    },
+
+    // Hint speech-enabled assistants which parts of the page to read aloud
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', 'h2', '[data-speakable]'],
+    },
 
     // Contact information
     email: 'manuelerfreelance@gmail.com',
@@ -253,6 +274,7 @@ export const seoConfig = {
     organization: {
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
+      '@id': 'https://manecharo.com/#organization',
       name: 'Manuel Echavarria Romero Design',
       alternateName: ['Manecharo Design', 'MER Design'],
       url: 'https://manecharo.com',
@@ -261,6 +283,7 @@ export const seoConfig = {
       description: 'Professional design services specializing in product design, UX/UI, and brand strategy.',
       founder: {
         '@type': 'Person',
+        '@id': 'https://manecharo.com/#person',
         name: 'Manuel Echavarria Romero',
       },
       address: {

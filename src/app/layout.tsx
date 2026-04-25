@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title: "Manuel Echavarria Romero | Product Designer & Design Strategist",
     description:
       "Designer and problem solver with 14 years of experience. Specialized in product design, UX/UI, brand strategy, and social impact design.",
-    images: ["/images/social/og-image.jpg"],
+    images: ["/images/social/twitter-image.jpg"],
     creator: "@Manecharo",
   },
   robots: {
