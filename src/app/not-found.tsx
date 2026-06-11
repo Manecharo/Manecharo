@@ -203,25 +203,25 @@ export default function NotFound() {
   const currentQuote = designerQuotes[language as keyof typeof designerQuotes][quoteIndex];
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 bg-cream">
+    <div className="min-h-screen flex items-center justify-center px-6 py-28 bg-charcoal text-bone">
       <div className="max-w-4xl w-full">
         {/* 404 Section */}
         <div className="text-center mb-16">
-          <h1 className="text-[200px] md:text-[300px] font-display font-bold text-charcoal/10 leading-none">
+          <h1 className="text-stroke text-[180px] md:text-[280px] font-display font-bold leading-none opacity-40">
             {currentMessages.title}
           </h1>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-charcoal mb-6 -mt-20">
+          <h2 className="text-4xl md:text-5xl font-display font-bold uppercase tracking-tightest text-bone mb-6 -mt-16 md:-mt-24">
             {currentMessages.subtitle}
           </h2>
-          <p className="text-xl text-charcoal/80 mb-4">
+          <p className="text-xl text-bone/75 mb-4">
             {currentMessages.message}
           </p>
-          <p className="text-lg text-charcoal/60 italic mb-12">
+          <p className="text-lg text-bone/45 italic mb-12">
             {currentMessages.excuse}
           </p>
           <Link
             href="/"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-navy text-white font-display uppercase tracking-wider hover:bg-gold hover:text-charcoal transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gold text-charcoal font-display text-sm font-bold uppercase tracking-wide2 hover:bg-bone transition-colors duration-300"
           >
             <ArrowLeft size={20} />
             {currentMessages.home}
@@ -229,17 +229,17 @@ export default function NotFound() {
         </div>
 
         {/* Designer Quote */}
-        <div className="border-t-4 border-gold pt-12">
+        <div className="border-t border-gold/50 pt-12">
           <blockquote className="text-center">
-            <p className="text-lg md:text-xl text-charcoal/90 leading-relaxed mb-6 font-serif italic">
+            <p className="text-lg md:text-xl text-bone/80 leading-relaxed mb-6 font-serif italic">
               &ldquo;{currentQuote.quote}&rdquo;
             </p>
-            <footer className="font-display text-charcoal">
-              <cite className="not-italic font-bold text-navy">
+            <footer className="font-display">
+              <cite className="not-italic font-bold text-gold">
                 — {currentQuote.author}
               </cite>
               {currentQuote.work && (
-                <div className="text-sm text-charcoal/60 mt-1">
+                <div className="text-sm text-bone/45 mt-1">
                   {currentQuote.work}
                 </div>
               )}

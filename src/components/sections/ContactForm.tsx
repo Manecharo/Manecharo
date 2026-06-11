@@ -155,15 +155,15 @@ export default function ContactForm() {
   if (!mounted) {
     return (
       <div className="space-y-6 animate-pulse">
-        <div className="h-12 bg-charcoal/10 rounded"></div>
-        <div className="h-12 bg-charcoal/10 rounded"></div>
-        <div className="h-12 bg-charcoal/10 rounded"></div>
+        <div className="h-12 bg-bone/5 rounded"></div>
+        <div className="h-12 bg-bone/5 rounded"></div>
+        <div className="h-12 bg-bone/5 rounded"></div>
         <div className="grid grid-cols-2 gap-6">
-          <div className="h-12 bg-charcoal/10 rounded"></div>
-          <div className="h-12 bg-charcoal/10 rounded"></div>
+          <div className="h-12 bg-bone/5 rounded"></div>
+          <div className="h-12 bg-bone/5 rounded"></div>
         </div>
-        <div className="h-40 bg-charcoal/10 rounded"></div>
-        <div className="h-14 bg-gold/50 rounded"></div>
+        <div className="h-40 bg-bone/5 rounded"></div>
+        <div className="h-14 bg-gold/30 rounded"></div>
       </div>
     );
   }
@@ -183,12 +183,16 @@ export default function ContactForm() {
         />
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-7"
+        style={{ colorScheme: "dark" }}
+      >
         {/* Name */}
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-display uppercase tracking-wider mb-2"
+            className="block font-display text-label uppercase tracking-wide2 text-bone/50 mb-2"
           >
             {t.contact.formName} *
           </label>
@@ -199,7 +203,7 @@ export default function ContactForm() {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors"
+            className="w-full border-0 border-b border-bone/20 bg-transparent px-0 py-3.5 text-bone transition-colors duration-300 focus:border-gold focus:outline-none"
           />
         </div>
 
@@ -207,7 +211,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-display uppercase tracking-wider mb-2"
+            className="block font-display text-label uppercase tracking-wide2 text-bone/50 mb-2"
           >
             {t.contact.formEmail} *
           </label>
@@ -218,7 +222,7 @@ export default function ContactForm() {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors"
+            className="w-full border-0 border-b border-bone/20 bg-transparent px-0 py-3.5 text-bone transition-colors duration-300 focus:border-gold focus:outline-none"
           />
         </div>
 
@@ -226,7 +230,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="projectType"
-            className="block text-sm font-display uppercase tracking-wider mb-2"
+            className="block font-display text-label uppercase tracking-wide2 text-bone/50 mb-2"
           >
             {t.contact.formProjectType}
           </label>
@@ -235,7 +239,7 @@ export default function ContactForm() {
             name="projectType"
             value={formData.projectType}
             onChange={handleChange}
-            className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors bg-pure-white"
+            className="w-full border-0 border-b border-bone/20 bg-transparent px-0 py-3.5 text-bone transition-colors duration-300 focus:border-gold focus:outline-none"
           >
             <option value="">{t.contact.selectType}</option>
             <option value="product-design">{t.contact.projectTypes.productDesign}</option>
@@ -251,7 +255,7 @@ export default function ContactForm() {
           <div>
             <label
               htmlFor="budget"
-              className="block text-sm font-display uppercase tracking-wider mb-2"
+              className="block font-display text-label uppercase tracking-wide2 text-bone/50 mb-2"
             >
               {t.contact.formBudget}
             </label>
@@ -260,7 +264,7 @@ export default function ContactForm() {
               name="budget"
               value={formData.budget}
               onChange={handleChange}
-              className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors bg-pure-white"
+              className="w-full border-0 border-b border-bone/20 bg-transparent px-0 py-3.5 text-bone transition-colors duration-300 focus:border-gold focus:outline-none"
             >
               <option value="">{t.contact.selectRange}</option>
               <option value="<5k">{t.contact.budgetRanges.under5k}</option>
@@ -274,7 +278,7 @@ export default function ContactForm() {
           <div>
             <label
               htmlFor="timeline"
-              className="block text-sm font-display uppercase tracking-wider mb-2"
+              className="block font-display text-label uppercase tracking-wide2 text-bone/50 mb-2"
             >
               {t.contact.formTimeline}
             </label>
@@ -283,7 +287,7 @@ export default function ContactForm() {
               name="timeline"
               value={formData.timeline}
               onChange={handleChange}
-              className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors bg-pure-white"
+              className="w-full border-0 border-b border-bone/20 bg-transparent px-0 py-3.5 text-bone transition-colors duration-300 focus:border-gold focus:outline-none"
             >
               <option value="">{t.contact.selectTimeline}</option>
               <option value="urgent">{t.contact.timelines.urgent}</option>
@@ -298,7 +302,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="message"
-            className="block text-sm font-display uppercase tracking-wider mb-2"
+            className="block font-display text-label uppercase tracking-wide2 text-bone/50 mb-2"
           >
             {t.contact.formMessage} *
           </label>
@@ -309,7 +313,7 @@ export default function ContactForm() {
             rows={6}
             value={formData.message}
             onChange={handleChange}
-            className="w-full px-4 py-3 border-2 border-charcoal/20 focus:border-gold focus:outline-none transition-colors resize-none"
+            className="w-full resize-none border-0 border-b border-bone/20 bg-transparent px-0 py-3.5 text-bone placeholder:text-bone/30 transition-colors duration-300 focus:border-gold focus:outline-none"
             placeholder={t.contact.formPlaceholder}
           />
         </div>
@@ -332,7 +336,8 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === "sending" || isOnCooldown}
-          className="w-full px-8 py-4 bg-gold text-charcoal font-display uppercase tracking-wider transition-all duration-200 hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+          data-cursor="open"
+          className="flex w-full items-center justify-center gap-3 bg-gold px-8 py-5 font-display text-sm font-bold uppercase tracking-wide2 text-charcoal transition-colors duration-300 hover:bg-bone disabled:cursor-not-allowed disabled:opacity-50"
         >
           {status === "sending" ? (
             <>
@@ -349,7 +354,7 @@ export default function ContactForm() {
 
         {/* Status Messages */}
         {status === "success" && (
-          <div className="p-6 bg-sage/20 border-2 border-sage text-charcoal animate-fade-in-up">
+          <div className="p-6 border border-gold bg-gold/10 text-bone animate-fade-in-up">
             <p className="text-base leading-relaxed">
               {t.contact.formSuccess}
             </p>
@@ -357,13 +362,13 @@ export default function ContactForm() {
         )}
 
         {status === "error" && (
-          <div className="p-4 bg-terracotta/20 border-2 border-terracotta text-charcoal">
+          <div className="p-4 border border-red bg-red/10 text-bone">
             <p className="font-display">{errorMessage || t.contact.formError}</p>
           </div>
         )}
 
         {status === "cooldown" && (
-          <div className="p-6 bg-gold/20 border-2 border-gold text-charcoal animate-fade-in-up">
+          <div className="p-6 border border-gold/60 bg-gold/5 text-bone animate-fade-in-up">
             <p className="text-base leading-relaxed">
               {t.contact.formCooldown}
             </p>

@@ -1,33 +1,43 @@
-"use client";
-
-import ProjectsGrid from "@/components/sections/ProjectsGrid";
+import { client } from "@/lib/sanity/client";
 import PageTransition from "@/components/layout/PageTransition";
-import { useLanguage } from "@/lib/i18n/LanguageContext";
-import FormattedText from "@/components/ui/FormattedText";
+import WorkExperience, { WorkProject } from "@/components/work/WorkExperience";
 
-export default function WorkPage() {
-  const { t } = useLanguage();
+// Match the freshness of the old client-side fetch: render on demand
+// so newly published projects appear immediately.
+export const dynamic = "force-dynamic";
+
+async function getProjects(): Promise<WorkProject[]> {
+  if (!client) {
+    return [];
+  }
+  try {
+    return await client.fetch(
+      `*[_type == "project" && defined(publishedAt)] | order(order asc, year desc) {
+        _id,
+        title,
+        title_es,
+        title_it,
+        slug,
+        year,
+        excerpt,
+        excerpt_es,
+        excerpt_it,
+        services,
+        mainImage
+      }`
+    );
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return [];
+  }
+}
+
+export default async function WorkPage() {
+  const projects = await getProjects();
+
   return (
     <PageTransition>
-      <div className="min-h-screen py-24 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <header className="mb-20 text-center max-w-4xl mx-auto">
-            <div className="inline-block mb-4 px-4 py-2 bg-navy/10 text-navy text-sm font-display uppercase tracking-wider">
-              Portfolio
-            </div>
-            <h1 className="text-h1 font-display mb-8 leading-tight">
-              {t.work.title}
-            </h1>
-            <p className="text-xl text-charcoal/80 leading-relaxed whitespace-pre-line">
-              <FormattedText text={t.work.subtitle} />
-            </p>
-          </header>
-
-          {/* Projects Grid with Filters */}
-          <ProjectsGrid />
-        </div>
-      </div>
+      <WorkExperience initialProjects={projects} />
     </PageTransition>
   );
 }

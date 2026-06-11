@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/layout/Navigation";
@@ -8,6 +8,10 @@ import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 import StructuredData from "@/components/seo/StructuredData";
 import { seoConfig, generateStructuredData } from "@/lib/seo/config";
+import SmoothScroll from "@/components/experience/SmoothScroll";
+import Cursor from "@/components/experience/Cursor";
+import Grain from "@/components/experience/Grain";
+import Preloader from "@/components/experience/Preloader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -88,6 +92,10 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -105,6 +113,10 @@ export default function RootLayout({
       </head>
       <body>
         <LanguageProvider>
+          <Preloader />
+          <SmoothScroll />
+          <Cursor />
+          <Grain />
           <LanguageSwitcher />
           <Logo />
           <Navigation />

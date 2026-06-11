@@ -9,7 +9,11 @@ export default function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
 
   // Don't show language switcher on blog/thoughts/studio pages
-  if (pathname?.startsWith('/blog') || pathname?.startsWith('/thoughts') || pathname?.startsWith('/studio')) {
+  if (
+    pathname?.startsWith("/blog") ||
+    pathname?.startsWith("/thoughts") ||
+    pathname?.startsWith("/studio")
+  ) {
     return null;
   }
 
@@ -20,21 +24,22 @@ export default function LanguageSwitcher() {
   ];
 
   return (
-    <div className="hidden md:flex fixed top-6 left-6 z-50 gap-1 backdrop-blur-md bg-charcoal/10 p-1 rounded-sm shadow-lg">
+    <div className="fixed top-6 left-6 z-60 hidden gap-1 border border-bone/10 bg-charcoal/40 p-1 backdrop-blur-md md:flex">
       {languages.map((lang) => (
         <button
           key={lang.code}
           onClick={() => setLanguage(lang.code)}
           className={`
-            px-4 py-2 font-display text-xs uppercase tracking-widest
-            transition-all duration-300 rounded-sm
+            px-3.5 py-2 font-display text-[11px] uppercase tracking-widest
+            transition-all duration-300
             ${
               language === lang.code
-                ? "bg-navy text-white font-bold shadow-sm"
-                : "text-charcoal hover:text-navy hover:bg-white/20"
+                ? "bg-gold font-bold text-charcoal"
+                : "text-bone/50 hover:bg-bone/5 hover:text-bone"
             }
           `}
           aria-label={`Switch to ${lang.label}`}
+          aria-pressed={language === lang.code}
         >
           {lang.label}
         </button>

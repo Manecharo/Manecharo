@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/lib/sanity/client";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import ProjectGallery from "@/components/ui/ProjectGallery";
+import TextReveal from "@/components/experience/TextReveal";
+import { Parallax, Reveal, Stagger } from "@/components/experience/Reveal";
 
 interface Project {
   _id: string;
@@ -49,19 +51,19 @@ const portableTextComponents = {
         return null;
       }
       return (
-        <figure className="my-8">
-          <div className="relative w-full shadow-lg">
+        <figure className="my-10">
+          <div className="relative w-full overflow-hidden">
             <Image
               src={urlFor(value).width(1200).url()}
               alt={value.alt || "Project image"}
               width={1200}
               height={800}
-              className="w-full h-auto object-contain"
+              className="h-auto w-full object-contain"
               sizes="(max-width: 1024px) 100vw, 1024px"
             />
           </div>
           {value.caption && (
-            <figcaption className="mt-2 text-sm text-charcoal/60 text-center">
+            <figcaption className="mt-3 text-center text-sm text-bone/50">
               {value.caption}
             </figcaption>
           )}
@@ -74,31 +76,31 @@ const portableTextComponents = {
       }
 
       const getEmbedUrl = (url: string) => {
-        if (url.includes('youtube.com') || url.includes('youtu.be')) {
-          const videoId = url.includes('youtu.be')
-            ? url.split('youtu.be/')[1]?.split('?')[0]
-            : url.split('v=')[1]?.split('&')[0];
+        if (url.includes("youtube.com") || url.includes("youtu.be")) {
+          const videoId = url.includes("youtu.be")
+            ? url.split("youtu.be/")[1]?.split("?")[0]
+            : url.split("v=")[1]?.split("&")[0];
           return `https://www.youtube.com/embed/${videoId}`;
         }
-        if (url.includes('vimeo.com')) {
-          const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
+        if (url.includes("vimeo.com")) {
+          const videoId = url.split("vimeo.com/")[1]?.split("?")[0];
           return `https://player.vimeo.com/video/${videoId}`;
         }
         return url;
       };
 
       return (
-        <figure className="my-8">
-          <div className="relative w-full aspect-video shadow-lg">
+        <figure className="my-10">
+          <div className="relative aspect-video w-full">
             <iframe
               src={getEmbedUrl(value.url)}
-              className="absolute inset-0 w-full h-full"
+              className="absolute inset-0 h-full w-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
           {value.caption && (
-            <figcaption className="mt-2 text-sm text-charcoal/60 text-center">
+            <figcaption className="mt-3 text-center text-sm text-bone/50">
               {value.caption}
             </figcaption>
           )}
@@ -108,52 +110,61 @@ const portableTextComponents = {
   },
   block: {
     h2: ({ children }: any) => (
-      <h2 className="text-3xl font-display font-bold mt-12 mb-6">{children}</h2>
+      <h2 className="mb-6 mt-14 font-display text-3xl font-bold tracking-tightest text-bone">
+        {children}
+      </h2>
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-2xl font-display font-bold mt-8 mb-4">{children}</h3>
+      <h3 className="mb-4 mt-10 font-display text-2xl font-bold tracking-tightest text-bone">
+        {children}
+      </h3>
     ),
     normal: ({ children }: any) => (
-      <p className="text-lg leading-relaxed mb-6 text-charcoal/80">{children}</p>
+      <p className="mb-6 text-lg leading-relaxed text-bone/75">{children}</p>
     ),
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="list-disc list-inside mb-6 space-y-2">{children}</ul>
+      <ul className="mb-6 list-inside list-disc space-y-2 text-bone/75 marker:text-gold">
+        {children}
+      </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="list-decimal list-inside mb-6 space-y-2">{children}</ol>
+      <ol className="mb-6 list-inside list-decimal space-y-2 text-bone/75 marker:text-gold">
+        {children}
+      </ol>
     ),
   },
   marks: {
-    strong: ({ children }: any) => <strong className="font-bold">{children}</strong>,
+    strong: ({ children }: any) => (
+      <strong className="font-bold text-bone">{children}</strong>
+    ),
     em: ({ children }: any) => <em className="italic">{children}</em>,
     link: ({ value, children }: any) => {
-      const href = value.href || '';
+      const href = value.href || "";
 
       // Check if the link is a YouTube or Vimeo video
-      const isYouTube = href.includes('youtube.com') || href.includes('youtu.be');
-      const isVimeo = href.includes('vimeo.com');
+      const isYouTube = href.includes("youtube.com") || href.includes("youtu.be");
+      const isVimeo = href.includes("vimeo.com");
 
       if (isYouTube || isVimeo) {
-        // Convert video links to embedded players
         let embedUrl = href;
         if (isYouTube) {
-          const videoId = href.includes('youtu.be')
-            ? href.split('youtu.be/')[1]?.split('?')[0]
-            : href.split('v=')[1]?.split('&')[0];
+          const videoId = href.includes("youtu.be")
+            ? href.split("youtu.be/")[1]?.split("?")[0]
+            : href.split("v=")[1]?.split("&")[0];
           embedUrl = `https://www.youtube.com/embed/${videoId}`;
         } else if (isVimeo) {
-          const videoId = href.split('vimeo.com/')[1]?.split('?')[0];
+          const videoId = href.split("vimeo.com/")[1]?.split("?")[0];
           embedUrl = `https://player.vimeo.com/video/${videoId}`;
         }
 
         return (
-          <figure className="my-8">
-            <div className="relative w-full aspect-video shadow-lg">
+          <figure className="my-10">
+            <div className="relative aspect-video w-full">
               <iframe
                 src={embedUrl}
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 h-full w-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -162,13 +173,12 @@ const portableTextComponents = {
         );
       }
 
-      // Regular link
       return (
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gold underline hover:text-gold/80 transition-colors"
+          className="text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:text-bone"
         >
           {children}
         </a>
@@ -177,187 +187,235 @@ const portableTextComponents = {
   },
 };
 
-export default function ProjectDetailClient({ project, prev, next }: ProjectDetailClientProps) {
-  const { language } = useLanguage();
+export default function ProjectDetailClient({
+  project,
+  prev,
+  next,
+}: ProjectDetailClientProps) {
+  const { t, language } = useLanguage();
 
-  const localizedTitle = language === 'es' ? (project.title_es || project.title)
-    : language === 'it' ? (project.title_it || project.title)
-    : project.title;
-  const localizedExcerpt = language === 'es' ? (project.excerpt_es || project.excerpt)
-    : language === 'it' ? (project.excerpt_it || project.excerpt)
-    : project.excerpt;
-  const localizedDescription = language === 'es' ? (project.description_es || project.description)
-    : language === 'it' ? (project.description_it || project.description)
-    : project.description;
+  const localizedTitle =
+    language === "es"
+      ? project.title_es || project.title
+      : language === "it"
+        ? project.title_it || project.title
+        : project.title;
+  const localizedExcerpt =
+    language === "es"
+      ? project.excerpt_es || project.excerpt
+      : language === "it"
+        ? project.excerpt_it || project.excerpt
+        : project.excerpt;
+  const localizedDescription =
+    language === "es"
+      ? project.description_es || project.description
+      : language === "it"
+        ? project.description_it || project.description
+        : project.description;
 
-  const localizedPrevTitle = prev ? (
-    language === 'es' ? (prev.title_es || prev.title)
-      : language === 'it' ? (prev.title_it || prev.title)
-      : prev.title
-  ) : null;
+  const localizedPrevTitle = prev
+    ? language === "es"
+      ? prev.title_es || prev.title
+      : language === "it"
+        ? prev.title_it || prev.title
+        : prev.title
+    : null;
 
-  const localizedNextTitle = next ? (
-    language === 'es' ? (next.title_es || next.title)
-      : language === 'it' ? (next.title_it || next.title)
-      : next.title
-  ) : null;
+  const localizedNextTitle = next
+    ? language === "es"
+      ? next.title_es || next.title
+      : language === "it"
+        ? next.title_it || next.title
+        : next.title
+    : null;
 
   return (
-    <article className="min-h-screen py-16 md:py-24 px-4 md:px-6 bg-cream">
-      <div className="max-w-6xl mx-auto">
+    <article className="min-h-screen bg-charcoal pb-20 pt-28 text-bone md:pt-32">
+      <div className="px-6 md:px-12">
         {/* Back to Work */}
         <Link
           href="/work"
-          className="inline-flex items-center gap-2 mb-8 text-charcoal hover:text-gold transition-colors"
+          className="group mb-8 inline-flex items-center gap-2 text-bone/60 transition-colors hover:text-gold"
         >
-          <ArrowLeft size={20} />
-          <span className="font-display uppercase tracking-wider text-sm">
-            Back to Work
+          <ArrowLeft
+            size={18}
+            className="transition-transform duration-300 group-hover:-translate-x-1"
+          />
+          <span className="font-display text-xs font-bold uppercase tracking-wide2">
+            {t.xp.back}
           </span>
         </Link>
 
-        {/* Hero Section */}
-        <header className="mb-12 md:mb-16">
-          <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-start">
-            {/* Left: Project Info */}
-            <div className="md:col-span-1 md:sticky md:top-24">
-              <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight">
-                {localizedTitle}
-              </h1>
-
-              {/* Meta Info */}
-              <div className="space-y-4 mb-8 text-sm">
-                {project.client && (
-                  <div>
-                    <div className="uppercase tracking-wider text-charcoal/60 font-display mb-1">
-                      Client
-                    </div>
-                    <div className="text-charcoal font-medium">{project.client}</div>
-                  </div>
-                )}
-
-                {project.year && (
-                  <div>
-                    <div className="uppercase tracking-wider text-charcoal/60 font-display mb-1">
-                      Year
-                    </div>
-                    <div className="text-charcoal font-medium">{project.year}</div>
-                  </div>
-                )}
-
-                {project.services && project.services.length > 0 && (
-                  <div>
-                    <div className="uppercase tracking-wider text-charcoal/60 font-display mb-2">
-                      Services
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {project.services.map((service) => (
-                        <span
-                          key={service}
-                          className="px-3 py-1 text-xs uppercase tracking-wider bg-pure-white border border-charcoal/20"
-                        >
-                          {service}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {project.link && (
-                  <div>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-gold hover:text-gold/80 transition-colors font-display"
-                    >
-                      <ExternalLink size={16} />
-                      <span>Visit Project</span>
-                    </a>
-                  </div>
-                )}
-              </div>
-
-              {/* Excerpt */}
-              {localizedExcerpt && (
-                <p className="text-base leading-relaxed text-charcoal/70 mb-6">
-                  {localizedExcerpt}
-                </p>
-              )}
-            </div>
-
-            {/* Right: Main Image */}
-            <div className="md:col-span-2">
-              {project.mainImage && (
-                <div className="relative aspect-[4/3] shadow-xl overflow-hidden">
-                  <Image
-                    src={urlFor(project.mainImage).width(1200).url()}
-                    alt={project.mainImage.alt || localizedTitle}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 66vw"
-                    priority
-                  />
-                </div>
-              )}
-            </div>
-          </div>
+        {/* Title */}
+        <header className="mb-10 md:mb-14">
+          <TextReveal
+            text={localizedTitle}
+            as="h1"
+            className="max-w-6xl font-display text-display font-bold uppercase leading-[0.95] tracking-tightest text-bone"
+          />
         </header>
+      </div>
+
+      {/* Cinematic hero image */}
+      {project.mainImage && (
+        <Parallax
+          speed={9}
+          className="relative mb-12 h-[52vh] w-full md:mb-16 md:h-[72vh]"
+          innerClassName="absolute -inset-y-[12%] inset-x-0"
+        >
+          <Image
+            src={urlFor(project.mainImage).width(2000).url()}
+            alt={project.mainImage.alt || localizedTitle}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-charcoal/30"
+          />
+        </Parallax>
+      )}
+
+      <div className="px-6 md:px-12">
+        {/* Meta strip */}
+        <Stagger
+          selector="[data-meta]"
+          className="mb-14 grid grid-cols-2 gap-px border border-bone/10 bg-bone/10 md:mb-20 md:grid-cols-4"
+        >
+          {project.client && (
+            <div data-meta className="bg-charcoal p-5 md:p-7">
+              <div className="mb-2 font-display text-label uppercase tracking-wide2 text-bone/45">
+                {t.xp.client}
+              </div>
+              <div className="font-display text-lg font-bold text-bone">
+                {project.client}
+              </div>
+            </div>
+          )}
+          {project.year && (
+            <div data-meta className="bg-charcoal p-5 md:p-7">
+              <div className="mb-2 font-display text-label uppercase tracking-wide2 text-bone/45">
+                {t.xp.year}
+              </div>
+              <div className="font-display text-lg font-bold text-bone">
+                {project.year}
+              </div>
+            </div>
+          )}
+          {project.services && project.services.length > 0 && (
+            <div data-meta className="bg-charcoal p-5 md:p-7">
+              <div className="mb-2 font-display text-label uppercase tracking-wide2 text-bone/45">
+                {t.xp.services}
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {project.services.map((service) => (
+                  <span
+                    key={service}
+                    className="border border-bone/15 px-2 py-1 text-[10px] uppercase tracking-wider text-bone/60"
+                  >
+                    {service.replace(/-/g, " ")}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          {project.link && (
+            <div data-meta className="bg-charcoal p-5 md:p-7">
+              <div className="mb-2 font-display text-label uppercase tracking-wide2 text-bone/45">
+                Link
+              </div>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="open"
+                className="group inline-flex items-center gap-2 font-display text-lg font-bold text-gold transition-colors hover:text-bone"
+              >
+                {t.xp.visit}
+                <ArrowUpRight
+                  size={16}
+                  className="transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </a>
+            </div>
+          )}
+        </Stagger>
+
+        {/* Lede */}
+        {localizedExcerpt && (
+          <Reveal className="mb-16 md:mb-24">
+            <p className="max-w-3xl font-display text-xl leading-snug text-bone/85 md:text-3xl">
+              {localizedExcerpt}
+            </p>
+          </Reveal>
+        )}
 
         {/* Description Content */}
         {localizedDescription && localizedDescription.length > 0 && (
-          <section className="mb-16 max-w-4xl mx-auto">
-            <div className="prose prose-lg max-w-none">
-              <PortableText
-                value={localizedDescription}
-                components={portableTextComponents}
-              />
-            </div>
+          <section className="mx-auto mb-16 max-w-4xl md:mb-24">
+            <PortableText
+              value={localizedDescription}
+              components={portableTextComponents}
+            />
           </section>
         )}
 
         {/* Gallery */}
         {project.gallery && project.gallery.length > 0 && (
-          <section className="mb-16">
-            <h2 className="text-3xl font-display font-bold mb-8 text-center">Project Gallery</h2>
+          <section className="mb-16 md:mb-24">
+            <Reveal>
+              <h2 className="mb-8 font-display text-h2 font-bold uppercase tracking-tightest text-bone md:mb-12">
+                {t.xp.gallery}
+              </h2>
+            </Reveal>
             <ProjectGallery images={project.gallery} />
           </section>
         )}
 
-        {/* Navigation */}
-        <nav className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-12 border-t border-charcoal/20">
+        {/* Prev / Next */}
+        <nav className="grid grid-cols-1 gap-px border border-bone/10 bg-bone/10 sm:grid-cols-2">
           {prev ? (
             <Link
               href={`/work/${prev.slug.current}`}
-              className="flex items-center gap-3 text-charcoal hover:text-gold transition-colors group"
+              data-cursor="view"
+              className="group bg-charcoal p-7 transition-colors duration-300 hover:bg-coal-700 md:p-10"
             >
-              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-              <div>
-                <div className="text-xs uppercase tracking-wider text-charcoal/60 mb-1">
-                  Previous Project
-                </div>
-                <div className="font-display text-lg">{localizedPrevTitle}</div>
+              <div className="mb-3 flex items-center gap-2 font-display text-label uppercase tracking-wide2 text-bone/45">
+                <ArrowLeft
+                  size={14}
+                  className="transition-transform duration-300 group-hover:-translate-x-1"
+                />
+                {t.xp.prevProject}
+              </div>
+              <div className="font-display text-2xl font-bold uppercase tracking-tightest text-bone transition-colors group-hover:text-gold md:text-3xl">
+                {localizedPrevTitle}
               </div>
             </Link>
           ) : (
-            <div />
+            <div className="bg-charcoal" />
           )}
 
           {next ? (
             <Link
               href={`/work/${next.slug.current}`}
-              className="flex items-center gap-3 text-charcoal hover:text-gold transition-colors text-right group"
+              data-cursor="view"
+              className="group bg-charcoal p-7 text-right transition-colors duration-300 hover:bg-coal-700 md:p-10"
             >
-              <div>
-                <div className="text-xs uppercase tracking-wider text-charcoal/60 mb-1">
-                  Next Project
-                </div>
-                <div className="font-display text-lg">{localizedNextTitle}</div>
+              <div className="mb-3 flex items-center justify-end gap-2 font-display text-label uppercase tracking-wide2 text-bone/45">
+                {t.xp.nextProject}
+                <ArrowRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </div>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              <div className="font-display text-2xl font-bold uppercase tracking-tightest text-bone transition-colors group-hover:text-gold md:text-3xl">
+                {localizedNextTitle}
+              </div>
             </Link>
           ) : (
-            <div />
+            <div className="bg-charcoal" />
           )}
         </nav>
       </div>

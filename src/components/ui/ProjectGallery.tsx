@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { urlFor } from "@/lib/sanity/client";
+import { lockScroll, unlockScroll } from "@/lib/motion/hooks";
 
 interface ProjectGalleryProps {
   images: any[];
@@ -17,11 +18,13 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
     setCurrentIndex(index);
     setIsOpen(true);
     document.body.style.overflow = "hidden";
+    lockScroll();
   };
 
   const closeLightbox = () => {
     setIsOpen(false);
     document.body.style.overflow = "auto";
+    unlockScroll();
   };
 
   const goToPrevious = () => {
@@ -46,20 +49,22 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
           <div key={index} className="group">
             <button
               onClick={() => openLightbox(index)}
+              data-cursor="view"
               className="block w-full cursor-zoom-in relative"
             >
-              <div className="relative aspect-[4/3] shadow-lg overflow-hidden group-hover:shadow-2xl transition-shadow duration-300">
+              <div className="relative aspect-[4/3] overflow-hidden border border-bone/10">
                 <Image
                   src={urlFor(image).width(800).url()}
                   alt={image.alt || `Gallery image ${index + 1}`}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
+                <div className="absolute inset-0 bg-charcoal/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
             </button>
             {image.caption && (
-              <p className="mt-3 text-sm text-charcoal/70 leading-relaxed px-1">
+              <p className="mt-3 text-sm text-bone/55 leading-relaxed px-1">
                 {image.caption}
               </p>
             )}
