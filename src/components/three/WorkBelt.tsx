@@ -22,6 +22,12 @@ interface BeltProps {
   onActiveChange: (index: number) => void;
   onSelect: (index: number) => void;
   controlsRef?: MutableRefObject<BeltControls | null>;
+  /** Mousewheel scrubs the belt. Disable when the belt sits in a normal scroll flow. */
+  enableWheel?: boolean;
+  /** The entrance plays once this turns true (e.g. section scrolled into view). */
+  play?: boolean;
+  /** 0..1 — how strongly distant panels dissolve into the dark. */
+  edgeFade?: number;
 }
 
 const GAP = 4.6;
@@ -57,6 +63,7 @@ uniform float uFocus;
 uniform float uDim;
 uniform float uAlpha;
 uniform float uVel;
+uniform float uEdge;
 uniform vec3 uTint;
 varying vec2 vUv;
 
@@ -82,7 +89,10 @@ void main() {
               smoothstep(0.0, 0.07, uv.y) * smoothstep(1.0, 0.93, uv.y);
   col *= 0.78 + vig * 0.22;
 
-  gl_FragColor = vec4(col, uAlpha);
+  // optional depth fog: distant panels dissolve instead of lingering
+  float a = uAlpha * (1.0 - smoothstep(0.5, 0.95, uDim) * uEdge);
+
+  gl_FragColor = vec4(col, a);
 }
 `;
 
@@ -93,9 +103,18 @@ const TINTS = [
   new THREE.Color("#1d2b30"),
 ];
 
-function Belt({ items, onActiveChange, onSelect, controlsRef }: BeltProps) {
+function Belt({
+  items,
+  onActiveChange,
+  onSelect,
+  controlsRef,
+  enableWheel = true,
+  play = true,
+  edgeFade = 0,
+}: BeltProps) {
   const meshes = useRef<(THREE.Mesh | null)[]>([]);
   const hovered = useRef<number | null>(null);
+  const introduced = useRef(false);
   const lastActive = useRef(-1);
   const pointerN = useRef({ x: 0, y: 0 });
   const drag = useRef({
@@ -125,10 +144,12 @@ function Belt({ items, onActiveChange, onSelect, controlsRef }: BeltProps) {
               uAlpha: { value: 0 },
               uVel: { value: 0 },
               uHover: { value: 0 },
+              uEdge: { value: edgeFade },
               uTint: { value: TINTS[i % TINTS.length] },
             },
           })
       ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- edgeFade is static per mount
     [items]
   );
 
@@ -163,8 +184,19 @@ function Belt({ items, onActiveChange, onSelect, controlsRef }: BeltProps) {
     };
   }, [items, materials]);
 
-  // Entrance: belt glides in, panels fade up
+  // Entrance: belt glides in, panels fade up. Deferred until `play` so a
+  // belt mounted below the fold makes its entrance when scrolled into view.
   useEffect(() => {
+    if (!play) return;
+    if (introduced.current) {
+      // Materials were rebuilt after the entrance already ran (e.g. a
+      // language switch recreated the items) — skip the show, stay visible.
+      materials.forEach((m) => {
+        m.uniforms.uAlpha.value = 1;
+      });
+      return;
+    }
+    introduced.current = true;
     const d = drag.current;
     d.offset = -GAP * 1.35;
     const slide = gsap.to(d, { offset: 0, duration: 1.7, ease: "power3.out" });
@@ -174,9 +206,16 @@ function Belt({ items, onActiveChange, onSelect, controlsRef }: BeltProps) {
     return () => {
       slide.kill();
       fades.forEach((f) => f.kill());
-      materials.forEach((m) => m.dispose());
     };
-  }, [materials]);
+  }, [play, materials]);
+
+  // Dispose GPU programs when the reel changes or the belt unmounts
+  useEffect(
+    () => () => {
+      materials.forEach((m) => m.dispose());
+    },
+    [materials]
+  );
 
   // Imperative controls for keyboard access
   useEffect(() => {
@@ -231,16 +270,16 @@ function Belt({ items, onActiveChange, onSelect, controlsRef }: BeltProps) {
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerup", onPointerUp);
     window.addEventListener("pointercancel", onPointerUp);
-    el.addEventListener("wheel", onWheel, { passive: false });
+    if (enableWheel) el.addEventListener("wheel", onWheel, { passive: false });
 
     return () => {
       el.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
       window.removeEventListener("pointercancel", onPointerUp);
-      el.removeEventListener("wheel", onWheel);
+      if (enableWheel) el.removeEventListener("wheel", onWheel);
     };
-  }, [gl, viewport.width]);
+  }, [gl, viewport.width, enableWheel]);
 
   useFrame((state, delta) => {
     if (document.hidden) return;
@@ -354,24 +393,34 @@ function Belt({ items, onActiveChange, onSelect, controlsRef }: BeltProps) {
   );
 }
 
-interface WorkBeltProps extends BeltProps {
+interface WorkBeltProps extends Omit<BeltProps, "play"> {
   low?: boolean;
+  /** Drives the render loop and the entrance; pause when offscreen. */
+  active?: boolean;
+  /** "none" owns all touch (full-screen stage); "pan-y" keeps page scroll alive. */
+  touchAction?: "none" | "pan-y";
 }
 
-export default function WorkBelt({ low = false, ...props }: WorkBeltProps) {
+export default function WorkBelt({
+  low = false,
+  active = true,
+  touchAction = "none",
+  ...props
+}: WorkBeltProps) {
   return (
     <CanvasGuard>
       <Canvas
         dpr={low ? [1, 1.5] : [1, 1.75]}
+        frameloop={active ? "always" : "never"}
         camera={{ position: [0, 0, 7], fov: 50 }}
         gl={{
           antialias: true,
           alpha: true,
           powerPreference: "high-performance",
         }}
-        style={{ position: "absolute", inset: 0, touchAction: "none" }}
+        style={{ position: "absolute", inset: 0, touchAction }}
       >
-        <Belt {...props} />
+        <Belt {...props} play={active} />
       </Canvas>
     </CanvasGuard>
   );

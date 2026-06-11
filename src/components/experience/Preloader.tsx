@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "@/lib/motion/gsap";
 import { lockScroll, unlockScroll } from "@/lib/motion/hooks";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const SEEN_KEY = "mer:preloaded";
 
@@ -12,6 +13,7 @@ const SEEN_KEY = "mer:preloaded";
  * Skipped entirely for repeat visits and reduced-motion users.
  */
 export default function Preloader() {
+  const { t } = useLanguage();
   const [show, setShow] = useState(true);
   const rootRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
@@ -98,7 +100,7 @@ export default function Preloader() {
           Manuel Echavarria Romero
         </span>
         <span className="font-display text-label uppercase tracking-wide2 text-bone/50">
-          Portfolio
+          {t.xp.portfolio}
         </span>
       </div>
 
@@ -119,7 +121,7 @@ export default function Preloader() {
 
       <div className="flex items-end justify-between">
         <span className="font-display text-label uppercase tracking-wide2 text-bone/50">
-          Designer &amp; Problem Solver
+          {t.hero.subtitle}
         </span>
         <span
           ref={counterRef}

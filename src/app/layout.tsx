@@ -5,7 +5,6 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import Logo from "@/components/layout/Logo";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
-import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 import StructuredData from "@/components/seo/StructuredData";
 import { seoConfig, generateStructuredData } from "@/lib/seo/config";
 import SmoothScroll from "@/components/experience/SmoothScroll";
@@ -117,7 +116,6 @@ export default function RootLayout({
           <SmoothScroll />
           <Cursor />
           <Grain />
-          <LanguageSwitcher />
           <Logo />
           <Navigation />
           <main>{children}</main>

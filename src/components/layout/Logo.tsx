@@ -12,13 +12,14 @@ export default function Logo() {
     return null;
   }
 
+  // Desktop shows the logo inside the top navigation bar instead.
   return (
     <Link
       href="/"
-      className="group fixed top-6 left-6 z-[60] md:top-8 md:right-8 md:left-auto"
+      className="group fixed top-6 left-6 z-[60] md:hidden"
       aria-label="Go to homepage"
     >
-      <div className="relative h-10 w-10 transition-transform duration-300 ease-out-expo group-hover:scale-110 md:h-14 md:w-14">
+      <div className="relative h-10 w-10 transition-transform duration-300 ease-out-expo group-hover:scale-110">
         <Image
           src="/images/logo/logo_Asvg.svg"
           alt="MER"

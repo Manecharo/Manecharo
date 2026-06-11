@@ -21,11 +21,14 @@ export default function Hero() {
   const isDesktop = useIsDesktop();
   const sectionRef = useRef<HTMLElement>(null);
   const nameRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [canvasActive, setCanvasActive] = useState(true);
   const [webgl, setWebgl] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setWebgl(webglAvailable());
+    setMounted(true);
   }, []);
 
   // Pause the GPU when the hero leaves the viewport
@@ -58,30 +61,62 @@ export default function Hero() {
   }, [reduced]);
 
   const showCanvas = webgl && !reduced;
+  const showVideo = mounted && !reduced;
+
+  // The video breathes with the section: paused whenever the hero is offscreen.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (canvasActive) video.play().catch(() => {});
+    else video.pause();
+  }, [canvasActive, showVideo]);
 
   return (
     <section
       ref={sectionRef}
       className="relative h-[100svh] w-full overflow-hidden bg-charcoal"
     >
+      {/* Film layer: the reel runs graded-down beneath the particle field */}
+      {showVideo && (
+        <>
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/videos/hero-poster.svg"
+            aria-hidden
+            className="absolute inset-0 h-full w-full object-cover opacity-65"
+            style={{ filter: "saturate(0.7) contrast(1.05) brightness(0.55)" }}
+          >
+            <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Charcoal wash so the particles and typography sit on top */}
+          <div aria-hidden className="absolute inset-0 bg-charcoal/35" />
+        </>
+      )}
+
       {/* WebGL particle field / static fallback */}
       {showCanvas ? (
         <HeroCanvas density={isDesktop ? 1 : 0.5} active={canvasActive} />
       ) : (
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(120% 90% at 70% 20%, rgba(51,77,92,0.55) 0%, rgba(10,10,10,0) 55%), radial-gradient(80% 60% at 20% 85%, rgba(238,200,78,0.12) 0%, rgba(10,10,10,0) 60%)",
-          }}
-        />
+        !showVideo && (
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(120% 90% at 70% 20%, rgba(51,77,92,0.55) 0%, rgba(10,10,10,0) 55%), radial-gradient(80% 60% at 20% 85%, rgba(238,200,78,0.12) 0%, rgba(10,10,10,0) 60%)",
+            }}
+          />
+        )
       )}
 
       {/* Vignette to seat the typography */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-charcoal/40 via-transparent to-charcoal/85"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-charcoal/45 via-transparent to-charcoal/85"
       />
 
       {/* Content */}

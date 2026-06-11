@@ -228,14 +228,12 @@ export default function WorkExperience({ initialProjects }: WorkExperienceProps)
         <h1 className="mb-6 font-display text-h1 font-bold uppercase tracking-tightest text-bone">
           {t.work.title}
         </h1>
-        <p className="mb-8 text-body text-bone/55">
-          No projects yet. Add some via the admin panel.
-        </p>
+        <p className="mb-8 text-body text-bone/55">{t.xp.noProjects}</p>
         <Link
           href="/update"
           className="inline-block bg-gold px-6 py-3 font-display text-sm font-bold uppercase tracking-wide2 text-charcoal transition-transform duration-200 hover:scale-105"
         >
-          Go to Admin Panel
+          {t.xp.adminCta}
         </Link>
       </div>
     );
@@ -262,9 +260,9 @@ export default function WorkExperience({ initialProjects }: WorkExperienceProps)
         />
 
         {/* Top header */}
-        <div className="pointer-events-none absolute inset-x-0 top-24 z-10 flex flex-col items-center gap-2 md:top-20">
+        <div className="pointer-events-none absolute inset-x-0 top-24 z-10 flex flex-col items-center gap-2 md:top-28">
           <p className="font-display text-label uppercase tracking-wide2 text-gold">
-            Portfolio
+            {t.xp.portfolio}
           </p>
           <h1 className="font-display text-2xl font-bold uppercase tracking-tightest text-bone md:text-3xl">
             {t.work.title}
@@ -343,7 +341,7 @@ export default function WorkExperience({ initialProjects }: WorkExperienceProps)
           <div className="max-w-3xl">
             <Reveal>
               <p className="mb-4 font-display text-label uppercase tracking-wide2 text-gold">
-                Portfolio
+                {t.xp.portfolio}
               </p>
             </Reveal>
             <TextReveal

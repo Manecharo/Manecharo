@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, Instagram, Linkedin, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,10 +11,10 @@ import { Language } from "@/lib/i18n/translations";
 import { lockScroll, unlockScroll } from "@/lib/motion/hooks";
 
 const navItems = [
-  { key: "work", href: "/work", position: "left" },
-  { key: "about", href: "/about", position: "top" },
-  { key: "contact", href: "/contact", position: "right" },
-  { key: "capabilities", href: "/capabilities", position: "bottom" },
+  { key: "work", href: "/work" },
+  { key: "about", href: "/about" },
+  { key: "capabilities", href: "/capabilities" },
+  { key: "contact", href: "/contact" },
 ] as const;
 
 const overlayItems = [
@@ -62,42 +63,82 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Desktop Navigation - Spatial edges */}
-      <nav className="hidden md:block" aria-label="Main navigation">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href;
-          const positionClasses = {
-            left: "left-8 top-1/2 -translate-y-1/2 -rotate-90 origin-center",
-            top: "top-8 left-1/2 -translate-x-1/2",
-            right: "right-8 top-1/2 -translate-y-1/2 rotate-90 origin-center",
-            bottom: "bottom-8 left-1/2 -translate-x-1/2",
-          };
+      {/* Desktop Navigation — top bar */}
+      <nav
+        aria-label="Main navigation"
+        className={`fixed inset-x-0 top-0 z-60 hidden items-center justify-between px-8 transition-all duration-500 ease-out-expo md:flex lg:px-12 ${
+          hasScrolled
+            ? "h-16 border-b border-bone/10 bg-charcoal/70 backdrop-blur-md"
+            : "h-24 border-b border-transparent bg-transparent"
+        }`}
+      >
+        <Link
+          href="/"
+          aria-label="Go to homepage"
+          className="group relative block h-10 w-10 transition-transform duration-300 ease-out-expo hover:scale-110"
+        >
+          <Image
+            src="/images/logo/logo_Asvg.svg"
+            alt="MER"
+            fill
+            priority
+            className="object-contain brightness-0 invert transition-all duration-300 group-hover:brightness-100 group-hover:invert-0"
+          />
+        </Link>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`
-                group fixed z-60 flex items-center gap-2 font-display text-xs uppercase tracking-wide2 font-bold
-                mix-blend-difference transition-all duration-500 ease-out-expo
-                hover:!opacity-100
-                ${positionClasses[item.position as keyof typeof positionClasses]}
-                ${isActive ? "text-gold" : "text-bone"}
-                ${hasScrolled ? "opacity-30" : "opacity-100"}
-              `}
-            >
-              <span
-                aria-hidden
-                className={`h-[5px] w-[5px] rounded-full bg-gold transition-all duration-300 ${
-                  isActive ? "scale-100" : "scale-0 group-hover:scale-100"
+        <div className="flex items-center gap-7 lg:gap-9">
+          {navItems.map((item, i) => {
+            const isActive =
+              pathname === item.href || pathname?.startsWith(item.href + "/");
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group relative flex items-baseline gap-1.5 py-2 font-display text-xs font-bold uppercase tracking-wide2"
+              >
+                <span
+                  className={`text-[9px] transition-colors duration-300 ${
+                    isActive ? "text-gold" : "text-bone/35 group-hover:text-gold/70"
+                  }`}
+                >
+                  0{i + 1}
+                </span>
+                <span
+                  className={`transition-colors duration-300 ${
+                    isActive ? "text-gold" : "text-bone group-hover:text-gold"
+                  }`}
+                >
+                  {t.nav[item.key]}
+                </span>
+                <span
+                  aria-hidden
+                  className={`absolute bottom-0 left-0 h-px bg-gold transition-all duration-300 ease-out-expo ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            );
+          })}
+
+          {/* Language switcher */}
+          <div className="ml-1 flex items-center gap-1 border border-bone/15 p-1">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => setLanguage(lang.code)}
+                aria-pressed={language === lang.code}
+                aria-label={`Switch to ${lang.label}`}
+                className={`px-2.5 py-1.5 font-display text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${
+                  language === lang.code
+                    ? "bg-gold text-charcoal"
+                    : "text-bone/50 hover:bg-bone/5 hover:text-bone"
                 }`}
-              />
-              <span className="transition-colors duration-300 group-hover:text-gold">
-                {t.nav[item.key]}
-              </span>
-            </Link>
-          );
-        })}
+              >
+                {lang.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </nav>
 
       {/* Mobile Navigation */}

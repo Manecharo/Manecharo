@@ -2,9 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/motion/gsap";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const INTERACTIVE =
   "a, button, [role='button'], [data-cursor], label, summary, input, textarea, select";
+
+type CursorKind = "view" | "drag" | "open";
+
+interface Badge {
+  kind: CursorKind | null;
+  custom: string | null;
+}
 
 /**
  * Custom cursor: a gold dot with a trailing ring.
@@ -12,9 +20,12 @@ const INTERACTIVE =
  * to morph the ring into a labelled badge. Fine pointers only.
  */
 export default function Cursor() {
+  const { t } = useLanguage();
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const [label, setLabel] = useState<string | null>(null);
+  // Only the *kind* is captured on hover; the visible text resolves from
+  // the live translations at render time, so it follows language switches.
+  const [badge, setBadge] = useState<Badge | null>(null);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
@@ -52,17 +63,17 @@ export default function Cursor() {
         gsap.to([dot, ring], { autoAlpha: 0, duration: 0.2 });
         return;
       }
-      const kind = el.dataset.cursor;
-      const text =
-        el.dataset.cursorLabel ||
-        (kind === "view" ? "VIEW" : kind === "drag" ? "DRAG" : kind === "open" ? "OPEN" : null);
-      setLabel(text);
+      const kind = el.dataset.cursor as CursorKind | undefined;
+      const custom = el.dataset.cursorLabel || null;
+      const hasBadge =
+        !!custom || kind === "view" || kind === "drag" || kind === "open";
+      setBadge(hasBadge ? { kind: kind ?? null, custom } : null);
       gsap.to(ring, {
-        scale: text ? 2.6 : 1.6,
+        scale: hasBadge ? 2.6 : 1.6,
         duration: 0.4,
         ease: "back.out(2)",
       });
-      gsap.to(dot, { scale: text ? 0 : 0.5, duration: 0.3 });
+      gsap.to(dot, { scale: hasBadge ? 0 : 0.5, duration: 0.3 });
     };
 
     const onOut = (e: PointerEvent) => {
@@ -71,7 +82,7 @@ export default function Cursor() {
       if ((target as HTMLElement).matches("input, textarea, select")) {
         gsap.to([dot, ring], { autoAlpha: 1, duration: 0.2 });
       }
-      setLabel(null);
+      setBadge(null);
       gsap.to(ring, { scale: 1, duration: 0.4, ease: "power3.out" });
       gsap.to(dot, { scale: 1, duration: 0.3 });
     };
@@ -100,6 +111,17 @@ export default function Cursor() {
       document.documentElement.removeEventListener("pointerleave", onLeaveDoc);
     };
   }, []);
+
+  const label = badge
+    ? badge.custom ??
+      (badge.kind === "view"
+        ? t.xp.view
+        : badge.kind === "drag"
+          ? t.xp.cursorDrag
+          : badge.kind === "open"
+            ? t.xp.cursorOpen
+            : null)
+    : null;
 
   return (
     <>
