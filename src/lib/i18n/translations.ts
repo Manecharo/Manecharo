@@ -93,8 +93,8 @@ export const translations = {
       process: "My Process",
       whoIWorkWith: "Who I Work With",
       tools: "Tools I Use",
-      notInterested: "Not Interested In",
-      notInterestedText: "Projects without **purpose**. Work that doesn't push anything forward. Clients who want designers to \"make it pretty\" instead of **solve problems**.",
+      notInterested: "I Want My Work To Do Good",
+      notInterestedText: "The projects I care about make life **better for real people**. I want the work to mean something—to **move things forward**, solve problems that matter, and leave a **positive mark**.",
       processSteps: {
         understand: {
           title: "Understand",
@@ -208,7 +208,7 @@ export const translations = {
     footer: {
       based: "Based in Kuala Lumpur, Malaysia",
       rights: "All rights reserved",
-      cta: "Have a problem worth solving?",
+      cta: "Think we could work together?",
       ctaAction: "Let's talk",
     },
     // Experience layer
@@ -220,7 +220,7 @@ export const translations = {
       spatial: "Spatial",
       list: "List",
       featuredTitle: "Selected Work",
-      featuredSub: "Fourteen years of problems worth solving",
+      featuredSub: "Fourteen years of work made to leave things a little better.",
       viewAll: "View all projects",
       menu: "Menu",
       close: "Close",
@@ -336,8 +336,8 @@ export const translations = {
       process: "Mi Proceso",
       whoIWorkWith: "Con Quién Trabajo",
       tools: "Herramientas Que Uso",
-      notInterested: "No Me Interesan",
-      notInterestedText: "Proyectos sin **propósito**. Trabajo que no impulsa nada hacia adelante. Clientes que quieren que los diseñadores \"lo hagan bonito\" en lugar de **resolver problemas**.",
+      notInterested: "Quiero Que Mi Trabajo Haga el Bien",
+      notInterestedText: "Los proyectos que me importan hacen la vida **mejor para personas reales**. Quiero que el trabajo signifique algo—que **impulse las cosas hacia adelante**, resuelva problemas que importan y deje una **huella positiva**.",
       processSteps: {
         understand: {
           title: "Entender",
@@ -451,7 +451,7 @@ export const translations = {
     footer: {
       based: "Basado en Kuala Lumpur, Malasia",
       rights: "Todos los derechos reservados",
-      cta: "¿Tienes un problema que vale la pena resolver?",
+      cta: "¿Crees que podríamos trabajar juntos?",
       ctaAction: "Hablemos",
     },
     // Experience layer
@@ -463,7 +463,7 @@ export const translations = {
       spatial: "Espacial",
       list: "Lista",
       featuredTitle: "Trabajo Seleccionado",
-      featuredSub: "Catorce años de problemas que valen la pena",
+      featuredSub: "Catorce años de trabajo para dejar las cosas un poco mejor.",
       viewAll: "Ver todos los proyectos",
       menu: "Menú",
       close: "Cerrar",
@@ -579,8 +579,8 @@ export const translations = {
       process: "Il Mio Processo",
       whoIWorkWith: "Con Chi Lavoro",
       tools: "Strumenti Che Uso",
-      notInterested: "Non Mi Interessano",
-      notInterestedText: "Progetti senza **scopo**. Lavoro che non spinge nulla avanti. Clienti che vogliono che i designer \"lo rendano carino\" invece di **risolvere problemi**.",
+      notInterested: "Voglio Che Il Mio Lavoro Faccia del Bene",
+      notInterestedText: "I progetti che mi stanno a cuore migliorano la vita delle **persone reali**. Voglio che il lavoro significhi qualcosa—che **faccia progredire le cose**, risolva problemi che contano e lasci un **segno positivo**.",
       processSteps: {
         understand: {
           title: "Capire",
@@ -694,7 +694,7 @@ export const translations = {
     footer: {
       based: "Basato a Kuala Lumpur, Malesia",
       rights: "Tutti i diritti riservati",
-      cta: "Hai un problema che vale la pena risolvere?",
+      cta: "Pensi che potremmo lavorare insieme?",
       ctaAction: "Parliamone",
     },
     // Experience layer
@@ -706,7 +706,7 @@ export const translations = {
       spatial: "Spaziale",
       list: "Lista",
       featuredTitle: "Lavori Selezionati",
-      featuredSub: "Quattordici anni di problemi che contano",
+      featuredSub: "Quattordici anni di lavoro per lasciare le cose un po' meglio.",
       viewAll: "Vedi tutti i progetti",
       menu: "Menu",
       close: "Chiudi",

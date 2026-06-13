@@ -231,7 +231,7 @@ export default function ProjectDetailClient({
 
   return (
     <article className="min-h-screen bg-charcoal pb-20 pt-28 text-bone md:pt-32">
-      <div className="px-6 md:px-12">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-12">
         {/* Back to Work */}
         <Link
           href="/work"
@@ -278,7 +278,7 @@ export default function ProjectDetailClient({
         </Parallax>
       )}
 
-      <div className="px-6 md:px-12">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-12">
         {/* Meta strip */}
         <Stagger
           selector="[data-meta]"

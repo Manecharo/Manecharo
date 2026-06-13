@@ -8,24 +8,25 @@ const INTERACTIVE =
   "a, button, [role='button'], [data-cursor], label, summary, input, textarea, select";
 
 type CursorKind = "view" | "drag" | "open";
-
-interface Badge {
-  kind: CursorKind | null;
-  custom: string | null;
-}
+type Mode = "rest" | "hover" | "badge";
 
 /**
- * Custom cursor: a gold dot with a trailing ring.
- * Elements may set data-cursor="view|drag|open" (+ data-cursor-label)
- * to morph the ring into a labelled badge. Fine pointers only.
+ * Custom cursor: a gold dot with a trailing ring. Elements may set
+ * data-cursor="view|drag|open" (+ data-cursor-label) to morph the ring into a
+ * labelled gold badge. The label lives in its own element — NOT inside the
+ * transform-scaled ring — so its text size is fixed and never overflows the
+ * circle (e.g. long words like "Arrastra"). Fine pointers only.
  */
 export default function Cursor() {
   const { t } = useLanguage();
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  // Only the *kind* is captured on hover; the visible text resolves from
-  // the live translations at render time, so it follows language switches.
-  const [badge, setBadge] = useState<Badge | null>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
+  const modeRef = useRef<Mode>("rest");
+  // Only the hover *kind* (or a custom string) is stored; the visible text
+  // resolves from live translations at render time so it follows language.
+  const [kind, setKind] = useState<CursorKind | null>(null);
+  const [custom, setCustom] = useState<string | null>(null);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
@@ -35,11 +36,17 @@ export default function Cursor() {
 
     const dot = dotRef.current!;
     const ring = ringRef.current!;
+    const label = labelRef.current!;
 
     const dotX = gsap.quickTo(dot, "x", { duration: 0.12, ease: "power2.out" });
     const dotY = gsap.quickTo(dot, "y", { duration: 0.12, ease: "power2.out" });
     const ringX = gsap.quickTo(ring, "x", { duration: 0.45, ease: "power3.out" });
     const ringY = gsap.quickTo(ring, "y", { duration: 0.45, ease: "power3.out" });
+    const labelX = gsap.quickTo(label, "x", { duration: 0.45, ease: "power3.out" });
+    const labelY = gsap.quickTo(label, "y", { duration: 0.45, ease: "power3.out" });
+
+    const ringScale = () =>
+      modeRef.current === "badge" ? 2.6 : modeRef.current === "hover" ? 1.6 : 1;
 
     let visible = false;
 
@@ -52,6 +59,8 @@ export default function Cursor() {
       dotY(e.clientY);
       ringX(e.clientX);
       ringY(e.clientY);
+      labelX(e.clientX);
+      labelY(e.clientY);
     };
 
     const onOver = (e: PointerEvent) => {
@@ -60,20 +69,31 @@ export default function Cursor() {
       const el = target as HTMLElement;
       if (el.matches("input, textarea, select")) {
         // Native cursor takes over in form fields.
-        gsap.to([dot, ring], { autoAlpha: 0, duration: 0.2 });
+        modeRef.current = "rest";
+        gsap.to([dot, ring, label], { autoAlpha: 0, duration: 0.2 });
         return;
       }
-      const kind = el.dataset.cursor as CursorKind | undefined;
-      const custom = el.dataset.cursorLabel || null;
-      const hasBadge =
-        !!custom || kind === "view" || kind === "drag" || kind === "open";
-      setBadge(hasBadge ? { kind: kind ?? null, custom } : null);
-      gsap.to(ring, {
-        scale: hasBadge ? 2.6 : 1.6,
-        duration: 0.4,
-        ease: "back.out(2)",
-      });
-      gsap.to(dot, { scale: hasBadge ? 0 : 0.5, duration: 0.3 });
+      const k = el.dataset.cursor as CursorKind | undefined;
+      const c = el.dataset.cursorLabel || null;
+      const hasBadge = !!c || k === "view" || k === "drag" || k === "open";
+
+      if (hasBadge) {
+        setKind(k ?? null);
+        setCustom(c);
+        modeRef.current = "badge";
+        gsap.to(ring, { scale: 2.6, duration: 0.45, ease: "back.out(1.6)", overwrite: "auto" });
+        gsap.to(dot, { scale: 0, duration: 0.3, overwrite: "auto" });
+        gsap.fromTo(
+          label,
+          { scale: 0.7 },
+          { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)", overwrite: true }
+        );
+      } else {
+        modeRef.current = "hover";
+        gsap.to(ring, { scale: 1.6, duration: 0.4, ease: "power3.out", overwrite: "auto" });
+        gsap.to(dot, { scale: 0.5, duration: 0.3, overwrite: "auto" });
+        gsap.to(label, { autoAlpha: 0, duration: 0.2, overwrite: true });
+      }
     };
 
     const onOut = (e: PointerEvent) => {
@@ -82,16 +102,30 @@ export default function Cursor() {
       if ((target as HTMLElement).matches("input, textarea, select")) {
         gsap.to([dot, ring], { autoAlpha: 1, duration: 0.2 });
       }
-      setBadge(null);
-      gsap.to(ring, { scale: 1, duration: 0.4, ease: "power3.out" });
-      gsap.to(dot, { scale: 1, duration: 0.3 });
+      modeRef.current = "rest";
+      gsap.to(ring, { scale: 1, duration: 0.4, ease: "power3.out", overwrite: "auto" });
+      gsap.to(dot, { scale: 1, duration: 0.3, overwrite: "auto" });
+      gsap.to(label, {
+        autoAlpha: 0,
+        duration: 0.2,
+        overwrite: true,
+        onComplete: () => {
+          // Only clear if we haven't entered a new badge in the meantime.
+          if (modeRef.current !== "badge") {
+            setKind(null);
+            setCustom(null);
+          }
+        },
+      });
     };
 
-    const onDown = () => gsap.to(ring, { scale: 0.85, duration: 0.2 });
-    const onUp = () => gsap.to(ring, { scale: 1, duration: 0.35, ease: "back.out(3)" });
+    const onDown = () =>
+      gsap.to(ring, { scale: ringScale() * 0.86, duration: 0.2, overwrite: "auto" });
+    const onUp = () =>
+      gsap.to(ring, { scale: ringScale(), duration: 0.35, ease: "back.out(3)", overwrite: "auto" });
     const onLeaveDoc = () => {
       visible = false;
-      gsap.to([dot, ring], { autoAlpha: 0, duration: 0.25 });
+      gsap.to([dot, ring, label], { autoAlpha: 0, duration: 0.25 });
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
@@ -112,16 +146,16 @@ export default function Cursor() {
     };
   }, []);
 
-  const label = badge
-    ? badge.custom ??
-      (badge.kind === "view"
-        ? t.xp.view
-        : badge.kind === "drag"
-          ? t.xp.cursorDrag
-          : badge.kind === "open"
-            ? t.xp.cursorOpen
-            : null)
-    : null;
+  const label =
+    custom ??
+    (kind === "view"
+      ? t.xp.view
+      : kind === "drag"
+        ? t.xp.cursorDrag
+        : kind === "open"
+          ? t.xp.cursorOpen
+          : null);
+  const badged = !!label;
 
   return (
     <>
@@ -133,17 +167,18 @@ export default function Cursor() {
       <div
         ref={ringRef}
         aria-hidden
-        className={`pointer-events-none fixed left-0 top-0 z-100 -ml-[22px] -mt-[22px] flex h-[44px] w-[44px] items-center justify-center rounded-full opacity-0 transition-colors duration-200 ${
-          label
-            ? "bg-gold text-charcoal"
-            : "border border-bone/40 mix-blend-difference"
+        className={`pointer-events-none fixed left-0 top-0 z-100 -ml-[22px] -mt-[22px] h-[44px] w-[44px] rounded-full opacity-0 transition-colors duration-300 ${
+          badged ? "bg-gold" : "border border-bone/40 mix-blend-difference"
         }`}
+      />
+      <div
+        ref={labelRef}
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 z-100 -ml-[70px] -mt-[7px] w-[140px] text-center opacity-0"
       >
-        {label && (
-          <span className="font-display text-[9px] font-bold uppercase tracking-[0.2em]">
-            {label}
-          </span>
-        )}
+        <span className="font-display text-[10px] font-bold uppercase tracking-[0.16em] text-charcoal">
+          {label}
+        </span>
       </div>
     </>
   );

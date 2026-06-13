@@ -48,7 +48,7 @@ export default function AboutPage() {
         <div className="min-h-screen bg-charcoal px-6 py-32 md:px-12">
           <div className="mx-auto max-w-6xl">
             <div className="grid items-center gap-12 md:grid-cols-2">
-              <div className="aspect-[3/4] animate-pulse bg-bone/5 md:order-2" />
+              <div className="aspect-video w-full max-w-[560px] animate-pulse bg-bone/5 md:order-2" />
               <div className="space-y-4 md:order-1">
                 <div className="h-8 w-24 animate-pulse rounded bg-bone/5" />
                 <div className="h-12 w-3/4 animate-pulse rounded bg-bone/5" />
@@ -92,25 +92,26 @@ export default function AboutPage() {
               </Reveal>
             </div>
 
-            {/* Portrait */}
-            <div className="relative md:col-span-5 lg:col-span-5">
+            {/* Portrait — landscape studio shot, capped so the 1200px-wide
+                source stays crisp instead of being upscaled into a tall frame */}
+            <div className="relative md:col-span-5 lg:col-span-5 md:self-center">
               <Reveal delay={0.2}>
-                <div className="relative">
+                <div className="relative mx-auto max-w-[560px]">
                   <div
                     aria-hidden
                     className="absolute -left-4 -top-4 h-full w-full border border-gold/50"
                   />
                   <Parallax
-                    speed={7}
-                    className="relative aspect-[3/4]"
-                    innerClassName="absolute -inset-y-[10%] inset-x-0"
+                    speed={6}
+                    className="relative aspect-video"
+                    innerClassName="absolute -inset-y-[12%] inset-x-0"
                   >
                     <Image
                       src="/images/about/manuel2.jpeg"
                       alt="Manuel Echavarria Romero - Product Designer & Design Strategist"
                       fill
                       className="object-cover object-center"
-                      sizes="(max-width: 768px) 100vw, 42vw"
+                      sizes="(max-width: 768px) 100vw, 560px"
                       priority
                     />
                   </Parallax>
