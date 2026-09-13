@@ -15,7 +15,9 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en");
+  // el mercado objetivo es Espana: el castellano manda salvo que el visitante
+  // ya haya elegido otro idioma o su navegador pida ingles o italiano
+  const [language, setLanguageState] = useState<Language>("es");
   const [mounted, setMounted] = useState(false);
 
   // Load language from localStorage on mount - only runs on client
@@ -23,6 +25,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const saved = localStorage.getItem("language") as Language;
     if (saved && translations[saved]) {
       setLanguageState(saved);
+    } else {
+      const nav = navigator.language.slice(0, 2) as Language;
+      if (translations[nav]) setLanguageState(nav);
     }
     setMounted(true);
   }, []);

@@ -104,10 +104,10 @@ export default function Footer() {
           <div className="text-sm text-bone/70 md:text-center">
             <p className="mb-1">{t.footer.based}</p>
             <a
-              href="mailto:manuelerfreelance@gmail.com"
+              href="mailto:manuel_echavarria@hotmail.com"
               className="u-sweep text-bone transition-colors hover:text-gold"
             >
-              manuelerfreelance@gmail.com
+              manuel_echavarria@hotmail.com
             </a>
             <p className="mt-1">+60 12 658 1025</p>
           </div>
@@ -126,7 +126,7 @@ export default function Footer() {
                 Icon: Linkedin,
               },
               {
-                href: "mailto:manuelerfreelance@gmail.com",
+                href: "mailto:manuel_echavarria@hotmail.com",
                 label: "Email",
                 Icon: Mail,
               },
@@ -152,7 +152,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Manuel Echavarria Romero. {t.footer.rights}.
           </p>
           <p className="font-display uppercase tracking-wide2">
-            Kuala Lumpur — {new Date().getFullYear()}
+            {t.footer.location} — {new Date().getFullYear()}
           </p>
         </div>
       </div>

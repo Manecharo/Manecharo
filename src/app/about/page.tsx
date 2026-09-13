@@ -116,7 +116,7 @@ export default function AboutPage() {
                     />
                   </Parallax>
                   <div className="absolute -bottom-5 -right-3 bg-red px-4 py-2 font-display text-[10px] font-bold uppercase tracking-wide2 text-bone md:-right-6">
-                    Kuala Lumpur, MY
+                    {t.footer.location}
                   </div>
                 </div>
               </Reveal>

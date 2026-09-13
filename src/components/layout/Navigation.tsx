@@ -231,7 +231,7 @@ export default function Navigation() {
                     <Linkedin size={22} />
                   </a>
                   <a
-                    href="mailto:manuelerfreelance@gmail.com"
+                    href="mailto:manuel_echavarria@hotmail.com"
                     aria-label="Email"
                     className="text-bone/60 transition-colors hover:text-gold"
                   >

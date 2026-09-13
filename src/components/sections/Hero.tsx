@@ -197,13 +197,21 @@ export default function Hero() {
       >
         <div className="mx-auto flex h-full w-full max-w-[1800px] flex-col justify-between">
           {/* Eyebrow */}
-          <div className="flex items-center gap-4">
-            <span className="h-px w-10 bg-gold md:w-16" aria-hidden />
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center gap-4">
+              <span className="h-px w-10 bg-gold md:w-16" aria-hidden />
+              <TextReveal
+                text={t.hero.subtitle}
+                as="p"
+                delay={0.35}
+                className="font-display text-label uppercase tracking-wide2 text-gold"
+              />
+            </div>
             <TextReveal
-              text={t.hero.subtitle}
+              text={t.hero.specialties}
               as="p"
-              delay={0.35}
-              className="font-display text-label uppercase tracking-wide2 text-gold"
+              delay={0.45}
+              className="pl-14 text-xs text-bone/60 md:pl-20 md:text-sm"
             />
           </div>
 
@@ -252,8 +260,9 @@ export default function Hero() {
 
           {/* Bottom bar */}
           <div className="flex items-end justify-between gap-6">
-            <p className="hidden max-w-xs whitespace-pre-line text-xs leading-relaxed text-bone/55 md:block lg:text-sm">
-              {t.hero.stats}
+            <p className="hidden max-w-xs text-xs leading-relaxed text-bone/70 md:block lg:text-sm">
+              <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-gold align-middle" aria-hidden />
+              {t.hero.availability}
             </p>
 
             <div className="pointer-events-auto flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">

@@ -39,7 +39,7 @@ const contactPage = {
   mainEntity: {
     "@type": "Person",
     name: "Manuel Echavarria Romero",
-    email: "manuelerfreelance@gmail.com",
+    email: "manuel_echavarria@hotmail.com",
     telephone: "+60126581025",
     url: "https://manecharo.com",
   },

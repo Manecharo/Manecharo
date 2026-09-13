@@ -10,23 +10,37 @@ export const translations = {
     },
     // Landing Page
     hero: {
-      subtitle: "Designer & Problem Solver",
-      tagline: "Design isn't decoration. It's the tool I use to create real impact—turning ideas into systems that work for people.",
-      stats: "14 years turning complex problems into elegant solutions.\n6 countries. 3 startups. 50+ brands. 600+ products shipped.",
+      subtitle: "Senior Product & Brand Innovation Designer",
+      specialties: "Consumer products · Retail & point of sale · Brand experience · Physical & digital",
+      tagline: "Understand before solving. Design to make life easier.",
+      availability: "Relocating to Spain · available from 1 November 2026",
       ctaWork: "View Selected Work",
       ctaContact: "Let's Talk",
+    },
+    // Proof strip — las seis cifras del CV, todas con fuente
+    proof: {
+      title: "Impact in numbers",
+      note: "Every figure above comes from a shipped project. Ask me about any of them.",
+      cv: "Download CV (PDF)",
+      metrics: [
+        { value: "−70%", label: "technology cost · Mill" },
+        { value: "65%", label: "cheaper than the imported system · Paqua" },
+        { value: "+1,000", label: "units sold · Paqua" },
+        { value: "400+", label: "artisans trained · Artesanías de Colombia" },
+        { value: "1.4 M", label: "views in year one · KUASA" },
+      ],
     },
     // Work Page
     work: {
       title: "Selected Projects",
-      subtitle: "**Product design**. **Brand identities**. **Civic tech**. **Urban agriculture**. **Political campaigns**. **Metaverse spaces**.\n\nI don't do one thing—I solve **problems that matter**.",
+      subtitle: "**Consumer products**. **Retail & point of sale**. **Brand identity and experience**. **Digital products**. And also **civic tech**, **urban agriculture** and **humanitarian design**.\n\nI don't do one thing—I solve **problems that matter**.",
       filterAll: "All",
     },
     // About Page
     about: {
       badge: "About",
       title: "The Short Version",
-      bio: "I'm a **designer** who doesn't stay in one lane.\n\n**Born in Colombia**. Trained in **Milan**. Worked across **6 countries** on **4 continents**. I've designed doors in Poland, furniture in Italy, hydroponic systems in Colombia, metaverse spaces in Switzerland, and democracy programs in Malaysia.\n\nI **co-founded 3 startups**. Led design teams. Trained **400+ artisans**. Grew channels from zero. Built **products people actually use**.\n\nI think in **systems**. I work with my **hands**. I believe design should **solve real problems**, not just look pretty.\n\n**Currently based in Kuala Lumpur**. Colombian and Spanish passport. Available for **projects that matter**.",
+      bio: "I'm a **designer** who doesn't stay in one lane.\n\n**Born in Colombia**. Trained in **Milan**. Worked across **6 countries** on **4 continents**. I've designed doors in Poland, furniture in Italy, hydroponic systems in Colombia, metaverse spaces in Switzerland, and democracy programs in Malaysia.\n\nI **co-founded 3 startups**. Led design teams. Trained **400+ artisans**. Grew channels from zero. Built **products people actually use**.\n\nI think in **systems**. I work with my **hands**. I believe design should **solve real problems**, not just look pretty.\n\n**Currently in Kuala Lumpur — relocating to Spain**, available from **1 November 2026**. Colombian and Spanish passport: the right to work anywhere in the EU, no visa, no sponsorship.",
       whatIDo: "What I Actually Do",
       languages: "Languages",
       education: "Education & Learning",
@@ -206,7 +220,8 @@ export const translations = {
     },
     // Footer
     footer: {
-      based: "Based in Kuala Lumpur, Malaysia",
+      based: "Relocating to Spain — available from 1 November 2026",
+      location: "Kuala Lumpur → Spain",
       rights: "All rights reserved",
       cta: "Think we could work together?",
       ctaAction: "Let's talk",
@@ -232,7 +247,7 @@ export const translations = {
       gallery: "Gallery",
       nextProject: "Next project",
       prevProject: "Previous project",
-      available: "Available for projects worldwide",
+      available: "Relocating to Spain · available from 1 November 2026",
       marquee: "Colombia · Italy · Poland · Switzerland · Malaysia",
       portfolio: "Portfolio",
       cursorDrag: "Drag",
@@ -253,23 +268,37 @@ export const translations = {
     },
     // Landing Page
     hero: {
-      subtitle: "Diseñador y Solucionador de Problemas",
-      tagline: "El diseño no es decoración. Es la herramienta que uso para crear impacto real—convirtiendo ideas en sistemas que funcionan para las personas.",
-      stats: "14 años convirtiendo problemas complejos en soluciones elegantes.\n8 países. 3 startups. Más de 50 marcas. Más de 600 productos lanzados.",
+      subtitle: "Diseñador Sénior de Producto e Innovación de Marca",
+      specialties: "Productos de consumo · Retail y punto de venta · Experiencia de marca · Físico y digital",
+      tagline: "Comprender antes de resolver. Diseñar para hacer la vida más fácil.",
+      availability: "Me traslado a España · disponible desde el 1 de noviembre de 2026",
       ctaWork: "Ver Proyectos Seleccionados",
       ctaContact: "Hablemos",
+    },
+    // Proof strip — las seis cifras del CV, todas con fuente
+    proof: {
+      title: "Impacto en cifras",
+      note: "Cada cifra sale de un proyecto que llegó al mercado. Pregúntame por cualquiera.",
+      cv: "Descargar CV (PDF)",
+      metrics: [
+        { value: "−70%", label: "coste de la tecnología · Mill" },
+        { value: "65%", label: "más barata que la importada · Paqua" },
+        { value: "+1.000", label: "unidades vendidas · Paqua" },
+        { value: "400+", label: "artesanos formados · Artesanías de Colombia" },
+        { value: "1,4 M", label: "visualizaciones el primer año · KUASA" },
+      ],
     },
     // Work Page
     work: {
       title: "Proyectos Seleccionados",
-      subtitle: "**Diseño de productos**. **Identidades de marca**. **Tecnología cívica**. **Agricultura urbana**. **Campañas políticas**. **Espacios metaverso**.\n\nNo hago una sola cosa—resuelvo **problemas que importan**.",
+      subtitle: "**Producto de consumo**. **Retail y punto de venta**. **Identidad y experiencia de marca**. **Producto digital**. Y también **tecnología cívica**, **agricultura urbana** y **diseño humanitario**.\n\nNo hago una sola cosa—resuelvo **problemas que importan**.",
       filterAll: "Todos",
     },
     // About Page
     about: {
       badge: "Sobre Mí",
       title: "La Versión Corta",
-      bio: "Soy un **diseñador** que no se queda en un solo carril.\n\n**Nacido en Colombia**. Formado en **Milán**. He trabajado en **8 países** de **4 continentes**. He diseñado puertas en Polonia, muebles en Italia, sistemas hidropónicos en Colombia, espacios metaverso en Suiza y programas de democracia en Malasia.\n\n**Cofundé 3 startups**. Lideré equipos de diseño. Capacité a **más de 400 artesanos**. Hice crecer canales desde cero. Construí **productos que la gente realmente usa**.\n\nPienso en **sistemas**. Trabajo con mis **manos**. Creo que el diseño debe **resolver problemas reales**, no solo verse bonito.\n\n**Actualmente basado en Kuala Lumpur**. Pasaporte colombiano y español. Disponible para **proyectos que importan**.",
+      bio: "Soy un **diseñador** que no se queda en un solo carril.\n\n**Nacido en Colombia**. Formado en **Milán**. He trabajado en **6 países** de **4 continentes**. He diseñado puertas en Polonia, muebles en Italia, sistemas hidropónicos en Colombia, espacios metaverso en Suiza y programas de democracia en Malasia.\n\n**Cofundé 3 startups**. Lideré equipos de diseño. Capacité a **más de 400 artesanos**. Hice crecer canales desde cero. Construí **productos que la gente realmente usa**.\n\nPienso en **sistemas**. Trabajo con mis **manos**. Creo que el diseño debe **resolver problemas reales**, no solo verse bonito.\n\n**Actualmente en Kuala Lumpur — me traslado a España**, disponible desde el **1 de noviembre de 2026**. Pasaporte colombiano y español: derecho a trabajar en toda la UE, sin visado ni patrocinio.",
       whatIDo: "Lo Que Hago Realmente",
       languages: "Idiomas",
       education: "Educación y Aprendizaje",
@@ -449,7 +478,8 @@ export const translations = {
     },
     // Footer
     footer: {
-      based: "Basado en Kuala Lumpur, Malasia",
+      based: "Me traslado a España — disponible desde el 1 de noviembre de 2026",
+      location: "Kuala Lumpur → España",
       rights: "Todos los derechos reservados",
       cta: "¿Crees que podríamos trabajar juntos?",
       ctaAction: "Hablemos",
@@ -475,7 +505,7 @@ export const translations = {
       gallery: "Galería",
       nextProject: "Siguiente proyecto",
       prevProject: "Proyecto anterior",
-      available: "Disponible para proyectos en todo el mundo",
+      available: "Me traslado a España · disponible desde el 1 de noviembre de 2026",
       marquee: "Colombia · Italia · Polonia · Suiza · Malasia",
       portfolio: "Portafolio",
       cursorDrag: "Arrastra",
@@ -496,23 +526,37 @@ export const translations = {
     },
     // Landing Page
     hero: {
-      subtitle: "Designer e Risolutore di Problemi",
-      tagline: "Il design non è decorazione. È lo strumento che uso per creare un impatto reale—trasformando idee in sistemi che funzionano per le persone.",
-      stats: "14 anni trasformando problemi complessi in soluzioni eleganti.\n8 paesi. 3 startup. Oltre 50 brand. Oltre 600 prodotti lanciati.",
+      subtitle: "Senior Designer di Prodotto e Innovazione di Marca",
+      specialties: "Prodotti di consumo · Retail e punto vendita · Brand experience · Fisico e digitale",
+      tagline: "Capire prima di risolvere. Progettare per rendere la vita più facile.",
+      availability: "Mi trasferisco in Spagna · disponibile dal 1 novembre 2026",
       ctaWork: "Vedi Progetti Selezionati",
       ctaContact: "Parliamone",
+    },
+    // Proof strip — las seis cifras del CV, todas con fuente
+    proof: {
+      title: "Impatto in numeri",
+      note: "Ogni cifra viene da un progetto arrivato sul mercato. Chiedimi di una qualsiasi.",
+      cv: "Scarica il CV (PDF)",
+      metrics: [
+        { value: "−70%", label: "costo della tecnologia · Mill" },
+        { value: "65%", label: "più economica dell'importata · Paqua" },
+        { value: "+1.000", label: "unità vendute · Paqua" },
+        { value: "400+", label: "artigiani formati · Artesanías de Colombia" },
+        { value: "1,4 M", label: "visualizzazioni nel primo anno · KUASA" },
+      ],
     },
     // Work Page
     work: {
       title: "Progetti Selezionati",
-      subtitle: "**Design di prodotti**. **Identità di brand**. **Tecnologia civica**. **Agricoltura urbana**. **Campagne politiche**. **Spazi metaverso**.\n\nNon faccio una sola cosa—risolvo **problemi che contano**.",
+      subtitle: "**Prodotti di consumo**. **Retail e punto vendita**. **Identità ed esperienza di brand**. **Prodotti digitali**. E anche **tecnologia civica**, **agricoltura urbana** e **design umanitario**.\n\nNon faccio una sola cosa—risolvo **problemi che contano**.",
       filterAll: "Tutti",
     },
     // About Page
     about: {
       badge: "Chi Sono",
       title: "La Versione Breve",
-      bio: "Sono un **designer** che non resta in una sola corsia.\n\n**Nato in Colombia**. Formato a **Milano**. Ho lavorato in **8 paesi** su **4 continenti**. Ho progettato porte in Polonia, mobili in Italia, sistemi idroponici in Colombia, spazi metaverso in Svizzera e programmi di democrazia in Malesia.\n\nHo **co-fondato 3 startup**. Ho guidato team di design. Ho formato **oltre 400 artigiani**. Ho fatto crescere canali da zero. Ho costruito **prodotti che la gente usa davvero**.\n\nPenso in **sistemi**. Lavoro con le mie **mani**. Credo che il design debba **risolvere problemi reali**, non solo apparire carino.\n\n**Attualmente basato a Kuala Lumpur**. Passaporto colombiano e spagnolo. Disponibile per **progetti che contano**.",
+      bio: "Sono un **designer** che non resta in una sola corsia.\n\n**Nato in Colombia**. Formato a **Milano**. Ho lavorato in **6 paesi** su **4 continenti**. Ho progettato porte in Polonia, mobili in Italia, sistemi idroponici in Colombia, spazi metaverso in Svizzera e programmi di democrazia in Malesia.\n\nHo **co-fondato 3 startup**. Ho guidato team di design. Ho formato **oltre 400 artigiani**. Ho fatto crescere canali da zero. Ho costruito **prodotti che la gente usa davvero**.\n\nPenso in **sistemi**. Lavoro con le mie **mani**. Credo che il design debba **risolvere problemi reali**, non solo apparire carino.\n\n**Attualmente a Kuala Lumpur — mi trasferisco in Spagna**, disponibile dal **1 novembre 2026**. Passaporto colombiano e spagnolo: diritto di lavorare in tutta l'UE, senza visto né sponsorizzazione.",
       whatIDo: "Cosa Faccio Realmente",
       languages: "Lingue",
       education: "Istruzione e Apprendimento",
@@ -692,7 +736,8 @@ export const translations = {
     },
     // Footer
     footer: {
-      based: "Basato a Kuala Lumpur, Malesia",
+      based: "Mi trasferisco in Spagna — disponibile dal 1 novembre 2026",
+      location: "Kuala Lumpur → Spagna",
       rights: "Tutti i diritti riservati",
       cta: "Pensi che potremmo lavorare insieme?",
       ctaAction: "Parliamone",
@@ -718,7 +763,7 @@ export const translations = {
       gallery: "Galleria",
       nextProject: "Progetto successivo",
       prevProject: "Progetto precedente",
-      available: "Disponibile per progetti in tutto il mondo",
+      available: "Mi trasferisco in Spagna · disponibile dal 1 novembre 2026",
       marquee: "Colombia · Italia · Polonia · Svizzera · Malesia",
       portfolio: "Portfolio",
       cursorDrag: "Trascina",
