@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s | Manuel Echavarria Romero",
   },
   description:
-    "Designer and problem solver based in Kuala Lumpur with 14 years of experience. Specialized in product design, UX/UI, brand strategy, and social impact design. Working globally across 6 countries.",
+    "Senior product and brand innovation designer with 15 years of experience across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital. Relocating to Spain, available from 1 November 2026.",
   keywords: seoConfig.metadata.en.keywords,
   authors: [{ name: "Manuel Echavarria Romero", url: "https://manecharo.com" }],
   creator: "Manuel Echavarria Romero",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     url: "https://manecharo.com",
     title: "Manuel Echavarria Romero | Product Designer & Design Strategist",
     description:
-      "Designer and problem solver with 14 years of experience. Specialized in product design, UX/UI, brand strategy, and social impact design. Working globally across 6 countries.",
+      "Senior product and brand innovation designer, 15 years across 6 countries. Consumer products, retail, brand experience. Relocating to Spain, available from 1 November 2026.",
     siteName: "Manuel Echavarria Romero",
     images: [
       {
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Manuel Echavarria Romero | Product Designer & Design Strategist",
     description:
-      "Designer and problem solver with 14 years of experience. Specialized in product design, UX/UI, brand strategy, and social impact design.",
+      "Senior product and brand innovation designer, 15 years. Consumer products, retail and brand experience. Relocating to Spain.",
     images: ["/images/social/twitter-image.jpg"],
     creator: "@Manecharo",
   },

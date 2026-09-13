@@ -5,7 +5,7 @@ import { generateStructuredData } from "@/lib/seo/config";
 export const metadata: Metadata = {
   title: "Work — Selected Projects by Manuel Echavarria Romero",
   description:
-    "Selected product, UX/UI, brand, and social-impact projects by Manuel Echavarria Romero. 14 years of design practice across startups, enterprises, and civic-tech, delivered from Kuala Lumpur to clients worldwide.",
+    "Selected product, UX/UI, brand, and social-impact projects by Manuel Echavarria Romero. 15 years of design practice across consumer products, retail, startups, enterprises and civic tech.",
   alternates: {
     canonical: "https://manecharo.com/work",
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: "https://manecharo.com/work",
     title: "Work — Selected Projects by Manuel Echavarria Romero",
     description:
-      "Selected product, UX/UI, brand, and social-impact projects. 14 years of design practice, working globally from Kuala Lumpur.",
+      "Selected product, UX/UI, brand, and social-impact projects. 15 years of design practice across consumer products, retail and brand.",
     images: [
       {
         url: "/images/social/og-image.jpg",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Work — Manuel Echavarria Romero",
     description:
-      "Selected product, UX/UI, brand, and social-impact projects — 14 years, 6 countries.",
+      "Selected product, retail, brand and social-impact projects — 15 years, 6 countries.",
     images: ["/images/social/twitter-image.jpg"],
   },
 };

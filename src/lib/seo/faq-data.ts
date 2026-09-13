@@ -27,7 +27,7 @@ export const faqData = {
     },
     {
       question: "How can I contact Manuel Echavarria Romero for a project?",
-      answer: "You can contact Manuel through his website at manecharo.com/contact, via email at manuelerfreelance@gmail.com, or directly via WhatsApp at +60126581025. He typically responds within 48 hours.",
+      answer: "You can contact Manuel through his website at manecharo.com/contact, via email at manuel_echavarria@hotmail.com, or directly via WhatsApp at +60126581025. He typically responds within 48 hours.",
     },
     {
       question: "What makes Manuel Echavarria Romero's design approach unique?",

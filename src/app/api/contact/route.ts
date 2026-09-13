@@ -98,7 +98,7 @@ const autoReplyTemplates = {
                 <tr>
                   <td style="padding: 32px 48px; background-color: #0A0A0A; text-align: center;">
                     <p style="margin: 0 0 12px 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #999999;">
-                      Kuala Lumpur, Malaysia • Working Globally
+                      Relocating to Spain • available from 1 November 2026
                     </p>
                     <div style="margin: 16px 0 0 0;">
                       <a href="https://instagram.com/Manecharo" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">Instagram</a>
@@ -185,7 +185,7 @@ const autoReplyTemplates = {
                 <tr>
                   <td style="padding: 32px 48px; background-color: #0A0A0A; text-align: center;">
                     <p style="margin: 0 0 12px 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #999999;">
-                      Kuala Lumpur, Malasia • Trabajo Global
+                      Me traslado a España • disponible desde el 1 de noviembre de 2026
                     </p>
                     <div style="margin: 16px 0 0 0;">
                       <a href="https://instagram.com/Manecharo" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">Instagram</a>
@@ -272,7 +272,7 @@ const autoReplyTemplates = {
                 <tr>
                   <td style="padding: 32px 48px; background-color: #0A0A0A; text-align: center;">
                     <p style="margin: 0 0 12px 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #999999;">
-                      Kuala Lumpur, Malesia • Lavoro Globale
+                      Mi trasferisco in Spagna • disponibile dal 1 novembre 2026
                     </p>
                     <div style="margin: 16px 0 0 0;">
                       <a href="https://instagram.com/Manecharo" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">Instagram</a>
@@ -430,7 +430,7 @@ export async function POST(request: NextRequest) {
     if (!process.env.RESEND_API_KEY) {
       console.error("RESEND_API_KEY not configured");
       return NextResponse.json(
-        { error: "Email service not configured. Please contact directly at manuelerfreelance@gmail.com" },
+        { error: "Email service not configured. Please contact directly at manuel_echavarria@hotmail.com" },
         { status: 500 }
       );
     }
@@ -449,7 +449,7 @@ export async function POST(request: NextRequest) {
     // Send email to Manuel
     const notificationResult = await resend.emails.send({
       from: `Manecharo - Design - NoReply <${process.env.RESEND_FROM_EMAIL || "noreply@manecharo.com"}>`,
-      to: "manuelerfreelance@gmail.com",
+      to: "manuel_echavarria@hotmail.com",
       subject: `🔔 New Contact: ${name}`,
       html: `
         <!DOCTYPE html>
@@ -618,7 +618,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
-        error: "Failed to send message. Please contact directly at manuelerfreelance@gmail.com",
+        error: "Failed to send message. Please contact directly at manuel_echavarria@hotmail.com",
         details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
       },
       { status: 500 }

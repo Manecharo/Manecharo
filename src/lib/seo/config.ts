@@ -41,7 +41,7 @@ export const seoConfig = {
     },
 
     // Contact information
-    email: 'manuelerfreelance@gmail.com',
+    email: 'manuel_echavarria@hotmail.com',
     telephone: '+60126581025',
 
     // Location
@@ -299,7 +299,7 @@ export const seoConfig = {
       areaServed: 'Worldwide',
       priceRange: '$$$$',
       telephone: '+60126581025',
-      email: 'manuelerfreelance@gmail.com',
+      email: 'manuel_echavarria@hotmail.com',
       sameAs: [
         'https://www.linkedin.com/in/mer101',
         'https://www.instagram.com/Manecharo',

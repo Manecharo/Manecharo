@@ -49,7 +49,7 @@ export default function ContactPage() {
             >
               <a
                 data-info
-                href="mailto:manuelerfreelance@gmail.com"
+                href="mailto:manuel_echavarria@hotmail.com"
                 className="group flex items-start gap-4 border-t border-bone/10 pt-6 transition-colors"
               >
                 <Mail className="mt-1 h-5 w-5 flex-shrink-0 text-gold" />
@@ -58,7 +58,7 @@ export default function ContactPage() {
                     {t.contact.email}
                   </div>
                   <div className="u-sweep text-bone transition-colors group-hover:text-gold">
-                    manuelerfreelance@gmail.com
+                    manuel_echavarria@hotmail.com
                   </div>
                 </div>
               </a>
@@ -155,7 +155,7 @@ export default function ContactPage() {
 
         {/* Giant email marquee */}
         <a
-          href="mailto:manuelerfreelance@gmail.com"
+          href="mailto:manuel_echavarria@hotmail.com"
           aria-label="Email Manuel"
           className="group block border-t border-bone/10 py-8 md:py-10"
           data-cursor="open"
@@ -163,7 +163,7 @@ export default function ContactPage() {
           <Marquee duration={24}>
             <span className="mx-6 flex items-center gap-12 font-display text-5xl font-bold uppercase tracking-tightest md:text-7xl">
               <span className="text-stroke transition-colors duration-300 group-hover:text-gold group-hover:[-webkit-text-fill-color:#eec84e]">
-                manuelerfreelance@gmail.com
+                manuel_echavarria@hotmail.com
               </span>
               <span aria-hidden className="text-3xl text-gold md:text-4xl">
                 ✦

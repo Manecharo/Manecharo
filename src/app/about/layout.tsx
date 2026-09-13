@@ -5,7 +5,7 @@ import { generateStructuredData } from "@/lib/seo/config";
 export const metadata: Metadata = {
   title: "About Manuel Echavarria Romero — Product Designer & Design Strategist",
   description:
-    "Learn about Manuel Echavarria Romero: product designer and design strategist with 14 years of experience across 6 countries. Master's in Design (SPD Milan), Diploma in Industrial Design (IED Milan), certificates from MIT and Harvard. Based in Kuala Lumpur, Malaysia, working globally in English, Spanish, Italian, and French.",
+    "Learn about Manuel Echavarria Romero: senior product and brand innovation designer with 15 years of experience across 6 countries. Master's in Design (SPD Milan), Diploma in Industrial Design (IED Milan), certificates from MIT and Harvard. Relocating to Spain, available from 1 November 2026. Works in Spanish, English, Italian and French.",
   alternates: {
     canonical: "https://manecharo.com/about",
     languages: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: "https://manecharo.com/about",
     title: "About Manuel Echavarria Romero — Product Designer & Design Strategist",
     description:
-      "Product designer and design strategist with 14 years of experience. SPD Milan, IED Milan, MIT, Harvard. Based in Kuala Lumpur, working globally.",
+      "Senior product and brand innovation designer, 15 years. SPD Milan, IED Milan, MIT, Harvard. Relocating to Spain, available from 1 November 2026.",
     images: [
       {
         url: "/images/social/og-image-square.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Manuel Echavarria Romero",
     description:
-      "Product designer & design strategist — 14 years, 6 countries, based in Kuala Lumpur.",
+      "Senior product & brand innovation designer — 15 years, 6 countries, relocating to Spain.",
     images: ["/images/social/twitter-image.jpg"],
   },
 };
