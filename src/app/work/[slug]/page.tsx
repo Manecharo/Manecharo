@@ -3,6 +3,10 @@ import { client } from "@/lib/sanity/client";
 import PageTransition from "@/components/layout/PageTransition";
 import ProjectDetailClient from "@/components/sections/ProjectDetailClient";
 
+// Same reason as /work: without this the Sanity response sticks in the data
+// cache, which survives redeploys, and edits made in Studio never show up.
+export const dynamic = "force-dynamic";
+
 interface Project {
   _id: string;
   title: string;
