@@ -91,6 +91,12 @@ export const blockContentType = defineType({
           validation: (Rule) => Rule.required(),
         },
         {
+          name: 'poster',
+          type: 'url',
+          title: 'Poster image URL',
+          description: 'Still shown before playback. Direct video files only.',
+        },
+        {
           name: 'caption',
           type: 'string',
           title: 'Caption',

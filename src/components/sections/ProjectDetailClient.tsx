@@ -75,6 +75,27 @@ const portableTextComponents = {
         return null;
       }
 
+      // ponytail: a direct file gets a real <video>; the iframe is for embeds only
+      if (/\.(mp4|webm|mov|m4v)(\?|$)/i.test(value.url)) {
+        return (
+          <figure className="my-10">
+            <video
+              src={value.url}
+              poster={value.poster}
+              controls
+              playsInline
+              preload="metadata"
+              className="mx-auto max-h-[80vh] w-full bg-black object-contain"
+            />
+            {value.caption && (
+              <figcaption className="mt-3 text-center text-sm text-bone/50">
+                {value.caption}
+              </figcaption>
+            )}
+          </figure>
+        );
+      }
+
       const getEmbedUrl = (url: string) => {
         if (url.includes("youtube.com") || url.includes("youtu.be")) {
           const videoId = url.includes("youtu.be")
@@ -95,6 +116,7 @@ const portableTextComponents = {
             <iframe
               src={getEmbedUrl(value.url)}
               className="absolute inset-0 h-full w-full"
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
