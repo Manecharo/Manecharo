@@ -85,7 +85,7 @@ const portableTextComponents = {
               controls
               playsInline
               preload="metadata"
-              className="mx-auto max-h-[80vh] w-full bg-black object-contain"
+              className="mx-auto block max-h-[80vh] w-auto max-w-full bg-black"
             />
             {value.caption && (
               <figcaption className="mt-3 text-center text-sm text-bone/50">
