@@ -14,8 +14,8 @@ export const seoConfig = {
     '@id': 'https://manecharo.com/#person',
     name: 'Manuel Echavarria Romero',
     alternateName: ['Manuel Echavarria', 'MER', 'Manecharo'],
-    jobTitle: 'Product Designer & Design Strategist',
-    description: 'Designer and problem solver with 14 years of experience turning complex problems into elegant solutions. Specialized in product design, UX/UI, brand strategy, and social impact design.',
+    jobTitle: 'Senior Product & Brand Innovation Designer',
+    description: 'Senior product and brand innovation designer with 15 years of experience across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital. Co-founded three companies, one sold. Relocating to Spain, available from 1 November 2026.',
 
     url: 'https://manecharo.com',
     image: 'https://manecharo.com/images/about/manuel2.jpeg',
@@ -23,15 +23,15 @@ export const seoConfig = {
     // Occupation (for AI / answer engines)
     hasOccupation: {
       '@type': 'Occupation',
-      name: 'Product Designer & Design Strategist',
+      name: 'Senior Product & Brand Innovation Designer',
       occupationLocation: {
-        '@type': 'City',
-        name: 'Kuala Lumpur',
+        '@type': 'Country',
+        name: 'Spain',
       },
       skills:
-        'Product Design, UX/UI Design, Brand Strategy, Design Systems, Service Design, Social Impact Design, Design Thinking',
+        'Consumer Product Design, Retail and Point of Sale, Shopper and POP Systems, Brand Identity and Experience, Industrial Design, Design for Manufacturing, CMF, Prototyping, Cost Engineering, UX/UI Design, Design Systems, Design Leadership',
       responsibilities:
-        'Designs digital products, brand identities, and services for startups, enterprises, and civic organizations. Leads user research, strategy, and design-system work.',
+        'Designs consumer products, retail and point-of-sale systems, brand identities and digital products, from insight and concept through to manufacturing, distribution and launch. Leads design teams and in-house R&D.',
     },
 
     // Hint speech-enabled assistants which parts of the page to read aloud
@@ -51,15 +51,12 @@ export const seoConfig = {
       addressCountry: 'MY',
     },
 
-    // Work location
+    // Donde va a trabajar. El domicilio de arriba sigue siendo Kuala Lumpur
+    // porque hoy es verdad; esto es lo que el CV imprime como "Kuala Lumpur ->
+    // Espana, disponible desde el 1 de noviembre de 2026".
     workLocation: {
-      '@type': 'Place',
-      name: 'Kuala Lumpur',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Kuala Lumpur',
-        addressCountry: 'Malaysia',
-      },
+      '@type': 'Country',
+      name: 'Spain',
     },
 
     // Languages spoken
@@ -82,28 +79,40 @@ export const seoConfig = {
     ],
 
     // Skills and expertise
+    // Encabeza el vocabulario del sector al que apunta: es lo que se teclea en
+    // una busqueda y lo que mastican los buscadores con IA. Todo sale de la
+    // seccion de capacidades del CV; nada inventado (en particular, packaging no).
     knowsAbout: [
+      // consumo, retail y marca
+      'Consumer Products',
+      'Retail Design',
+      'Point of Sale',
+      'Shopper Marketing',
+      'POP Systems',
+      'Brand Identity',
+      'Brand Experience',
+      'Brand Strategy',
+      'Consumer Research',
+      // producto fisico
+      'Industrial Design',
       'Product Design',
+      'Design for Manufacturing',
+      'CMF Design',
+      'Prototyping',
+      'Cost Engineering',
+      // digital
       'UX Design',
       'UI Design',
-      'User Experience',
-      'User Interface',
-      'Design Strategy',
-      'Brand Design',
-      'Brand Identity',
-      'Brand Strategy',
-      'Design Thinking',
       'Design Systems',
-      'Interaction Design',
+      'Digital Product Design',
+      'AI-Assisted Workflows',
+      // direccion y contexto
+      'Design Leadership',
+      'Design Strategy',
       'Service Design',
+      'Design Thinking',
       'Social Impact Design',
       'Civic Technology',
-      'Design for Good',
-      'Startup Design',
-      'Digital Product Design',
-      'Mobile Design',
-      'Web Design',
-      'Design Leadership',
     ],
 
     // Social profiles
@@ -178,7 +187,7 @@ export const seoConfig = {
 
   // Multilingual content
   languages: {
-    default: 'en',
+    default: 'es',
     supported: ['en', 'es', 'it'],
     locales: {
       en: 'en_US',
@@ -190,81 +199,81 @@ export const seoConfig = {
   // SEO metadata by language
   metadata: {
     en: {
-      title: 'Manuel Echavarria Romero | Product Designer & Design Strategist',
-      description: 'Designer and problem solver based in Kuala Lumpur with 14 years of experience. Specialized in product design, UX/UI, brand strategy, and social impact design. Working globally across 6 countries.',
+      title: 'Manuel Echavarria Romero | Senior Product & Brand Innovation Designer',
+      description: 'Senior product and brand innovation designer, 15 years across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital. Relocating to Spain, available from 1 November 2026.',
       keywords: [
         'Manuel Echavarria Romero',
         'Manecharo',
-        'Product Designer',
-        'UX Designer',
-        'UI Designer',
-        'Design Strategist',
-        'Brand Designer',
-        'Kuala Lumpur Designer',
-        'Product Design',
-        'User Experience Design',
-        'User Interface Design',
-        'UX/UI Design',
-        'Brand Strategy',
+        'Senior Product Designer',
+        'Brand Innovation Designer',
+        'Industrial Designer',
+        'Consumer Product Design',
+        'Retail Design',
+        'Point of Sale Design',
+        'Shopper Marketing',
+        'POP Systems',
         'Brand Identity',
-        'Design Thinking',
-        'Social Impact Design',
-        'Civic Tech Design',
-        'Startup Design',
+        'Brand Experience',
+        'Design for Manufacturing',
+        'CMF Design',
+        'UX/UI Design',
+        'Design Systems',
         'Design Leadership',
-        'Digital Product Design',
+        'Product Designer Spain',
+        'Product Designer Madrid',
+        'Product Designer Barcelona',
       ],
     },
     es: {
-      title: 'Manuel Echavarria Romero | Diseñador de Productos y Estratega de Diseño',
-      description: 'Diseñador y solucionador de problemas con sede en Kuala Lumpur con 14 años de experiencia. Especializado en diseño de productos, UX/UI, estrategia de marca y diseño de impacto social. Trabajando globalmente en 6 países.',
+      title: 'Manuel Echavarria Romero | Diseñador Sénior de Producto e Innovación de Marca',
+      description: 'Diseñador sénior de producto e innovación de marca, quince años en seis países. Productos de consumo, retail y punto de venta, experiencia de marca, físico y digital. Se traslada a España, disponible desde el 1 de noviembre de 2026.',
       keywords: [
         'Manuel Echavarria Romero',
         'Manecharo',
-        'Diseñador de Productos',
-        'Diseñador UX',
-        'Diseñador UI',
-        'Estratega de Diseño',
-        'Diseñador de Marca',
-        'Diseñador Kuala Lumpur',
-        'Diseño de Productos',
-        'Diseño de Experiencia de Usuario',
-        'Diseño de Interfaz de Usuario',
+        'Diseñador de producto',
+        'Diseñador industrial',
+        'Diseñador sénior de producto',
+        'Innovación de marca',
+        'Productos de consumo',
+        'Diseño de retail',
+        'Punto de venta',
+        'Shopper',
+        'Gran consumo',
+        'Sistemas POP',
+        'Identidad de marca',
+        'Experiencia de marca',
+        'Diseño para fabricación',
+        'Investigación de consumidor',
         'Diseño UX/UI',
-        'Estrategia de Marca',
-        'Identidad de Marca',
-        'Design Thinking',
-        'Diseño de Impacto Social',
-        'Diseño Cívico',
-        'Diseño para Startups',
-        'Liderazgo en Diseño',
-        'Diseño de Productos Digitales',
+        'Dirección de diseño',
+        'Diseñador de producto Madrid',
+        'Diseñador de producto Barcelona',
       ],
     },
     it: {
-      title: 'Manuel Echavarria Romero | Product Designer e Stratega del Design',
-      description: 'Designer e risolutore di problemi con sede a Kuala Lumpur con 14 anni di esperienza. Specializzato in product design, UX/UI, strategia di brand e design a impatto sociale. Lavoro globale in 6 paesi.',
+      title: 'Manuel Echavarria Romero | Senior Designer di Prodotto e Innovazione di Marca',
+      description: 'Senior designer di prodotto e innovazione di marca, quindici anni in sei paesi. Prodotti di consumo, retail e punto vendita, brand experience, fisico e digitale. Si trasferisce in Spagna, disponibile dal 1 novembre 2026.',
       keywords: [
         'Manuel Echavarria Romero',
         'Manecharo',
-        'Product Designer',
-        'UX Designer',
-        'UI Designer',
-        'Stratega del Design',
-        'Brand Designer',
-        'Designer Kuala Lumpur',
-        'Product Design',
-        'User Experience Design',
-        'User Interface Design',
+        'Designer di prodotto',
+        'Designer industriale',
+        'Senior product designer',
+        'Innovazione di marca',
+        'Prodotti di consumo',
+        'Design per il retail',
+        'Punto vendita',
+        'Shopper',
+        'Grande consumo',
+        'Sistemi POP',
+        'Identità di marca',
+        'Brand experience',
+        'Design per la produzione',
+        'Ricerca sul consumatore',
         'Design UX/UI',
-        'Strategia di Brand',
-        'Identità di Brand',
-        'Design Thinking',
-        'Design a Impatto Sociale',
-        'Design Civico',
-        'Design per Startup',
-        'Leadership nel Design',
-        'Design di Prodotti Digitali',
+        'Direzione del design',
+        'Designer di prodotto Spagna',
+        'Designer di prodotto Milano',
       ],
     },
   },
@@ -280,7 +289,7 @@ export const seoConfig = {
       url: 'https://manecharo.com',
       logo: 'https://manecharo.com/images/logo.png',
       image: 'https://manecharo.com/images/about/manuel2.jpeg',
-      description: 'Professional design services specializing in product design, UX/UI, and brand strategy.',
+      description: 'Product and brand design for consumer goods, retail and point of sale: from insight and concept through to manufacturing, distribution and launch. Physical and digital.',
       founder: {
         '@type': 'Person',
         '@id': 'https://manecharo.com/#person',
@@ -296,7 +305,7 @@ export const seoConfig = {
         latitude: '3.139',
         longitude: '101.687',
       },
-      areaServed: 'Worldwide',
+      areaServed: ['Spain', 'European Union'],
       priceRange: '$$$$',
       telephone: '+60126581025',
       email: 'manuel_echavarria@hotmail.com',
@@ -308,17 +317,10 @@ export const seoConfig = {
   },
 };
 
-// Helper function to generate hreflang links
-export function getHrefLangLinks(pathname: string) {
-  const baseUrl = seoConfig.siteUrl;
-
-  return [
-    { rel: 'alternate', hreflang: 'en', href: `${baseUrl}/en${pathname}` },
-    { rel: 'alternate', hreflang: 'es', href: `${baseUrl}/es${pathname}` },
-    { rel: 'alternate', hreflang: 'it', href: `${baseUrl}/it${pathname}` },
-    { rel: 'alternate', hreflang: 'x-default', href: `${baseUrl}${pathname}` },
-  ];
-}
+// El trilingue es de cliente, no de ruta: /en, /es e /it devuelven 404 y el
+// idioma lo decide LanguageContext. Aqui vivia un getHrefLangLinks() que
+// generaba enlaces a esas tres rutas inexistentes; no lo usaba nadie y habria
+// mandado a Google a tres 404, asi que fuera.
 
 // Helper function to generate structured data JSON-LD
 export function generateStructuredData(type: string, data?: any) {

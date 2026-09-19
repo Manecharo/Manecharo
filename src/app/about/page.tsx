@@ -108,7 +108,7 @@ export default function AboutPage() {
                   >
                     <Image
                       src="/images/about/manuel2.jpeg"
-                      alt="Manuel Echavarria Romero - Product Designer & Design Strategist"
+                      alt="Manuel Echavarria Romero - Senior Product & Brand Innovation Designer"
                       fill
                       className="object-cover object-center"
                       sizes="(max-width: 768px) 100vw, 560px"

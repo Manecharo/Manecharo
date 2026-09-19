@@ -27,7 +27,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://manecharo.com"),
   title: {
-    default: "Manuel Echavarria Romero | Product Designer & Design Strategist",
+    default: "Manuel Echavarria Romero | Senior Product & Brand Innovation Designer",
     template: "%s | Manuel Echavarria Romero",
   },
   description:
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     alternateLocale: ["es_ES", "it_IT"],
     url: "https://manecharo.com",
-    title: "Manuel Echavarria Romero | Product Designer & Design Strategist",
+    title: "Manuel Echavarria Romero | Senior Product & Brand Innovation Designer",
     description:
       "Senior product and brand innovation designer, 15 years across 6 countries. Consumer products, retail, brand experience. Relocating to Spain, available from 1 November 2026.",
     siteName: "Manuel Echavarria Romero",
@@ -59,13 +59,13 @@ export const metadata: Metadata = {
         url: "/images/social/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Manuel Echavarria Romero - Product Designer & Design Strategist",
+        alt: "Manuel Echavarria Romero - Senior Product & Brand Innovation Designer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manuel Echavarria Romero | Product Designer & Design Strategist",
+    title: "Manuel Echavarria Romero | Senior Product & Brand Innovation Designer",
     description:
       "Senior product and brand innovation designer, 15 years. Consumer products, retail and brand experience. Relocating to Spain.",
     images: ["/images/social/twitter-image.jpg"],

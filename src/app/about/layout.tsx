@@ -3,7 +3,7 @@ import StructuredData from "@/components/seo/StructuredData";
 import { generateStructuredData } from "@/lib/seo/config";
 
 export const metadata: Metadata = {
-  title: "About Manuel Echavarria Romero — Product Designer & Design Strategist",
+  title: "About Manuel Echavarria Romero — Senior Product & Brand Innovation Designer",
   description:
     "Learn about Manuel Echavarria Romero: senior product and brand innovation designer with 15 years of experience across 6 countries. Master's in Design (SPD Milan), Diploma in Industrial Design (IED Milan), certificates from MIT and Harvard. Relocating to Spain, available from 1 November 2026. Works in Spanish, English, Italian and French.",
   alternates: {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "profile",
     url: "https://manecharo.com/about",
-    title: "About Manuel Echavarria Romero — Product Designer & Design Strategist",
+    title: "About Manuel Echavarria Romero — Senior Product & Brand Innovation Designer",
     description:
       "Senior product and brand innovation designer, 15 years. SPD Milan, IED Milan, MIT, Harvard. Relocating to Spain, available from 1 November 2026.",
     images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: "/images/social/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Manuel Echavarria Romero — Product Designer & Design Strategist",
+        alt: "Manuel Echavarria Romero — Senior Product & Brand Innovation Designer",
       },
     ],
   },
