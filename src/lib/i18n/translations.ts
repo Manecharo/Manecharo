@@ -22,6 +22,7 @@ export const translations = {
       title: "Impact in numbers",
       note: "Every figure above comes from a shipped project. Ask me about any of them.",
       cv: "Download CV (PDF)",
+      cvFile: "/cv/CV-Manuel-Echavarria-EN.pdf",
       metrics: [
         { value: "−70%", label: "technology cost · Mill" },
         { value: "65%", label: "cheaper than the imported system · Paqua" },
@@ -280,6 +281,7 @@ export const translations = {
       title: "Impacto en cifras",
       note: "Cada cifra sale de un proyecto que llegó al mercado. Pregúntame por cualquiera.",
       cv: "Descargar CV (PDF)",
+      cvFile: "/cv/CV-Manuel-Echavarria-ES.pdf",
       metrics: [
         { value: "−70%", label: "coste de la tecnología · Mill" },
         { value: "65%", label: "más barata que la importada · Paqua" },
@@ -538,6 +540,7 @@ export const translations = {
       title: "Impatto in numeri",
       note: "Ogni cifra viene da un progetto arrivato sul mercato. Chiedimi di una qualsiasi.",
       cv: "Scarica il CV (PDF)",
+      cvFile: "/cv/CV-Manuel-Echavarria-IT.pdf",
       metrics: [
         { value: "−70%", label: "costo della tecnologia · Mill" },
         { value: "65%", label: "più economica dell'importata · Paqua" },

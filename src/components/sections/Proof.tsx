@@ -11,11 +11,12 @@ import Magnetic from "@/components/experience/Magnetic";
  *
  * Iban en el CV y no estaban en la web, que es donde el reclutador viene a
  * confirmarlas. Todas tienen fuente verificada; ninguna es una estimacion.
- * El texto vive en translations.ts -> proof.
+ * El texto vive en translations.ts -> proof, y el CV tambien: cada idioma
+ * descarga su propio PDF (proof.cvFile), no el castellano para todos.
  */
 export default function Proof() {
   const { t } = useLanguage();
-  const { title, note, cv, metrics } = t.proof;
+  const { title, note, cv, cvFile, metrics } = t.proof;
 
   return (
     <section className="border-y border-bone/10 bg-charcoal px-6 py-20 md:px-12 md:py-28">
@@ -51,7 +52,7 @@ export default function Proof() {
             </p>
             <Magnetic>
               <Link
-                href="/cv/CV-Manuel-Echavarria-ES.pdf"
+                href={cvFile}
                 target="_blank"
                 rel="noopener"
                 data-cursor="view"
