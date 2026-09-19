@@ -86,7 +86,11 @@ export const metadata: Metadata = {
   //   google: "your-google-search-console-code", // Add after Google Search Console setup
   // },
   icons: {
-    icon: "/favicon.ico",
+    // el SVG lleva la media query de tema dentro; el .ico queda de respaldo
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
     apple: "/apple-touch-icon.png",
   },
 };
