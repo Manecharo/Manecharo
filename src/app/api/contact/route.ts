@@ -98,7 +98,7 @@ const autoReplyTemplates = {
                 <tr>
                   <td style="padding: 32px 48px; background-color: #0A0A0A; text-align: center;">
                     <p style="margin: 0 0 12px 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #999999;">
-                      Relocating to Spain • available from 1 November 2026
+                      Based in Kuala Lumpur • working remotely
                     </p>
                     <div style="margin: 16px 0 0 0;">
                       <a href="https://instagram.com/Manecharo" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">Instagram</a>
@@ -185,7 +185,7 @@ const autoReplyTemplates = {
                 <tr>
                   <td style="padding: 32px 48px; background-color: #0A0A0A; text-align: center;">
                     <p style="margin: 0 0 12px 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #999999;">
-                      Me traslado a España • disponible desde el 1 de noviembre de 2026
+                      En Kuala Lumpur • trabajo en remoto
                     </p>
                     <div style="margin: 16px 0 0 0;">
                       <a href="https://instagram.com/Manecharo" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">Instagram</a>
@@ -272,7 +272,7 @@ const autoReplyTemplates = {
                 <tr>
                   <td style="padding: 32px 48px; background-color: #0A0A0A; text-align: center;">
                     <p style="margin: 0 0 12px 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #999999;">
-                      Mi trasferisco in Spagna • disponibile dal 1 novembre 2026
+                      A Kuala Lumpur • lavoro da remoto
                     </p>
                     <div style="margin: 16px 0 0 0;">
                       <a href="https://instagram.com/Manecharo" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #EEC84E; text-decoration: none; margin: 0 12px;">Instagram</a>

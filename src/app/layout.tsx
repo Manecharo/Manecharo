@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s | Manuel Echavarria Romero",
   },
   description:
-    "Senior product and brand innovation designer with 15 years of experience across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital. Relocating to Spain, available from 1 November 2026.",
+    "Senior product and brand innovation designer with 15 years of experience across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital.",
   keywords: seoConfig.metadata.en.keywords,
   authors: [{ name: "Manuel Echavarria Romero", url: "https://manecharo.com" }],
   creator: "Manuel Echavarria Romero",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     url: "https://manecharo.com",
     title: "Manuel Echavarria Romero | Senior Product & Brand Innovation Designer",
     description:
-      "Senior product and brand innovation designer, 15 years across 6 countries. Consumer products, retail, brand experience. Relocating to Spain, available from 1 November 2026.",
+      "Senior product and brand innovation designer, 15 years across 6 countries. Consumer products, retail, brand experience.",
     siteName: "Manuel Echavarria Romero",
     images: [
       {
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Manuel Echavarria Romero | Senior Product & Brand Innovation Designer",
     description:
-      "Senior product and brand innovation designer, 15 years. Consumer products, retail and brand experience. Relocating to Spain.",
+      "Senior product and brand innovation designer, 15 years. Consumer products, retail and brand experience.",
     images: ["/images/social/twitter-image.jpg"],
     creator: "@Manecharo",
   },

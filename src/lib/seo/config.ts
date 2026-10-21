@@ -15,7 +15,7 @@ export const seoConfig = {
     name: 'Manuel Echavarria Romero',
     alternateName: ['Manuel Echavarria', 'MER', 'Manecharo'],
     jobTitle: 'Senior Product & Brand Innovation Designer',
-    description: 'Senior product and brand innovation designer with 15 years of experience across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital. Co-founded three companies, one sold. Relocating to Spain, available from 1 November 2026.',
+    description: 'Senior product and brand innovation designer with 15 years of experience across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital. Co-founded three companies, one sold.',
 
     url: 'https://manecharo.com',
     image: 'https://manecharo.com/images/about/manuel2.jpeg',
@@ -49,14 +49,6 @@ export const seoConfig = {
       '@type': 'PostalAddress',
       addressLocality: 'Kuala Lumpur',
       addressCountry: 'MY',
-    },
-
-    // Donde va a trabajar. El domicilio de arriba sigue siendo Kuala Lumpur
-    // porque hoy es verdad; esto es lo que el CV imprime como "Kuala Lumpur ->
-    // Espana, disponible desde el 1 de noviembre de 2026".
-    workLocation: {
-      '@type': 'Country',
-      name: 'Spain',
     },
 
     // Languages spoken
@@ -200,7 +192,7 @@ export const seoConfig = {
   metadata: {
     en: {
       title: 'Manuel Echavarria Romero | Senior Product & Brand Innovation Designer',
-      description: 'Senior product and brand innovation designer, 15 years across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital. Relocating to Spain, available from 1 November 2026.',
+      description: 'Senior product and brand innovation designer, 15 years across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital.',
       keywords: [
         'Manuel Echavarria Romero',
         'Manecharo',
@@ -226,7 +218,7 @@ export const seoConfig = {
     },
     es: {
       title: 'Manuel Echavarria Romero | Diseñador Sénior de Producto e Innovación de Marca',
-      description: 'Diseñador sénior de producto e innovación de marca, quince años en seis países. Productos de consumo, retail y punto de venta, experiencia de marca, físico y digital. Se traslada a España, disponible desde el 1 de noviembre de 2026.',
+      description: 'Diseñador sénior de producto e innovación de marca, quince años en seis países. Productos de consumo, retail y punto de venta, experiencia de marca, físico y digital.',
       keywords: [
         'Manuel Echavarria Romero',
         'Manecharo',
@@ -252,7 +244,7 @@ export const seoConfig = {
     },
     it: {
       title: 'Manuel Echavarria Romero | Senior Designer di Prodotto e Innovazione di Marca',
-      description: 'Senior designer di prodotto e innovazione di marca, quindici anni in sei paesi. Prodotti di consumo, retail e punto vendita, brand experience, fisico e digitale. Si trasferisce in Spagna, disponibile dal 1 novembre 2026.',
+      description: 'Senior designer di prodotto e innovazione di marca, quindici anni in sei paesi. Prodotti di consumo, retail e punto vendita, brand experience, fisico e digitale.',
       keywords: [
         'Manuel Echavarria Romero',
         'Manecharo',
