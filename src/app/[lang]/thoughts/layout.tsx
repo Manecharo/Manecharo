@@ -2,14 +2,16 @@ import Link from "next/link";
 
 export default function ThoughtsLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { lang: string };
 }) {
   return (
     <div className="min-h-screen bg-white">
       {/* Unique Blog Logo - Top Left */}
       <Link
-        href="/thoughts"
+        href={`/${params.lang}/thoughts`}
         className="fixed top-6 left-6 z-50 group"
         aria-label="Go to thoughts home"
       >
@@ -27,7 +29,7 @@ export default function ThoughtsLayout({
 
       {/* Exit to Main Site - Top Right */}
       <Link
-        href="/"
+        href={`/${params.lang}`}
         className="fixed top-6 right-6 z-50 font-mono text-sm uppercase tracking-wider border-2 border-charcoal px-4 py-2 bg-white hover:bg-charcoal hover:text-white transition-colors duration-200"
         aria-label="Return to main site"
       >

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { stripLang } from "@/lib/i18n/routing";
 
 /**
  * Spatial page transitions, kept from the original navigation metaphor:
@@ -22,7 +23,7 @@ export default function PageTransition({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const basePath = "/" + (pathname?.split("/")[1] ?? "");
+  const basePath = "/" + (stripLang(pathname).split("/")[1] ?? "");
   const exit = veilExit[basePath];
 
   return (

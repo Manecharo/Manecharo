@@ -39,31 +39,9 @@ const educationLinks = {
 const educationOrder = ["mit", "harvard", "masters", "bachelor"] as const;
 
 export default function AboutPage() {
-  const { t, mounted } = useLanguage();
-
-  // Show loading skeleton during hydration to prevent mismatch
-  if (!mounted) {
-    return (
-      <PageTransition>
-        <div className="min-h-screen bg-charcoal px-6 py-32 md:px-12">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid items-center gap-12 md:grid-cols-2">
-              <div className="aspect-video w-full max-w-[560px] animate-pulse bg-bone/5 md:order-2" />
-              <div className="space-y-4 md:order-1">
-                <div className="h-8 w-24 animate-pulse rounded bg-bone/5" />
-                <div className="h-12 w-3/4 animate-pulse rounded bg-bone/5" />
-                <div className="space-y-3">
-                  <div className="h-4 w-full animate-pulse rounded bg-bone/5" />
-                  <div className="h-4 w-full animate-pulse rounded bg-bone/5" />
-                  <div className="h-4 w-2/3 animate-pulse rounded bg-bone/5" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </PageTransition>
-    );
-  }
+  // no mount gate: the language comes from the URL, so the server render
+  // already matches the client and crawlers get the full page
+  const { t } = useLanguage();
 
   return (
     <PageTransition>
@@ -108,7 +86,7 @@ export default function AboutPage() {
                   >
                     <Image
                       src="/images/about/manuel2.jpeg"
-                      alt="Manuel Echavarria Romero - Senior Product & Brand Innovation Designer"
+                      alt="Manuel Echavarria Romero, industrial and product designer"
                       fill
                       className="object-cover object-center"
                       sizes="(max-width: 768px) 100vw, 560px"

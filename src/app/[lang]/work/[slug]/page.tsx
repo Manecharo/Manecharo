@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { client } from "@/lib/sanity/client";
 import PageTransition from "@/components/layout/PageTransition";
 import ProjectDetailClient from "@/components/sections/ProjectDetailClient";
+import { alternatesFor, type Lang } from "@/lib/i18n/routing";
 
 // Same reason as /work: without this the Sanity response sticks in the data
 // cache, which survives redeploys, and edits made in Studio never show up.
@@ -98,7 +99,7 @@ async function getAdjacentProjects(currentId: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string; lang: Lang };
 }) {
   const project = await getProject(params.slug);
 
@@ -108,9 +109,16 @@ export async function generateMetadata({
     };
   }
 
+  // Sanity keeps English in the bare field and the others in _es / _it
+  const pick = (base?: string, es?: string, it?: string) =>
+    (params.lang === "es" ? es : params.lang === "it" ? it : undefined) || base;
+  const title = pick(project.title, project.title_es, project.title_it);
+  const description = pick(project.excerpt, project.excerpt_es, project.excerpt_it) || title;
+
   return {
-    title: `${project.title}${project.year ? ` (${project.year})` : ''}`,
-    description: project.excerpt || project.title,
+    title: `${title}${project.year ? ` (${project.year})` : ''}`,
+    description,
+    alternates: alternatesFor(params.lang, `/work/${params.slug}`),
   };
 }
 

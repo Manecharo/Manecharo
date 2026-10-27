@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Instagram, Linkedin, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { stripLang } from "@/lib/i18n/routing";
 import { Language } from "@/lib/i18n/translations";
 import { lockScroll, unlockScroll } from "@/lib/motion/hooks";
 
@@ -23,10 +24,11 @@ const overlayItems = [
 ] as const;
 
 export default function Navigation() {
-  const pathname = usePathname();
+  // compare routes without the /es, /en, /it prefix
+  const pathname = stripLang(usePathname());
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const { t, language, setLanguage } = useLanguage();
+  const { t, language, setLanguage, href } = useLanguage();
 
   // Track scroll position so the edge nav recedes while reading
   useEffect(() => {
@@ -73,7 +75,7 @@ export default function Navigation() {
         }`}
       >
         <Link
-          href="/"
+          href={href("/")}
           aria-label="Go to homepage"
           className="group relative block h-10 w-10 transition-transform duration-300 ease-out-expo hover:scale-110"
         >
@@ -93,7 +95,7 @@ export default function Navigation() {
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                href={href(item.href)}
                 className="group relative flex items-baseline gap-1.5 py-2 font-display text-xs font-bold uppercase tracking-wide2"
               >
                 <span
@@ -184,7 +186,7 @@ export default function Navigation() {
                       exit={{ opacity: 0, transition: { duration: 0.15 } }}
                     >
                       <Link
-                        href={item.href}
+                        href={href(item.href)}
                         onClick={() => setMobileMenuOpen(false)}
                         className="group flex items-baseline gap-4 py-2"
                       >

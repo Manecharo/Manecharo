@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/layout/Navigation";
@@ -7,6 +8,7 @@ import Logo from "@/components/layout/Logo";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import StructuredData from "@/components/seo/StructuredData";
 import { seoConfig, generateStructuredData } from "@/lib/seo/config";
+import { DEFAULT_LANG, isLang } from "@/lib/i18n/routing";
 import SmoothScroll from "@/components/experience/SmoothScroll";
 import Cursor from "@/components/experience/Cursor";
 import Grain from "@/components/experience/Grain";
@@ -26,51 +28,12 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://manecharo.com"),
-  title: {
-    default: "Manuel Echavarria Romero | Senior Product & Brand Innovation Designer",
-    template: "%s | Manuel Echavarria Romero",
-  },
-  description:
-    "Senior product and brand innovation designer with 15 years of experience across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital.",
-  keywords: seoConfig.metadata.en.keywords,
+  // title, description, canonical, hreflang and Open Graph are per language:
+  // see app/[lang]/layout.tsx and each section's layout
+  title: "Manuel Echavarria Romero",
   authors: [{ name: "Manuel Echavarria Romero", url: "https://manecharo.com" }],
   creator: "Manuel Echavarria Romero",
   publisher: "Manuel Echavarria Romero",
-  alternates: {
-    canonical: "https://manecharo.com",
-    languages: {
-      'en': 'https://manecharo.com',
-      'es': 'https://manecharo.com',
-      'it': 'https://manecharo.com',
-      'x-default': 'https://manecharo.com',
-    },
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    alternateLocale: ["es_ES", "it_IT"],
-    url: "https://manecharo.com",
-    title: "Manuel Echavarria Romero | Senior Product & Brand Innovation Designer",
-    description:
-      "Senior product and brand innovation designer, 15 years across 6 countries. Consumer products, retail, brand experience.",
-    siteName: "Manuel Echavarria Romero",
-    images: [
-      {
-        url: "/images/social/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Manuel Echavarria Romero - Senior Product & Brand Innovation Designer",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Manuel Echavarria Romero | Senior Product & Brand Innovation Designer",
-    description:
-      "Senior product and brand innovation designer, 15 years. Consumer products, retail and brand experience.",
-    images: ["/images/social/twitter-image.jpg"],
-    creator: "@Manecharo",
-  },
   robots: {
     index: true,
     follow: true,
@@ -108,9 +71,12 @@ export default function RootLayout({
   const personSchema = generateStructuredData('person');
   const websiteSchema = generateStructuredData('website');
   const organizationSchema = seoConfig.structuredData.organization;
+  // set by the middleware on /es, /en, /it; studio, update and 404 fall back
+  const headerLang = headers().get("x-lang");
+  const lang = isLang(headerLang) ? headerLang : DEFAULT_LANG;
 
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang={lang} className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <head>
         <StructuredData data={[personSchema, websiteSchema, organizationSchema]} />
       </head>

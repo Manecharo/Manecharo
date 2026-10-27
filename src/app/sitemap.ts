@@ -1,9 +1,8 @@
 import { MetadataRoute } from "next";
 import { client } from "@/lib/sanity/client";
+import { LANGS, SITE_URL, alternatesFor, withLang } from "@/lib/i18n/routing";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://manecharo.com";
-
   let projects: any[] = [];
   let posts: any[] = [];
 
@@ -24,57 +23,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // Static pages
+  // One entry per language, each carrying the full hreflang cluster, so a
+  // crawler that finds /es also learns /en and /it are the same page.
+  const localized = (
+    path: string,
+    priority: number,
+    changeFrequency: "weekly" | "monthly",
+    lastModified = new Date()
+  ) =>
+    LANGS.map((lang) => ({
+      url: `${SITE_URL}${withLang(lang, path)}`,
+      lastModified,
+      changeFrequency,
+      priority,
+      alternates: { languages: alternatesFor(lang, path).languages },
+    }));
+
   const staticPages = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/work`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/capabilities`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/thoughts`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.6,
-    },
+    ...localized("/", 1, "monthly"),
+    ...localized("/work", 0.9, "weekly"),
+    ...localized("/about", 0.8, "monthly"),
+    ...localized("/capabilities", 0.8, "monthly"),
+    ...localized("/contact", 0.7, "monthly"),
+    ...localized("/thoughts", 0.6, "weekly"),
   ];
 
-  // Project pages
-  const projectPages = projects.map((project: any) => ({
-    url: `${baseUrl}/work/${project.slug.current}`,
-    lastModified: new Date(project._updatedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  // Project pages: Sanity holds EN/ES/IT text for each
+  const projectPages = projects.flatMap((project: any) =>
+    localized(`/work/${project.slug.current}`, 0.7, "monthly", new Date(project._updatedAt))
+  );
 
-  // Blog posts
+  // Blog posts are written in English only; /es and /it copies canonicalize here
   const postPages = posts.map((post: any) => ({
-    url: `${baseUrl}/thoughts/${post.slug.current}`,
+    url: `${SITE_URL}/en/thoughts/${post.slug.current}`,
     lastModified: new Date(post.publishedAt),
     changeFrequency: "monthly" as const,
     priority: 0.5,

@@ -10,8 +10,8 @@ export const translations = {
     },
     // Landing Page
     hero: {
-      subtitle: "Senior Product & Brand Innovation Designer",
-      specialties: "Consumer products · Retail & point of sale · Brand experience · Physical & digital",
+      subtitle: "Industrial & Product Designer",
+      specialties: "Product development · Consumer products · Retail & point of sale · Brand innovation",
       tagline: "Understand before solving. Design to make life easier.",
       availability: "Based in Kuala Lumpur · working remotely",
       ctaWork: "View Selected Work",
@@ -269,8 +269,8 @@ export const translations = {
     },
     // Landing Page
     hero: {
-      subtitle: "Diseñador Sénior de Producto e Innovación de Marca",
-      specialties: "Productos de consumo · Retail y punto de venta · Experiencia de marca · Físico y digital",
+      subtitle: "Diseñador Industrial y de Producto",
+      specialties: "Desarrollo de producto · Productos de consumo · Retail y punto de venta · Innovación de marca",
       tagline: "Comprender antes de resolver. Diseñar para hacer la vida más fácil.",
       availability: "En Kuala Lumpur · trabajo en remoto",
       ctaWork: "Ver Proyectos Seleccionados",
@@ -528,8 +528,8 @@ export const translations = {
     },
     // Landing Page
     hero: {
-      subtitle: "Senior Designer di Prodotto e Innovazione di Marca",
-      specialties: "Prodotti di consumo · Retail e punto vendita · Brand experience · Fisico e digitale",
+      subtitle: "Designer Industriale e di Prodotto",
+      specialties: "Sviluppo prodotto · Prodotti di consumo · Retail e punto vendita · Innovazione di marca",
       tagline: "Capire prima di risolvere. Progettare per rendere la vita più facile.",
       availability: "A Kuala Lumpur · lavoro da remoto",
       ctaWork: "Vedi Progetti Selezionati",

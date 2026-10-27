@@ -1,13 +1,17 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { translations, Language, TranslationKey } from "./translations";
+import { DEFAULT_LANG, isLang, withLang } from "./routing";
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: TranslationKey;
   mounted: boolean;
+  /** prefixes an internal path with the current language: "/work" -> "/en/work" */
+  href: (path: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -15,29 +19,29 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  // el mercado objetivo es Espana: el castellano manda salvo que el visitante
-  // ya haya elegido otro idioma o su navegador pida ingles o italiano
-  const [language, setLanguageState] = useState<Language>("es");
-  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
-  // Load language from localStorage on mount - only runs on client
+  // On /es, /en, /it the URL is the language — known during server render, so
+  // crawlers get the real text. Only routes outside the language tree
+  // (studio, update, 404) fall back to the visitor's stored choice.
+  const routeLang = pathname?.split("/")[1];
+  const [fallback, setFallback] = useState<Language>(DEFAULT_LANG);
+  const [mounted, setMounted] = useState(false);
+  const language: Language = isLang(routeLang) ? routeLang : fallback;
+
   useEffect(() => {
-    const saved = localStorage.getItem("language") as Language;
-    if (saved && translations[saved]) {
-      setLanguageState(saved);
-    } else {
-      const nav = navigator.language.slice(0, 2) as Language;
-      if (translations[nav]) setLanguageState(nav);
-    }
+    const saved = localStorage.getItem("language");
+    if (isLang(saved)) setFallback(saved);
     setMounted(true);
   }, []);
 
-  // Save language to localStorage when it changes
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    if (mounted) {
-      localStorage.setItem("language", lang);
-    }
+    localStorage.setItem("language", lang);
+    // the middleware reads this cookie when it redirects an un-prefixed URL
+    document.cookie = `language=${lang}; path=/; max-age=31536000; samesite=lax`;
+    setFallback(lang);
+    if (isLang(routeLang)) router.push(withLang(lang, pathname ?? "/"));
   };
 
   const value = {
@@ -45,6 +49,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLanguage,
     t: translations[language],
     mounted,
+    href: (path: string) => withLang(language, path),
   };
 
   return (

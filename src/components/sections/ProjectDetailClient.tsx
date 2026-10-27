@@ -214,7 +214,7 @@ export default function ProjectDetailClient({
   prev,
   next,
 }: ProjectDetailClientProps) {
-  const { t, language } = useLanguage();
+  const { t, language, href } = useLanguage();
 
   const localizedTitle =
     language === "es"
@@ -256,7 +256,7 @@ export default function ProjectDetailClient({
       <div className="mx-auto max-w-[1600px] px-6 md:px-12">
         {/* Back to Work */}
         <Link
-          href="/work"
+          href={href("/work")}
           className="group mb-8 inline-flex items-center gap-2 text-bone/60 transition-colors hover:text-gold"
         >
           <ArrowLeft
@@ -400,7 +400,7 @@ export default function ProjectDetailClient({
         <nav className="grid grid-cols-1 gap-px border border-bone/10 bg-bone/10 sm:grid-cols-2">
           {prev ? (
             <Link
-              href={`/work/${prev.slug.current}`}
+              href={href(`/work/${prev.slug.current}`)}
               data-cursor="view"
               className="group bg-charcoal p-7 transition-colors duration-300 hover:bg-coal-700 md:p-10"
             >
@@ -421,7 +421,7 @@ export default function ProjectDetailClient({
 
           {next ? (
             <Link
-              href={`/work/${next.slug.current}`}
+              href={href(`/work/${next.slug.current}`)}
               data-cursor="view"
               className="group bg-charcoal p-7 text-right transition-colors duration-300 hover:bg-coal-700 md:p-10"
             >
