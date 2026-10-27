@@ -14,8 +14,8 @@ export const seoConfig = {
     '@id': 'https://manecharo.com/#person',
     name: 'Manuel Echavarria Romero',
     alternateName: ['Manuel Echavarria', 'MER', 'Manecharo'],
-    jobTitle: 'Senior Product & Brand Innovation Designer',
-    description: 'Senior product and brand innovation designer with 15 years of experience across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital. Co-founded three companies, one sold.',
+    jobTitle: 'Industrial & Product Designer',
+    description: 'Industrial and product designer with 15 years of experience across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital. Co-founded three companies, one sold.',
 
     url: 'https://manecharo.com',
     image: 'https://manecharo.com/images/about/manuel2.jpeg',
@@ -23,13 +23,13 @@ export const seoConfig = {
     // Occupation (for AI / answer engines)
     hasOccupation: {
       '@type': 'Occupation',
-      name: 'Senior Product & Brand Innovation Designer',
+      name: 'Industrial & Product Designer',
       occupationLocation: {
         '@type': 'Country',
         name: 'Spain',
       },
       skills:
-        'Consumer Product Design, Retail and Point of Sale, Shopper and POP Systems, Brand Identity and Experience, Industrial Design, Design for Manufacturing, CMF, Prototyping, Cost Engineering, UX/UI Design, Design Systems, Design Leadership',
+        'Industrial Design, Product Development, Consumer Product Design, Retail and Point of Sale, Shopper and POP Systems, Brand Identity and Experience, Industrial Design, Design for Manufacturing, CMF, Prototyping, Cost Engineering, UX/UI Design, Design Systems, Design Leadership',
       responsibilities:
         'Designs consumer products, retail and point-of-sale systems, brand identities and digital products, from insight and concept through to manufacturing, distribution and launch. Leads design teams and in-house R&D.',
     },
@@ -88,6 +88,8 @@ export const seoConfig = {
       // producto fisico
       'Industrial Design',
       'Product Design',
+      'Product Development',
+      'New Product Development',
       'Design for Manufacturing',
       'CMF Design',
       'Prototyping',
@@ -191,14 +193,17 @@ export const seoConfig = {
   // SEO metadata by language
   metadata: {
     en: {
-      title: 'Manuel Echavarria Romero | Senior Product & Brand Innovation Designer',
-      description: 'Senior product and brand innovation designer, 15 years across 6 countries. Consumer products, retail and point of sale, brand experience, physical and digital.',
+      title: 'Manuel Echavarria Romero | Industrial & Product Designer',
+      description: 'Industrial and product designer, 15 years across 6 countries: product development from insight to manufacturing, consumer products, retail and point of sale, brand innovation. Physical and digital.',
       keywords: [
         'Manuel Echavarria Romero',
         'Manecharo',
+        'Industrial Designer',
+        'Product Designer',
+        'Product Development',
+        'Industrial Design Consultant',
         'Senior Product Designer',
         'Brand Innovation Designer',
-        'Industrial Designer',
         'Consumer Product Design',
         'Retail Design',
         'Point of Sale Design',
@@ -214,16 +219,20 @@ export const seoConfig = {
         'Product Designer Spain',
         'Product Designer Madrid',
         'Product Designer Barcelona',
+        'Industrial Designer Spain',
+        'Industrial Designer Madrid',
       ],
     },
     es: {
-      title: 'Manuel Echavarria Romero | Diseñador Sénior de Producto e Innovación de Marca',
-      description: 'Diseñador sénior de producto e innovación de marca, quince años en seis países. Productos de consumo, retail y punto de venta, experiencia de marca, físico y digital.',
+      title: 'Manuel Echavarria Romero | Diseñador Industrial y de Producto',
+      description: 'Diseñador industrial y de producto, quince años en seis países: desarrollo de producto de la idea a la fabricación, productos de consumo, retail y punto de venta, innovación de marca. Físico y digital.',
       keywords: [
         'Manuel Echavarria Romero',
         'Manecharo',
-        'Diseñador de producto',
         'Diseñador industrial',
+        'Diseñador de producto',
+        'Desarrollo de producto',
+        'Diseño industrial',
         'Diseñador sénior de producto',
         'Innovación de marca',
         'Productos de consumo',
@@ -240,16 +249,20 @@ export const seoConfig = {
         'Dirección de diseño',
         'Diseñador de producto Madrid',
         'Diseñador de producto Barcelona',
+        'Diseñador industrial Madrid',
+        'Diseñador industrial Barcelona',
       ],
     },
     it: {
-      title: 'Manuel Echavarria Romero | Senior Designer di Prodotto e Innovazione di Marca',
-      description: 'Senior designer di prodotto e innovazione di marca, quindici anni in sei paesi. Prodotti di consumo, retail e punto vendita, brand experience, fisico e digitale.',
+      title: 'Manuel Echavarria Romero | Designer Industriale e di Prodotto',
+      description: "Designer industriale e di prodotto, quindici anni in sei paesi: sviluppo prodotto dall'idea alla produzione, prodotti di consumo, retail e punto vendita, innovazione di marca. Fisico e digitale.",
       keywords: [
         'Manuel Echavarria Romero',
         'Manecharo',
-        'Designer di prodotto',
         'Designer industriale',
+        'Designer di prodotto',
+        'Sviluppo prodotto',
+        'Industrial design',
         'Senior product designer',
         'Innovazione di marca',
         'Prodotti di consumo',
@@ -281,7 +294,7 @@ export const seoConfig = {
       url: 'https://manecharo.com',
       logo: 'https://manecharo.com/images/logo.png',
       image: 'https://manecharo.com/images/about/manuel2.jpeg',
-      description: 'Product and brand design for consumer goods, retail and point of sale: from insight and concept through to manufacturing, distribution and launch. Physical and digital.',
+      description: 'Industrial design, product development and brand design for consumer goods, retail and point of sale: from insight and concept through to manufacturing, distribution and launch. Physical and digital.',
       founder: {
         '@type': 'Person',
         '@id': 'https://manecharo.com/#person',
@@ -308,11 +321,6 @@ export const seoConfig = {
     },
   },
 };
-
-// El trilingue es de cliente, no de ruta: /en, /es e /it devuelven 404 y el
-// idioma lo decide LanguageContext. Aqui vivia un getHrefLangLinks() que
-// generaba enlaces a esas tres rutas inexistentes; no lo usaba nadie y habria
-// mandado a Google a tres 404, asi que fuera.
 
 // Helper function to generate structured data JSON-LD
 export function generateStructuredData(type: string, data?: any) {

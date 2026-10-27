@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { gsap } from "@/lib/motion/gsap";
 import { Stagger } from "@/components/experience/Reveal";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export interface RowItem {
   id: string;
@@ -32,6 +33,7 @@ export default function ProjectRows({
   showThumbs = true,
   className = "",
 }: ProjectRowsProps) {
+  const { href } = useLanguage();
   const [active, setActive] = useState<number | null>(null);
   const previewRef = useRef<HTMLDivElement>(null);
   const moveX = useRef<((v: number) => void) | null>(null);
@@ -96,7 +98,7 @@ export default function ProjectRows({
           <Link
             key={item.id}
             data-row
-            href={`/work/${item.slug}`}
+            href={href(`/work/${item.slug}`)}
             data-cursor="view"
             onPointerEnter={() => showPreview(i)}
             onFocus={() => setActive(i)}

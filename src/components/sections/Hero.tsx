@@ -23,7 +23,7 @@ const NAME_SIZE = "block text-[13.5vw] md:text-[min(10.5vw,18vh,10.5rem)]";
 const IDLE_MS = 10000;
 
 export default function Hero() {
-  const { t } = useLanguage();
+  const { t, href } = useLanguage();
   const reduced = useReducedMotion();
   const isDesktop = useIsDesktop();
   const sectionRef = useRef<HTMLElement>(null);
@@ -218,9 +218,12 @@ export default function Hero() {
           {/* Name */}
           <div ref={nameRef} className="will-change-transform">
             <h1
-              aria-label="Manuel Echavarria Romero"
+              aria-label={`Manuel Echavarria Romero, ${t.hero.subtitle}`}
               className="font-display font-bold uppercase leading-[0.92] tracking-tightest text-bone"
             >
+              {/* the visible name is split into letters; this gives the
+                  heading its full text — name and role — for search engines */}
+              <span className="sr-only">Manuel Echavarria Romero — {t.hero.subtitle}</span>
               <TextReveal
                 text="MANUEL"
                 as="span"
@@ -268,7 +271,7 @@ export default function Hero() {
             <div className="pointer-events-auto flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">
               <Magnetic>
                 <Link
-                  href="/work"
+                  href={href("/work")}
                   data-cursor="view"
                   className="group flex items-center justify-center gap-3 bg-gold px-7 py-4 font-display text-sm font-bold uppercase tracking-wide2 text-charcoal transition-colors duration-300 hover:bg-bone"
                 >
@@ -281,7 +284,7 @@ export default function Hero() {
               </Magnetic>
               <Magnetic>
                 <Link
-                  href="/contact"
+                  href={href("/contact")}
                   className="flex items-center justify-center gap-3 border border-bone/25 px-7 py-4 font-display text-sm font-bold uppercase tracking-wide2 text-bone transition-colors duration-300 hover:border-gold hover:text-gold"
                 >
                   {t.hero.ctaContact}

@@ -3,9 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { stripLang } from "@/lib/i18n/routing";
 
 export default function Logo() {
-  const pathname = usePathname();
+  const pathname = stripLang(usePathname());
+  const { href } = useLanguage();
 
   // Don't show logo on blog/thoughts pages - they have their own identity
   if (pathname?.startsWith("/blog") || pathname?.startsWith("/thoughts")) {
@@ -15,7 +18,7 @@ export default function Logo() {
   // Desktop shows the logo inside the top navigation bar instead.
   return (
     <Link
-      href="/"
+      href={href("/")}
       className="group fixed top-6 left-6 z-[60] md:hidden"
       aria-label="Go to homepage"
     >

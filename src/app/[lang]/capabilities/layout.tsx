@@ -1,38 +1,25 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/pages";
+import { SITE_URL, type Lang } from "@/lib/i18n/routing";
 import StructuredData from "@/components/seo/StructuredData";
 
-export const metadata: Metadata = {
-  title: "Capabilities — Product Design, UX/UI, Brand & Design Systems",
-  description:
-    "Services offered by Manuel Echavarria Romero: Product Design, UX/UI Design, Brand Strategy & Identity, Design Systems, Service Design, Design Thinking workshops, and Social-Impact Design. Engagements scoped for startups, enterprises, and civic-tech.",
-  alternates: {
-    canonical: "https://manecharo.com/capabilities",
-  },
-  openGraph: {
-    type: "website",
-    url: "https://manecharo.com/capabilities",
-    title: "Capabilities — Product Design, UX/UI, Brand & Design Systems",
-    description:
-      "Product Design, UX/UI, Brand Strategy, Design Systems, Service Design, and Social-Impact Design — scoped for startups, enterprises, and civic-tech.",
-    images: [
-      {
-        url: "/images/social/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Manuel Echavarria Romero — Capabilities",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Capabilities — Manuel Echavarria Romero",
-    description:
-      "Product Design, UX/UI, Brand, Design Systems, Service Design, Social-Impact Design.",
-    images: ["/images/social/twitter-image.jpg"],
-  },
-};
+export function generateMetadata({ params }: { params: { lang: Lang } }): Metadata {
+  return pageMetadata(params.lang, "capabilities");
+}
 
 const services = [
+  {
+    "@type": "Service",
+    name: "Industrial Design",
+    description:
+      "Physical product design for consumer goods, retail fixtures and point-of-sale systems: concept, form, CMF, prototyping and design for manufacturing.",
+  },
+  {
+    "@type": "Service",
+    name: "Product Development",
+    description:
+      "New product development from insight and concept through engineering hand-off, cost engineering, suppliers, manufacturing and launch.",
+  },
   {
     "@type": "Service",
     name: "Product Design",
@@ -77,40 +64,42 @@ const services = [
   },
 ];
 
-const offerCatalog = {
+const offerCatalog = (lang: Lang) => ({
   "@context": "https://schema.org",
   "@type": "OfferCatalog",
   name: "Design Services — Manuel Echavarria Romero",
-  url: "https://manecharo.com/capabilities",
+  url: `${SITE_URL}/${lang}/capabilities`,
   itemListElement: services.map((service, i) => ({
     "@type": "Offer",
     position: i + 1,
     itemOffered: service,
   })),
-};
+});
 
-const capabilitiesBreadcrumb = {
+const capabilitiesBreadcrumb = (lang: Lang) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://manecharo.com" },
+    { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/${lang}` },
     {
       "@type": "ListItem",
       position: 2,
       name: "Capabilities",
-      item: "https://manecharo.com/capabilities",
+      item: `${SITE_URL}/${lang}/capabilities`,
     },
   ],
-};
+});
 
 export default function CapabilitiesLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { lang: Lang };
 }) {
   return (
     <>
-      <StructuredData data={[offerCatalog, capabilitiesBreadcrumb]} />
+      <StructuredData data={[offerCatalog(params.lang), capabilitiesBreadcrumb(params.lang)]} />
       {children}
     </>
   );

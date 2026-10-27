@@ -6,14 +6,15 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { Instagram, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { stripLang } from "@/lib/i18n/routing";
 import TextReveal from "@/components/experience/TextReveal";
 import { Reveal } from "@/components/experience/Reveal";
 import Magnetic from "@/components/experience/Magnetic";
 
 export default function Footer() {
-  const pathname = usePathname();
+  const pathname = stripLang(usePathname());
   const router = useRouter();
-  const { t } = useLanguage();
+  const { t, href } = useLanguage();
   const [isDragging, setIsDragging] = useState(false);
   const [dragDistance, setDragDistance] = useState(0);
   const dragStartX = useRef(0);
@@ -40,7 +41,7 @@ export default function Footer() {
 
     // If dragged more than 100px, trigger Easter egg
     if (totalDistance > 100) {
-      router.push("/thoughts");
+      router.push(href("/thoughts"));
     }
   };
 
@@ -62,7 +63,7 @@ export default function Footer() {
         <Reveal delay={0.25} className="mt-10">
           <Magnetic>
             <Link
-              href="/contact"
+              href={href("/contact")}
               data-cursor="open"
               className="group inline-flex items-center gap-4 border border-gold/60 px-8 py-5 font-display text-sm font-bold uppercase tracking-wide2 text-gold transition-colors duration-300 hover:bg-gold hover:text-charcoal"
             >

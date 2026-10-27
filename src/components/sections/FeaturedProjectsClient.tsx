@@ -50,7 +50,7 @@ const textureUrl = (sanityUrl: string, width: 640 | 1080) =>
 export default function FeaturedProjectsClient({
   projects,
 }: FeaturedProjectsClientProps) {
-  const { t, language } = useLanguage();
+  const { t, language, href } = useLanguage();
   const router = useRouter();
   const isDesktop = useIsDesktop();
   const stageRef = useRef<HTMLDivElement>(null);
@@ -141,7 +141,7 @@ export default function FeaturedProjectsClient({
       controlsRef.current?.step(-1);
     } else if ((e.key === "Enter" || e.key === " ") && activeItem) {
       e.preventDefault();
-      router.push(`/work/${activeItem.slug}`);
+      router.push(href(`/work/${activeItem.slug}`));
     }
   };
 
@@ -222,7 +222,7 @@ export default function FeaturedProjectsClient({
             touchAction="pan-y"
             controlsRef={controlsRef}
             onActiveChange={(i) => setActive(i % items.length)}
-            onSelect={(i) => router.push(`/work/${beltItems[i].slug}`)}
+            onSelect={(i) => router.push(href(`/work/${beltItems[i].slug}`))}
           />
 
           {/* Seat the canvas into the page */}
@@ -254,7 +254,7 @@ export default function FeaturedProjectsClient({
                 className="flex flex-col items-center"
               >
                 <button
-                  onClick={() => router.push(`/work/${activeItem.slug}`)}
+                  onClick={() => router.push(href(`/work/${activeItem.slug}`))}
                   data-cursor="open"
                   className="pointer-events-auto group"
                 >
@@ -287,15 +287,24 @@ export default function FeaturedProjectsClient({
           <ProjectRows items={items} />
         </div>
       ) : (
-        /* Deciding (first paint): reserve the stage so nothing jumps */
-        <div className="h-[62vh] w-full md:h-[72vh]" aria-hidden />
+        /* Deciding (first paint): reserve the stage so nothing jumps. The
+           server only ever renders this, so it carries the project links. */
+        <div className="h-[62vh] w-full md:h-[72vh]">
+          <ul className="sr-only">
+            {items.map((item) => (
+              <li key={item.id}>
+                <Link href={href(`/work/${item.slug}`)}>{item.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
       {items.length > 0 && (
         <div className="mt-14 flex justify-center md:mt-16">
           <Magnetic>
             <Link
-              href="/work"
+              href={href("/work")}
               data-cursor="view"
               className="group inline-flex items-center gap-4 border border-bone/25 px-9 py-5 font-display text-sm font-bold uppercase tracking-wide2 text-bone transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-charcoal"
             >

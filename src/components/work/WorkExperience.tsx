@@ -54,7 +54,7 @@ const textureUrl = (sanityUrl: string, width: 640 | 1080) =>
   `/_next/image?url=${encodeURIComponent(sanityUrl)}&w=${width}&q=80`;
 
 export default function WorkExperience({ initialProjects }: WorkExperienceProps) {
-  const { t, language } = useLanguage();
+  const { t, language, href } = useLanguage();
   const router = useRouter();
   const isDesktop = useIsDesktop();
   const [projects, setProjects] = useState<WorkProject[]>(initialProjects ?? []);
@@ -180,7 +180,7 @@ export default function WorkExperience({ initialProjects }: WorkExperienceProps)
       controlsRef.current?.step(-1);
     } else if ((e.key === "Enter" || e.key === " ") && activeItem) {
       e.preventDefault();
-      router.push(`/work/${activeItem.slug}`);
+      router.push(href(`/work/${activeItem.slug}`));
     }
   };
 
@@ -218,6 +218,21 @@ export default function WorkExperience({ initialProjects }: WorkExperienceProps)
     return (
       <div className="flex min-h-screen items-center justify-center bg-charcoal">
         <div className="h-9 w-9 animate-spin rounded-full border-2 border-gold border-t-transparent" />
+        {/* The view mode needs the browser, so this is all the server renders.
+            Same projects as list mode, readable by crawlers and screen readers. */}
+        <nav className="sr-only" aria-label={t.work.title}>
+          <h1>{t.work.title}</h1>
+          <ul>
+            {items.map((item) => (
+              <li key={item.id}>
+                <Link href={href(`/work/${item.slug}`)}>
+                  {item.title}
+                  {item.year ? ` (${item.year})` : ""}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     );
   }
@@ -256,7 +271,7 @@ export default function WorkExperience({ initialProjects }: WorkExperienceProps)
           low={!isDesktop}
           controlsRef={controlsRef}
           onActiveChange={(i) => setActive(i % items.length)}
-          onSelect={(i) => router.push(`/work/${beltItems[i].slug}`)}
+          onSelect={(i) => router.push(href(`/work/${beltItems[i].slug}`))}
         />
 
         {/* Top header */}
@@ -280,7 +295,7 @@ export default function WorkExperience({ initialProjects }: WorkExperienceProps)
                 className="flex flex-col items-center"
               >
                 <button
-                  onClick={() => router.push(`/work/${activeItem.slug}`)}
+                  onClick={() => router.push(href(`/work/${activeItem.slug}`))}
                   data-cursor="open"
                   className="pointer-events-auto group"
                 >

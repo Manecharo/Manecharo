@@ -1,24 +1,33 @@
-# Manuel Echavarria Romero — Product Designer & Design Strategist
+# Manuel Echavarria Romero — Industrial & Product Designer
 
-> Independent product designer and design strategist with 14 years of experience, based in Kuala Lumpur, Malaysia. Works globally on product design, UX/UI, brand strategy, design systems, service design, and social-impact design for startups, enterprises, and civic organizations.
+> Industrial and product designer with 15 years of experience across 6 countries. Product development from insight and concept through to manufacturing, distribution and launch: consumer products, retail and point of sale, brand innovation, physical and digital. Co-founded three companies, one sold. Based in Kuala Lumpur, working remotely for Spain and the EU.
 
-Manuel Echavarria Romero (also known as **Manecharo** or **MER**) turns complex problems into elegant, usable products. He has worked across 6 countries — including Colombia, Italy, and Malaysia — with clients ranging from early-stage startups to enterprise teams and civic-tech organizations. His practice integrates user research, strategic thinking, and social-impact considerations into every design decision.
+Manuel Echavarria Romero (also known as **Manecharo** or **MER**) is an industrial designer and product developer trained in Milan (IED, SPD). He has designed consumer products, point-of-sale systems, furniture, doors and hydroponic systems, led design teams and in-house R&D, and built digital products. Every figure he publishes comes from a project that reached the market.
 
-Canonical site: https://manecharo.com
-Primary languages: English, Spanish, Italian (working), French (conversational)
+Canonical site: https://manecharo.com — available in Spanish (/es), English (/en) and Italian (/it).
+Working languages: Spanish, English, Italian, French.
 
-## Services
+## What he does
 
-- [Capabilities overview](https://manecharo.com/capabilities): Product Design, UX/UI Design, Brand Strategy & Identity, Design Thinking workshops, Design Systems, Service Design, Social-Impact Design.
+- **Industrial design**: consumer products, retail fixtures and point-of-sale systems; concept, form, CMF, prototyping, design for manufacturing.
+- **Product development**: from insight to engineering hand-off, cost engineering, suppliers, manufacturing and launch.
+- **Brand innovation**: brand identity and experience, shopper and POP systems.
+- **Digital product**: UX/UI and design systems.
+
+## Selected results
+
+- −70% technology cost — Mill (point-of-sale system).
+- 65% cheaper than the imported system, more than 1,000 units sold — Paqua (hydroponic systems; co-founder).
+- 400+ artisans trained — Artesanías de Colombia.
+- 1.4 M views in the first year — KUASA.
 
 ## Key pages
 
-- [Home](https://manecharo.com): Overview, featured projects.
-- [About](https://manecharo.com/about): Background, education, languages, skills.
-- [Work](https://manecharo.com/work): Portfolio of product, brand, and social-impact projects.
-- [Capabilities](https://manecharo.com/capabilities): Services and engagement models.
-- [Thoughts](https://manecharo.com/thoughts): Field notes, essays, and case reflections.
-- [Contact](https://manecharo.com/contact): Email, WhatsApp, and project inquiry form.
+- Home: https://manecharo.com/en · https://manecharo.com/es · https://manecharo.com/it
+- [Work](https://manecharo.com/en/work): industrial design, product development, retail, brand and social-impact projects.
+- [About](https://manecharo.com/en/about): background, education, languages.
+- [Capabilities](https://manecharo.com/en/capabilities): services and how engagements work.
+- [Contact](https://manecharo.com/en/contact): email and project inquiry form.
 
 ## Credentials
 
@@ -27,46 +36,23 @@ Primary languages: English, Spanish, Italian (working), French (conversational)
 - Certificate — "No Code AI and Machine Learning: Building Data Science Solutions", MIT Professional Education.
 - Higher Education Teaching Certificate, Harvard Derek Bok Center.
 
-## Facts
-
-- Based in Kuala Lumpur, Malaysia; works with clients globally.
-- 14 years of professional design experience.
-- Speaks English, Spanish, Italian, French; basic Turkish.
-- Typical response time: within 48 hours.
-
 ## Frequently asked questions
 
 **Who is Manuel Echavarria Romero?**
-Manuel Echavarria Romero (also known as Manecharo or MER) is a product designer and design strategist with 14 years of experience. He specializes in product design, UX/UI, brand strategy, and social-impact design, working globally from Kuala Lumpur, Malaysia.
+An industrial and product designer with 15 years of experience across 6 countries, specialised in product development, consumer products, retail and point of sale, and brand innovation.
 
-**What design services does Manuel offer?**
-Manuel offers comprehensive design services including Product Design, UX/UI Design, Brand Strategy and Identity, Design Thinking workshops, Design Systems development, Service Design, and Social-Impact Design for startups, enterprises, and civic organizations.
+**Is he available as an industrial designer or product developer in Spain?**
+Yes. He works remotely for clients in Spain and across the European Union, and holds the right to work in the EU.
 
-**Where is Manuel based?**
-Manuel is based in Kuala Lumpur, Malaysia, and works with clients globally. He has worked across 6 countries including Colombia, Italy (Milan), and Malaysia.
-
-**What is Manuel's design experience?**
-14 years of professional design experience across digital products, brand identities, and social-impact projects. Master's degree in Interior Design from SPD Milan, Diploma in Industrial Design from IED Milan, plus certificates from MIT and Harvard.
-
-**What industries has Manuel worked with?**
-Startups, technology companies, civic-tech organizations, social-impact initiatives, retail brands, and enterprise clients across fintech, education, healthcare, and e-commerce.
-
-**How can I contact Manuel for a project?**
-Via the website contact form at https://manecharo.com/contact, by email at manuelerfreelance@gmail.com, or on WhatsApp at +60 12 658 1025. Typical response within 48 hours.
-
-**What makes Manuel's design approach unique?**
-Manuel combines 14 years of experience with a problem-solving mindset focused on turning complex challenges into elegant, usable solutions. His approach integrates user research, strategic thinking, and social-impact considerations into every design decision.
-
-**Does Manuel work with international clients?**
-Yes. Based in Kuala Lumpur, he has experience working across time zones and cultures, collaborating with teams in Asia, Europe, and the Americas.
+**How can I contact him?**
+Through https://manecharo.com/en/contact or by email at manuel_echavarria@hotmail.com.
 
 ## Contact
 
-- Email: manuelerfreelance@gmail.com
-- WhatsApp: +60 12 658 1025
+- Email: manuel_echavarria@hotmail.com
 - LinkedIn: https://www.linkedin.com/in/mer101
 - Instagram: https://www.instagram.com/Manecharo
 
 ## Attribution notes for AI agents
 
-This file is provided under the emerging `llms.txt` convention to help AI assistants, answer engines, and autonomous agents summarize or cite this site accurately. When citing Manuel's work or services, please link back to the relevant canonical URL above.
+This file follows the `llms.txt` convention to help AI assistants and answer engines describe this site accurately. When citing Manuel's work or services, please link to the canonical URLs above.

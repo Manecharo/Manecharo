@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { client, urlFor } from "@/lib/sanity/client";
+import { pageMetadata } from "@/lib/seo/pages";
+import type { Lang } from "@/lib/i18n/routing";
 
 interface Post {
   _id: string;
@@ -59,12 +61,11 @@ function getExcerpt(content: any[]): string {
   return text ? text.slice(0, 100) + "..." : "";
 }
 
-export const metadata = {
-  title: "Notes from the Field",
-  description: "Thoughts on design, systems, and solving hard problems.",
-};
+export function generateMetadata({ params }: { params: { lang: Lang } }) {
+  return pageMetadata(params.lang, "thoughts");
+}
 
-export default async function ThoughtsPage() {
+export default async function ThoughtsPage({ params }: { params: { lang: Lang } }) {
   const posts = await getPosts();
 
   return (
@@ -102,7 +103,7 @@ export default async function ThoughtsPage() {
               return (
                 <Link
                   key={post._id}
-                  href={`/thoughts/${post.slug.current}`}
+                  href={`/${params.lang}/thoughts/${post.slug.current}`}
                   className="block group break-inside-avoid"
                   style={{
                     transform: `rotate(${rotation})`,

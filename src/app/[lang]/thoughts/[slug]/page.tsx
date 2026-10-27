@@ -56,6 +56,8 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: `Post by Manuel Echavarria Romero`,
+    // posts are written once, in English: the /es and /it copies point here
+    alternates: { canonical: `https://manecharo.com/en/thoughts/${params.slug}` },
   };
 }
 
