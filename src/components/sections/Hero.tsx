@@ -2,18 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { useIsDesktop, useReducedMotion } from "@/lib/motion/hooks";
+import { useReducedMotion } from "@/lib/motion/hooks";
 import { gsap } from "@/lib/motion/gsap";
-import { webglAvailable } from "@/components/three/CanvasGuard";
 import TextReveal from "@/components/experience/TextReveal";
 import Magnetic from "@/components/experience/Magnetic";
-
-const HeroCanvas = dynamic(() => import("@/components/three/HeroCanvas"), {
-  ssr: false,
-});
 
 // Cap the name so it never overflows short/ultra-wide viewports (which would
 // clip the CTAs). min() of: width-driven vw, height-driven vh, and a hard rem.
@@ -25,22 +19,19 @@ const IDLE_MS = 10000;
 export default function Hero() {
   const { t, href } = useLanguage();
   const reduced = useReducedMotion();
-  const isDesktop = useIsDesktop();
   const sectionRef = useRef<HTMLElement>(null);
   const nameRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const inViewRef = useRef(true);
   const [canvasActive, setCanvasActive] = useState(true);
-  const [webgl, setWebgl] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [cinematic, setCinematic] = useState(false);
 
   useEffect(() => {
-    setWebgl(webglAvailable());
     setMounted(true);
   }, []);
 
-  // Pause the GPU when the hero leaves the viewport
+  // Track whether the hero is on screen
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -72,7 +63,6 @@ export default function Hero() {
     return () => window.removeEventListener("pointermove", onMove);
   }, [reduced]);
 
-  const showCanvas = webgl && !reduced;
   const showVideo = mounted && !reduced;
 
   // After IDLE_MS without interaction the hero dims its UI and lets the film
@@ -110,7 +100,7 @@ export default function Hero() {
       ref={sectionRef}
       className="relative h-[100svh] w-full overflow-hidden bg-charcoal"
     >
-      {/* Film layer: the reel runs graded-down beneath the particle field, then
+      {/* Film layer: the reel runs graded-down, then
           rises to full strength in the cinematic rest state */}
       {showVideo && (
         <>
@@ -133,7 +123,7 @@ export default function Hero() {
           >
             <source src="/videos/hero-bg.mp4" type="video/mp4" />
           </video>
-          {/* Charcoal wash so particles + type read on top; clears for cinema */}
+          {/* Charcoal wash so the type reads on top; clears for cinema */}
           <div
             aria-hidden
             className={`absolute inset-0 bg-charcoal/35 transition-opacity duration-[1200ms] ease-out ${
@@ -143,27 +133,17 @@ export default function Hero() {
         </>
       )}
 
-      {/* WebGL particle field / static fallback — recedes in cinematic rest */}
-      <div
-        className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${
-          cinematic ? "opacity-25" : "opacity-100"
-        }`}
-      >
-        {showCanvas ? (
-          <HeroCanvas density={isDesktop ? 1 : 0.5} active={canvasActive} />
-        ) : (
-          !showVideo && (
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(120% 90% at 70% 20%, rgba(51,77,92,0.55) 0%, rgba(10,10,10,0) 55%), radial-gradient(80% 60% at 20% 85%, rgba(238,200,78,0.12) 0%, rgba(10,10,10,0) 60%)",
-              }}
-            />
-          )
-        )}
-      </div>
+      {/* Static fallback when the film is off (reduced motion / pre-mount) */}
+      {!showVideo && (
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(120% 90% at 70% 20%, rgba(51,77,92,0.55) 0%, rgba(10,10,10,0) 55%), radial-gradient(80% 60% at 20% 85%, rgba(238,200,78,0.12) 0%, rgba(10,10,10,0) 60%)",
+          }}
+        />
+      )}
 
       {/* Vignette to seat the typography */}
       <div
